@@ -86,3 +86,6 @@
         grid-template-columns: 1fr;
     }
 }
+body {
+    background-color: hotpink !important;
+}
