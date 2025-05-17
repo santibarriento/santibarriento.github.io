@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* --- ESTILOS CSS (Esto es un ejemplo, ¡debes mejorarlo!) --- */
+        :root {
+            --primary-color: #0277bd;
+            --primary-color-light: #4fcefa;
+            --primary-color-dark: #02508c;
+            --accent-color: #ffca28;
+            --bg-color: #f0f8ff;
+            --text-color: #333;
+            --card-bg-color: #fff;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --font-family: 'Poppins', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-family);
         }
+
         body {
-            background-color: #f0f8ff; /* Un azul muy claro */
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(90deg, #0288d1, #4fcefa); /* Gradiente más suave */
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-color-light));
             color: white;
             text-align: center;
             padding: 2rem;
@@ -33,20 +48,20 @@
         }
 
         header img {
-            width: 120px; /* Foto más grande */
+            width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
             border: 5px solid white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         header div {
-            flex: 1; /* Ocupa el espacio restante */
+            flex: 1;
         }
 
         .contact-bar {
-            background: #0277bd; /* Azul más oscuro */
+            background: var(--primary-color-dark);
             color: white;
             display: flex;
             justify-content: center;
@@ -68,13 +83,13 @@
         }
 
         .contact-bar a:hover {
-            color: #ffca28; /* Amarillo dorado */
+            color: var(--accent-color);
         }
 
         nav {
             display: flex;
             justify-content: center;
-            background-color: #4fcefa; /* Azul más claro */
+            background-color: var(--primary-color-light);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -87,35 +102,44 @@
             text-decoration: none;
             transition: background-color 0.3s, color 0.3s;
             font-weight: 500;
+            cursor: pointer;
         }
 
         nav a:hover,
         nav a.active {
-            background-color: #0277bd;
-            color: #fff3e0; /* Beige suave */
+            background-color: var(--primary-color-dark);
+            color: #fff3e0;
         }
 
-        .container {
+        #content {
             width: 90%;
-            max-width: 1000px; /* Más ancho */
+            max-width: 1000px;
             margin: 2.5rem auto;
             padding: 2rem 2.5rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            background: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
             animation: slideUp 1s;
         }
 
+        .section {
+            display: none; /* Initially hide all sections */
+        }
+
+        .section.active {
+            display: block; /* Show the active section */
+        }
+
         h2 {
-            color: #0277bd;
+            color: var(--primary-color);
             margin-bottom: 1.5rem;
-            border-bottom: 3px solid #b3e5fc; /* Línea debajo del título */
+            border-bottom: 3px solid #b3e5fc;
             padding-bottom: 0.5rem;
             font-size: 2rem;
         }
 
         h3 {
-            color: #0277bd;
+            color: var(--primary-color);
             margin-top: 1.5rem;
             margin-bottom: 1rem;
             font-size: 1.5rem;
@@ -123,23 +147,22 @@
 
         ul {
             list-style: none;
-            padding-left: 0; /* Sin padding */
+            padding-left: 0;
         }
 
         ul li {
             margin-bottom: 1rem;
             padding: 1.25rem;
-            background: #f8f8f8; /* Gris muy claro */
+            background: #f8f8f8;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
             transition: transform 0.2s;
         }
 
         ul li:hover {
-            transform: translateY(-3px); /* Ligeramente hacia arriba */
+            transform: translateY(-3px);
         }
 
-        /* Project Cards */
         .project-card {
             display: flex;
             align-items: center;
@@ -161,7 +184,7 @@
             height: 150px;
             object-fit: contain;
             border-radius: 8px;
-            background-color: white; /* Asegura fondo blanco */
+            background-color: white;
         }
 
         .project-card-info {
@@ -182,19 +205,19 @@
         }
 
         .project-card-links a {
-            color: #0277bd;
+            color: var(--primary-color);
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .project-card-links a:hover {
-            color: #ffca28;
+            color: var(--accent-color);
         }
 
         footer {
             text-align: center;
             padding: 1.5rem;
-            background: #0277bd;
+            background: var(--primary-color-dark);
             color: white;
             margin-top: 2.5rem;
             border-top: 5px solid #b3e5fc;
@@ -203,13 +226,25 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideUp {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Media Queries (Mobile Responsiveness) */
@@ -246,6 +281,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <img src="santi.png" alt="Foto de Santiago Barriento">
@@ -261,20 +297,23 @@
         <a href="https://github.com/santiagobarriento" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     </div>
     <nav>
-        <a href="#about" class="active">Sobre Mí</a>
-        <a href="#skills">Habilidades</a>
-        <a href="#projects">Proyectos</a>
-        <a href="#experience">Experiencia</a>
-        <a href="#education">Formación</a>
+        <a href="#about" class="active" data-section="about">Sobre Mí</a>
+        <a href="#skills" data-section="skills">Habilidades</a>
+        <a href="#projects" data-section="projects">Proyectos</a>
+        <a href="#experience" data-section="experience">Experiencia</a>
+        <a href="#education" data-section="education">Formación</a>
     </nav>
-    <main>
-        <section class="container" id="about">
+    <main id="content">
+        <section id="about" class="section active">
             <h2>Sobre Mí</h2>
             <p>
-                Soy un desarrollador junior apasionado por la tecnología y la creación de soluciones innovadoras. Me destaco por mi capacidad de aprendizaje rápido, adaptabilidad y compromiso con la calidad. Disfruto trabajar en equipo, compartir conocimientos y afrontar nuevos retos que me permitan crecer profesionalmente. Busco una oportunidad donde aportar valor, seguir aprendiendo y contribuir al éxito de los proyectos.
+                Soy un desarrollador de software apasionado con un fuerte enfoque en la innovación y el aprendizaje continuo.
+                Me especializo en el desarrollo de aplicaciones multiplataforma, combinando creatividad y habilidades técnicas
+                para crear soluciones eficientes y funcionales. Mi objetivo es contribuir con mi experiencia y dedicación a
+                proyectos desafiantes que impulsen el crecimiento y la excelencia tecnológica.
             </p>
         </section>
-        <section class="container" id="skills">
+        <section id="skills" class="section">
             <h2>Habilidades</h2>
             <ul>
                 <li>
@@ -304,7 +343,7 @@
                 </li>
             </ul>
         </section>
-        <section class="container" id="projects">
+        <section id="projects" class="section">
             <h2>Proyectos</h2>
             <article class="project-card">
                 <img src="befit/logo.png" alt="BeFit App">
@@ -322,7 +361,7 @@
                 </div>
             </article>
             </section>
-        <section class="container" id="experience">
+        <section id="experience" class="section">
             <h2>Experiencia</h2>
             <article>
                 <h3>Desarrollador Junior - Saturdays.ai (2023 - 2024)</h3>
@@ -341,7 +380,7 @@
                 </ul>
             </article>
             </section>
-        <section class="container" id="education">
+        <section id="education" class="section">
             <h2>Formación</h2>
             <p>
                 <strong>Técnico en Desarrollo de Aplicaciones Multiplataforma</strong> - Institut Francesc Vidal i Barraquer,
@@ -352,5 +391,38 @@
     <footer>
         <p>&copy; 2025 Santiago Barriento | Portafolio</p>
     </footer>
+
+    <script>
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('.section');
+
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function setActiveLink(link) {
+            navLinks.forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+            link.classList.add('active');
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default anchor behavior
+                const sectionId = link.dataset.section;
+                showSection(sectionId);
+                setActiveLink(link);
+            });
+        });
+
+        // Show the "About Me" section by default
+        showSection('about');
+        setActiveLink(document.querySelector('nav a[data-section="about"]'));
+    </script>
 </body>
+
 </html>
