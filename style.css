@@ -1,18 +1,288 @@
 /* --- Estilos CSS Generales --- */
 :root {
-    --primary-color: #0277bd;
-    --primary-color-light: #4fcefa;
-    --primary-color-dark: #02508c;
-    --accent-color: #ffca28;
-    --bg-color: #002c52;
-    --text-color: #333;
-    --card-bg-color: #ffffff;
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --border-radius: 12px;
-    --font-family: 'Poppins', sans-serif;
+    /* Nueva Paleta Azul Aplicada */
+    --primary-color: #1976D2;         /* Azul Medio (Versátil y Amigable) - Tu azul principal */
+    --primary-color-light: #84beee;   /* Celeste Claro (Suave y Limpio) - Para elementos más claros y gradientes */
+    --primary-color-dark: #002864;    /* Azul Principal (Profundo y Profesional) - Tu azul más oscuro para acentos fuertes */
+    
+    --accent-color: #ffca28;          /* Se mantiene tu color de acento amarillo */
+    
+    --bg-color: #cccccc;              /* Azul Hielo (Muy Claro y Sutil) - Para el fondo general de la página */
+    
+    --text-color: #000000;               /* Se mantiene tu color de texto principal */
+    /* Considera añadir una variable para texto claro sobre fondos oscuros si es necesario, ej: --text-color-light: #FFFFFF; */
+    
+    --card-bg-color: #ffffff;            /* Se mantiene el fondo de tarjeta blanco */
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Se mantiene */
+    --border-radius: 12px;            /* Se mantiene */
+    --font-family: 'Poppins', sans-serif; /* Se mantiene */
 }
 
-/* ... Estilos para header, nav, etc. ... */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-color-light));
+    color: white; /* color del nombre */
+    text-align: center;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    animation: fadeIn 1.5s;
+}
+
+header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #84beee; /* O considera var(--primary-color-light) si buscas un borde sutilmente coloreado */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header div {
+    flex: 1;
+}
+
+.contact-bar {
+    background: var(--primary-color-dark);
+    color: white; /* Bien con el azul oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-bar a {
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contact-bar a:hover {
+    color: var(--accent-color);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--primary-color); /* Celeste claro para la barra de navegación */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: var(--primary-color-dark); /* Texto azul oscuro sobre celeste claro para buen contraste */
+    /* o color: white; si prefieres y el contraste es suficiente con #64B5F6 */
+    padding: 1.25rem 2.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: var(--primary-color-dark); /* Azul oscuro para el activo/hover */
+    color: white; /* Texto blanco sobre azul oscuro */
+    /* color: #fff3e0; si prefieres el tono crema anterior y contrasta bien */
+}
+
+#content {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    padding: 2rem 2.5rem;
+    background: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    animation: slideUp 1s;
+}
+
+.section {
+    display: none;
+    /* Initially hide all sections */
+}
+
+.section.active {
+    display: block;
+    /* Show the active section */
+}
+
+h2 {
+    color: var(--primary-color-dark); /* Títulos principales con el azul más oscuro */
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--primary-color-light); /* Borde inferior con celeste claro */
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+h3 {
+    color: var(--primary-color); /* Subtítulos con el azul medio */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    margin-bottom: 1rem;
+    padding: 1.25rem;
+    background: #f8f8f8; /* Mantienes el fondo gris claro para items de lista */
+    /* Alternativa: background: var(--azul-muy-claro); si quieres que también usen el fondo general */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s;
+}
+
+ul li:hover {
+    transform: translateY(-3px);
+}
+
+.project-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    border: 1px solid #1976D2; /* Borde de tarjeta con celeste claro */
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.project-card:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #ffffff; /* Fondo para la imagen del proyecto con celeste claro */
+    /* background-color: rgb(110, 149, 255); antiguo color, puedes elegir */
+}
+
+.project-card-info {
+    flex: 1;
+}
+
+.project-card-info h3 {
+    margin-top: 0;
+    color: var(--primary-color-dark); /* Título de tarjeta con azul oscuro */
+}
+
+.project-card-info p {
+    margin-bottom: 0.75rem;
+}
+
+.project-card-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-card-links a {
+    color: var(--primary-color); /* Enlaces de proyecto con azul medio */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.project-card-links a:hover {
+    color: var(--accent-color);
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--primary-color-dark); /* Footer con azul oscuro */
+    color: var(--bg-color); /* Texto azul hielo sobre azul oscuro para buen contraste */
+    /* color: rgb(0, 0, 0); antiguo color de texto del footer */
+    margin-top: 2.5rem;
+    border-top: 5px solid var(--primary-color-light); /* Borde superior con celeste claro */
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Media Queries (Mobile Responsiveness) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .contact-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    nav a {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .project-card {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-card img {
+        width: 100%;
+        max-width: 200px;
+    }
+}
 
 /* --- Estilos CSS para la sección de habilidades --- */
 
@@ -28,13 +298,14 @@
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .skill-category h3 {
-    color: var(--primary-color);
+    color: var(--primary-color-dark); /* Título de categoría con azul oscuro */
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid var(--primary-color-light); /* Borde con celeste claro */
     padding-bottom: 0.5rem;
 }
 
@@ -51,12 +322,57 @@
     justify-content: center;
     width: 100px;
     height: 100px;
-    background-color: #317bdb;
+    background-color: #dad8d8;
     border-radius: 8px;
     text-align: center;
     padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
     transition: transform 0.2s;
+}
+/* --- Estilos para sección de experiencia --- */
+#experience {
+    padding: 2rem 1rem;
+}
+
+.experience-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.experience-card h3 {
+    margin-top: 0;
+    color: var(--primary-color-dark);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.experience-card > img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.experience-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.experience-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.experience-card li img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
 }
 
 .skill-item:hover {
@@ -73,17 +389,17 @@
     font-weight: bold;
     display: block;
     margin-bottom: 0.25rem;
+    color: var(--primary-color-dark); /* Texto del item con azul oscuro para destacar sobre fondo claro */
 }
 
 .skill-item small {
-    color: #2d46d6;
+    color: var(--primary-color); /* Texto 'small' con azul medio */
     font-size: 0.8rem;
 }
 
-/* Media Query para Mobile  */
+/* Media Query para Mobile (Habilidades) */
 @media (max-width: 600px) {
     .skills-grid {
         grid-template-columns: 1fr;
     }
 }
-
