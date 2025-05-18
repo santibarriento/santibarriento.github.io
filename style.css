@@ -6,7 +6,7 @@
     --accent-color: #ffca28;
     --bg-color: #002c52;
     --text-color: #333;
-    --card-bg-color: #adaaaa;
+    --card-bg-color: #ffffff;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --border-radius: 12px;
     --font-family: 'Poppins', sans-serif;
@@ -51,7 +51,7 @@
     justify-content: center;
     width: 100px;
     height: 100px;
-    background-color: #f0f0f0;
+    background-color: #797878;
     border-radius: 8px;
     text-align: center;
     padding: 0.5rem;
