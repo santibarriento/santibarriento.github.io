@@ -410,25 +410,35 @@ footer {
     }
 
     /* --- AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
+    /* --- AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
     .contact-bar {
-        flex-direction: row; /* Mantiene iconos en horizontal */
-        justify-content: space-around; /* Distribuye los iconos */
-        padding: 0.75rem 0.5rem; /* Padding ajustado */
-        gap: 0.5rem; /* Espacio entre iconos si es necesario */
+        flex-direction: row;         /* Asegura la disposición horizontal */
+        justify-content: center;     /* Centra el grupo de iconos en la barra */
+        align-items: center;         /* Alinea verticalmente los iconos */
+        padding: 0.75rem 0.5rem;     /* Padding vertical y un poco horizontal para la barra */
+        gap: 1rem;                   /* Espacio entre cada uno de los iconos/enlaces. Ajusta si necesitas más o menos. */
+        flex-wrap: nowrap;           /* Evita que los iconos se envuelvan a la siguiente línea si el espacio es muy justo. */
+                                     /* Si aún así se cortan, considera reducir el 'gap' o el padding de los 'a' */
     }
+
     .contact-bar a {
-        font-size: 1rem; /* Tamaño de fuente base */
-        padding: 0.5rem; /* Padding alrededor del icono para hacerlo táctil */
-        gap: 0; /* Sin gap interno ya que el texto se oculta */
-        justify-content: center; /* Centra el icono dentro del 'a' */
+        font-size: 1rem;             /* Tamaño base de la fuente (el tamaño del icono se define abajo) */
+        padding: 0.5rem 0.75rem;     /* Padding alrededor de cada icono para un buen área táctil */
+                                     /* (antes 0.5rem) - un poco más de padding horizontal */
+        gap: 0;                      /* Sin gap interno en el 'a', ya que el texto está oculto */
+        justify-content: center;     /* Centra el icono dentro del área del enlace 'a' */
+        /* display: flex; align-items: center; ya están definidos en la regla base de .contact-bar a */
     }
+
     .contact-bar a .contact-text { /* Clase para el texto dentro del enlace de contacto */
         display: none; /* Oculta el texto en móvil */
     }
+
     .contact-bar a .fas,
     .contact-bar a .fab {
-        font-size: 1.6em; /* Iconos más grandes y táctiles */
-        /* margin-right: 0; /* No es necesario si el gap del 'a' es 0 */
+        font-size: 1.5em; /* Tamaño de los iconos. Era 1.6em, puedes probar con 1.5em si necesitas un poco más de espacio. */
+        line-height: 1; /* Asegura que el icono no añada altura extra */
+        /* margin-right: 0; No es necesario con la estructura actual */
     }
     /* --- FIN AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
 
