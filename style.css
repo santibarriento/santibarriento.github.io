@@ -7,7 +7,7 @@
     
     --accent-color: #ffca28;        /* Se mantiene tu color de acento amarillo */
     
-    --bg-color: #cccccc;            /* Gris Claro (antes Azul Hielo) - Para el fondo general de la página */
+    --bg-color: #cccccc;            /* Gris Claro - Para el fondo general de la página */
     
     --text-color: #000000;           /* Se mantiene tu color de texto principal */
     
@@ -39,7 +39,7 @@ header {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    animation: fadeIn 1s ease-out; /* Ajustada duración y timing function */
+    animation: fadeIn 1s ease-out; 
 }
 
 header img {
@@ -47,7 +47,7 @@ header img {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--primary-color-light); /* Usando variable para consistencia */
+    border: 5px solid var(--primary-color-light); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -84,8 +84,8 @@ header div {
 /* --- Estilos de Navegación Ajustados --- */
 nav {
     display: flex;
-    justify-content: center; /* Centra los items */
-    align-items: center; /* Alinea verticalmente para los iconos y texto */
+    justify-content: center; 
+    align-items: center; 
     background-color: var(--primary-color);
     position: sticky;
     top: 0;
@@ -95,21 +95,21 @@ nav {
 
 nav a {
     color: var(--primary-color-dark);
-    padding: 1.25rem 1.5rem; /* Ligeramente ajustado el padding horizontal para acomodar iconos */
+    padding: 1.25rem 1.5rem; 
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
     font-weight: 500;
     cursor: pointer;
-    display: flex; /* Para alinear icono y texto dentro del enlace */
-    align-items: center; /* Centra verticalmente icono y texto */
-    justify-content: center; /* Centra el contenido (icono + texto) si el padding es amplio */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
 }
 
-nav a .fas, /* Para Font Awesome 5/6 (solid) */
-nav a .fab { /* Para Font Awesome 5/6 (brands) */
-    margin-right: 8px; /* Espacio entre el icono y el texto */
-    font-size: 1em;  /* Tamaño del icono, puedes ajustarlo */
-    line-height: 1;  /* Ayuda a la alineación vertical */
+nav a .fas, 
+nav a .fab { 
+    margin-right: 8px; 
+    font-size: 1em;  
+    line-height: 1;  
 }
 
 nav a:hover,
@@ -117,9 +117,6 @@ nav a.active {
     background-color: var(--primary-color-dark);
     color: white;
 }
-
-/* El span que envuelve el texto del enlace, para ocultarlo en móvil */
-/* .nav-text ya está siendo usado en el HTML que te di, así que no es necesario definirlo aquí a menos que quieras estilos base */
 
 /* --- Fin Estilos de Navegación --- */
 
@@ -131,7 +128,7 @@ nav a.active {
     background: var(--card-bg-color);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
-    animation: slideUp 1s ease-out; /* Ajustada timing function */
+    animation: slideUp 1s ease-out; 
 }
 
 .section {
@@ -157,13 +154,13 @@ h3 {
     font-size: 1.5rem;
 }
 
-ul { /* Estilo general para listas, puede afectar a la de experiencia */
+ul { 
     list-style: none;
     padding-left: 0;
 }
 
-#experience ul li, /* Aplicando estilo más específico para evitar conflicto con otras ul > li */
-#about ul li { /* Si tuvieras listas en "about" que quisieras con este estilo */
+#experience ul li, 
+#about ul li { 
     margin-bottom: 1rem;
     padding: 1.25rem;
     background: #f8f8f8; 
@@ -181,7 +178,7 @@ ul { /* Estilo general para listas, puede afectar a la de experiencia */
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    border: 1px solid var(--primary-color-light); /* Usando variable para el borde */
+    border: 1px solid var(--primary-color-light); 
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -190,7 +187,7 @@ ul { /* Estilo general para listas, puede afectar a la de experiencia */
 }
 
 .project-card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Sombra más sutil en hover */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .project-card img {
@@ -198,7 +195,7 @@ ul { /* Estilo general para listas, puede afectar a la de experiencia */
     height: 150px;
     object-fit: contain;
     border-radius: 8px;
-    background-color: var(#ffffff); /* Fondo para la imagen usando variable */
+    background-color: var(--card-bg-color); /* Corregido para usar variable consistentemente */
 }
 
 .project-card-info {
@@ -233,7 +230,7 @@ footer {
     text-align: center;
     padding: 1.5rem;
     background: var(--primary-color-dark);
-    color: var(--primary-color-light); /* Texto celeste sobre azul oscuro para mejor contraste que --bg-color */
+    color: var(--primary-color-light); 
     margin-top: 2.5rem;
     border-top: 5px solid var(--primary-color-light);
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
@@ -243,11 +240,9 @@ footer {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        /* transform: translateY(10px); /* Opcional: pequeño slide con el fade */
     }
     to {
         opacity: 1;
-        /* transform: translateY(0); */
     }
 }
 
@@ -275,10 +270,10 @@ footer {
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 1.5rem;
-    margin-bottom: 1rem; /* Añadido para separar categorías si skills-grid no lo hace suficiente */
+    margin-bottom: 1rem; 
 }
 
-.skill-category h3 { /* Estilo ya definido antes, pero se puede refinar aquí si es necesario */
+.skill-category h3 { 
     color: var(--primary-color-dark);
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -290,7 +285,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: center; /* Centra los items si no llenan el espacio */
+    justify-content: center; 
 }
 
 .skill-item {
@@ -300,43 +295,38 @@ footer {
     justify-content: center;
     width: 100px;
     height: 100px;
-    background-color: #f0f0f0; /* Un gris un poco más claro que el anterior #dad8d8 */
+    background-color: #f0f0f0; 
     border-radius: 8px;
     text-align: center;
     padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
     transition: transform 0.2s ease-out;
 }
 
 .skill-item:hover {
-    transform: scale(1.05) translateY(-2px); /* Efecto hover más dinámico */
+    transform: scale(1.05) translateY(-2px); 
 }
 
 .skill-item img {
-    max-width: 45px; /* Ligeramente más pequeño para más aire */
+    max-width: 45px; 
     max-height: 45px;
     margin-bottom: 0.5rem;
 }
 
 .skill-item span {
-    font-weight: 500; /* Un poco menos bold que antes */
+    font-weight: 500; 
     display: block;
-    /* margin-bottom: 0.25rem; /* Eliminado para que small tenga más impacto o se junte más */
     color: var(--primary-color-dark);
-    font-size: 0.9em; /* Ligeramente más pequeño */
+    font-size: 0.9em; 
 }
 
-.skill-item small { /* Si decides usarlo para niveles o similar */
+.skill-item small { 
     color: var(--primary-color);
     font-size: 0.75em;
 }
 
-/* --- Estilos para sección de experiencia --- */
-/* #experience { */ /* Ya tiene padding por .section y #content */
-    /* padding: 2rem 1rem; */
-/* } */
-
-.experience-card { /* Combinando las definiciones anteriores */
+/* --- Estilos para sección de experiencia (fusionados y revisados) --- */
+.experience-card { 
     background-color: var(--card-bg-color);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
@@ -355,49 +345,45 @@ footer {
 
 .logo-saturdays {
     width: 100px; 
-    height: auto; /* Mantiene la proporción */
-    object-fit: contain; /* Asegura que se vea bien sin recortar */
+    height: auto; 
+    object-fit: contain; 
 }
 
-.experience-card h3 { /* El h3 dentro de experience-header */
-    margin: 0; /* Quita el margen por defecto si lo tiene */
+.experience-card h3 { 
+    margin: 0; 
     color: var(--primary-color-dark);
-    font-size: 1.3rem; /* Ya definido, pero para confirmar */
+    font-size: 1.3rem; 
 }
 
-.experience-card ul { /* La lista de puntos de experiencia */
+.experience-card ul { 
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    list-style: none; /* Asegurado */
-    padding-left: 0;  /* Asegurado */
+    list-style: none; 
+    padding-left: 0;  
 }
 
-.experience-card li { /* Cada item de la experiencia */
+.experience-card li { 
     display: flex;
-    align-items: center; /* Alinea icono y texto */
+    align-items: center; 
     gap: 1rem;
-    background-color: #f0f0f0; /* Un fondo claro para cada punto */
+    background-color: #f0f0f0; 
     padding: 1rem;
-    border-radius: var(--border-radius); /* Usa la variable global de radio */
-    box-shadow: none; /* Quita la sombra de la regla ul li más general si se aplicaba */
-    transition: none; /* Quita la transición de la regla ul li más general si se aplicaba */
-    margin-bottom: 0; /* Quita el margen de la regla ul li más general */
+    border-radius: var(--border-radius); 
+    /* Se eliminan box-shadow, transition, margin-bottom de la regla más general ul li para evitar conflictos */
 }
 
-.experience-card li:hover { /* Quita el hover de la regla ul li más general */
-    transform: none;
-}
+/* Ya no se necesita :hover para .experience-card li si no hay efecto específico aquí */
 
-.experience-icon { /* Iconos pequeños junto a cada descripción de tarea */
-    width: 24px; /* Tamaño original */
+.experience-icon { 
+    width: 24px; 
     height: 24px;
     object-fit: contain;
-    flex-shrink: 0; /* Para que no se encoja si el texto es largo */
+    flex-shrink: 0; 
 }
 
-.large-icon { /* Clase para los iconos de Meta, Web, Coding si quieres que sean diferentes */
-    width: 40px; /* Ajusta este tamaño según prefieras */
+.large-icon { 
+    width: 40px; 
     height: 40px;
 }
 
@@ -405,8 +391,8 @@ footer {
     width: 50px;
     height: 50px;
     object-fit: contain;
-    margin-right: 10px; /* Añadido para separar del texto */
-    vertical-align: middle; /* Para alinear mejor con el texto */
+    margin-right: 10px; 
+    vertical-align: middle; 
 }
 
 /* --- Media Queries (Mobile Responsiveness) --- */
@@ -414,7 +400,7 @@ footer {
     header {
         flex-direction: column;
         gap: 1rem;
-        padding: 1.5rem; /* Ajuste de padding */
+        padding: 1.5rem; 
     }
 
     header img {
@@ -425,69 +411,70 @@ footer {
     .contact-bar {
         flex-direction: column;
         gap: 0.75rem;
-        padding: 0.5rem 1rem; /* Ajuste de padding */
+        padding: 0.5rem 1rem; 
     }
     .contact-bar a {
-        font-size: 1rem; /* Ligeramente más pequeño */
+        font-size: 1rem; 
     }
 
     /* Ajustes para la navegación en móvil con iconos */
     nav {
-        flex-direction: row; /* Mantiene los iconos en horizontal */
-        justify-content: space-around; /* Distribuye los iconos */
-        padding: 0.5rem 0; /* Padding reducido para la barra de iconos */
+        flex-direction: row; 
+        justify-content: space-around; 
+        padding: 0.5rem 0; 
     }
 
     nav a {
-        padding: 0.75rem; /* Padding para hacer el área táctil más grande alrededor del icono */
-        margin: 0; /* Sin margen horizontal entre ellos si usamos space-around */
-        flex-grow: 1; /* Opcional: para que ocupen el mismo espacio */
-        text-align: center; /* Centra el icono dentro del 'a' */
+        padding: 0.75rem; 
+        margin: 0; 
+        flex-grow: 1; 
+        text-align: center; 
+        /* display: flex, align-items: center, justify-content: center ya están definidos y funcionan bien */
     }
 
-    nav a .nav-text {
-        display: none; /* Oculta el texto */
+    nav a .nav-text { /* Clase para el texto dentro del enlace de navegación */
+        display: none; /* Oculta el texto en móvil */
     }
 
-    nav a .fas, /* O nav a i */
+    nav a .fas, 
     nav a .fab {
-        margin-right: 0; /* Sin margen ya que no hay texto */
-        font-size: 1.6em; /* Iconos más grandes y táctiles */
+        margin-right: 0; 
+        font-size: 1.6em; 
     }
     /* Fin ajustes de navegación móvil */
 
     #content {
         width: 95%;
-        padding: 1.5rem 1rem; /* Menos padding en el contenido principal */
+        padding: 1.5rem 1rem; 
     }
 
     h2 {
-        font-size: 1.8rem; /* Títulos un poco más pequeños */
+        font-size: 1.8rem; 
     }
     h3 {
-        font-size: 1.3rem; /* Subtítulos un poco más pequeños */
+        font-size: 1.3rem; 
     }
 
     .project-card {
         flex-direction: column;
-        align-items: center; /* Centra la imagen y el texto */
-        text-align: center; /* Centra el texto dentro de project-card-info */
+        align-items: center; 
+        text-align: center; 
     }
     .project-card-links {
-        justify-content: center; /* Centra los botones de proyectos */
+        justify-content: center; 
     }
 
     .project-card img {
         width: 100%;
-        max-width: 180px; /* Ajusta el tamaño máximo de la imagen del proyecto */
+        max-width: 180px; 
     }
 
     .skills-grid {
-        grid-template-columns: 1fr; /* Una columna para habilidades en móvil */
-        gap: 1.5rem; /* Ajusta el gap */
+        grid-template-columns: 1fr; 
+        gap: 1.5rem; 
     }
     .skill-item {
-        width: 90px; /* Ajusta el tamaño si es necesario */
+        width: 90px; 
         height: 90px;
     }
     .skill-item img {
@@ -495,20 +482,20 @@ footer {
         max-height: 40px;
     }
     .experience-header {
-        flex-direction: column; /* Logo arriba, texto abajo */
+        flex-direction: column; 
         text-align: center;
     }
     .experience-card li {
-        align-items: center; /* Centra icono y texto si se envuelven */
-        text-align: left; /* Mantiene el texto alineado a la izquierda */
+        /* align-items: center; ya está, pero se podría ajustar si el texto es muy largo */
+        text-align: left; 
     }
 }
 
-/* --- Estilos del Selector de Idioma (ya los tenías al final, verificados) --- */
+/* --- Estilos del Selector de Idioma --- */
 .language-switcher {
     position: fixed;
     top: 20px;
-    right: 25px;
+    right: 25px;      /* Ajustado para que no esté tan pegado al borde como 20px */
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -538,11 +525,11 @@ footer {
 
 .language-switcher a.lang-option:hover {
     background-color: #e9ecef;
-    color: var(--primary-color); /* Usando tu variable de color primario */
+    color: var(--primary-color); 
 }
 
 .language-switcher span.lang-option.active-lang {
-    background-color: var(--primary-color); /* Usando tu variable de color primario */
+    background-color: var(--primary-color); 
     color: #ffffff;
     cursor: default;
 }
