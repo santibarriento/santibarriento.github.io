@@ -1,0 +1,213 @@
+/* Estilos Generales */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f7f6;
+}
+
+.container {
+    width: 85%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #2c3e50; /* Un azul oscuro para los títulos principales */
+}
+
+h2 {
+    border-bottom: 2px solid #3498db; /* Un borde azul claro debajo de los subtítulos de sección */
+    padding-bottom: 10px;
+    margin-top: 0; /* Ajustado para que no haya doble margen con la sección */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background: #3498db; /* Azul claro para el fondo del header */
+    color: #fff; /* Texto blanco */
+    padding: 40px 0 30px 0;
+    text-align: center;
+    border-bottom: #2980b9 5px solid; /* Borde inferior un poco más oscuro */
+}
+
+header h1 {
+    margin: 0 0 10px 0;
+    font-size: 2.8em;
+    color: #fff;
+}
+
+header .subtitle {
+    font-size: 1.3em;
+    margin: 0;
+    color: #ecf0f1; /* Un blanco ligeramente grisáceo para el subtítulo */
+}
+
+/* Secciones Principales */
+main section {
+    padding: 40px 0;
+}
+
+main section:nth-child(even) { /* Fondo alterno para secciones (si la primera es #overview) */
+    background-color: #ffffff; /* Fondo blanco para secciones pares */
+}
+
+/* Contenido Flex (para descripción general con imagen al lado) */
+.content-flex {
+    display: flex;
+    flex-wrap: wrap; /* Si no caben, se ponen uno debajo del otro */
+    gap: 30px; /* Espacio entre texto e imagen */
+    align-items: center; /* Alinea verticalmente los items */
+}
+
+.text-content {
+    flex: 2; /* El texto ocupa más espacio */
+    min-width: 300px; /* Ancho mínimo para el texto antes de envolver */
+}
+
+.image-content {
+    flex: 1; /* La imagen ocupa menos espacio */
+    text-align: center;
+    min-width: 500px; /* Ancho mínimo para la imagen */
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Lista de Características y Cómo Funciona */
+#features ul,
+#how-it-works ul {
+    list-style: none; /* Quita los puntos por defecto de la lista */
+    padding: 0;
+}
+
+#features li,
+#how-it-works li {
+    background: #fff; /* Fondo blanco para cada item */
+    border: 1px solid #ddd; /* Borde sutil */
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Sombra ligera */
+    font-size: 1.05em; /* Tamaño de fuente para los items */
+}
+
+/* Estilo para iconos si usas Font Awesome en las listas */
+#features li i,
+#how-it-works li i {
+    margin-right: 10px;
+    color: #3498db; /* Color azul para los iconos */
+}
+
+/* Grid de Tecnologías */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Columnas responsivas */
+    gap: 15px;
+    text-align: center;
+}
+
+.tech-item {
+    background: #ecf0f1; /* Fondo gris claro para cada tecnología */
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #34495e; /* Color de texto oscuro */
+    border: 1px solid #bdc3c7; /* Borde sutil */
+}
+
+/* Sección de Captura de Pantalla Principal */
+#screenshot-main {
+    text-align: center; /* Centra el título y el párrafo introductorio si es necesario */
+}
+.main-screenshot-container {
+    text-align: center; /* Centra la imagen */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.main-screenshot-container img {
+    max-width: 100%; /* Hace la imagen responsiva */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15); /* Sombra más pronunciada para destacar */
+    border: 3px solid #ddd; /* Borde opcional */
+}
+
+/* Sección Código Fuente y Botón GitHub */
+#source-code {
+    text-align: center;
+}
+
+.button-github {
+    display: inline-block;
+    background: #2c3e50; /* Color oscuro para el botón de GitHub */
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.button-github:hover {
+    background: #34495e; /* Un poco más claro al pasar el ratón */
+}
+
+/* Estilo para icono de GitHub si usas Font Awesome en el botón */
+.button-github i {
+    margin-left: 8px;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50; /* Mismo color oscuro que el botón de GitHub para consistencia */
+    color: #fff;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #3498db; /* Color azul para enlaces en el footer */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+/* Diseño Responsivo (ejemplo básico) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2em; /* Reduce tamaño de título en móviles */
+    }
+    header .subtitle {
+        font-size: 1.1em;
+    }
+    .content-flex {
+        flex-direction: column; /* Apila texto e imagen en móviles */
+    }
+    .text-content, .image-content {
+        flex: auto; /* Ocupan todo el ancho disponible */
+    }
+    .container {
+        width: 90%; /* Más ancho en pantallas pequeñas */
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+}

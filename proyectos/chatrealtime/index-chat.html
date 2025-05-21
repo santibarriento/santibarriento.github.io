@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Chat en Tiempo Real con Spring Boot</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-wrapper">
+            <img src="chatlogo.png" alt="Chat Logo" class="logo-image">
+        </div>
+            <p class="subtitle">Una aplicación web funcional para mensajería instantánea.</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="overview">
+            <div class="container">
+                <h2>Descripción General del Proyecto</h2>
+                <div class="content-flex">
+                    <div class="text-content">
+                        <p>
+                            Esta página presenta una aplicación de chat en tiempo real. La interfaz de usuario permite a los participantes ingresar su nombre y un mensaje. Estos mensajes se envían a un servidor backend y se muestran en una ventana de chat compartida, actualizándose para todos los usuarios conectados.
+                        </p>
+                        <p>
+                            La comunicación cliente-servidor se establece mediante WebSockets, aprovechando las librerías <strong>SockJS</strong> y <strong>STOMP.js</strong>. SockJS actúa como una capa de transporte que proporciona una API similar a WebSocket pero con fallback a otras técnicas si WebSockets no está disponible. STOMP.js se utiliza sobre SockJS para permitir la mensajería basada en mensajes y suscripciones a "topics", simplificando el flujo de datos. La interfaz es responsiva, utilizando una combinación de los estilos CSS personalizados el archivo HTML </HTML>y <strong>Bootstrap</strong>.
+                        </p>
+                        
+                    </div>
+                    <div class="image-content">
+                        <img src="chatlogo.png" alt="Interfaz principal del Chat en Tiempo Real">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="container">
+                <h2>¿Cómo Funciona el Cliente?</h2>
+                <p>La lógica del lado del cliente, opera de la siguiente manera:</p>
+                <ul>
+                    <li><strong>Conexión Inicial:</strong> Al cargar la página (`window.onload`), el script JavaScript intenta establecer una conexión WebSocket con el servidor en el endpoint <code>/chat</code> usando <code>SockJS('/chat')</code>.</li>
+                    <li><strong>Protocolo STOMP:</strong> Una vez establecida la conexión SockJS, se utiliza <code>Stomp.over(socket)</code> para iniciar un cliente STOMP. Este cliente se conecta al broker de mensajería del servidor (<code>stompClient.connect(...)</code>).</li>
+                    <li><strong>Suscripción a Mensajes:</strong> Tras una conexión exitosa, el cliente se suscribe al "topic" <code>/topic/messages</code>. Cualquier mensaje enviado por el servidor a este topic será recibido por todos los clientes suscritos.</li>
+                    <li><strong>Mostrar Mensajes:</strong> Cuando se recibe un mensaje del topic, la función <code>showMessage</code> se encarga de parsear el contenido (que se espera en formato JSON con propiedades <code>sender</code> y <code>content</code>) y añadirlo dinámicamente al área de chat (<code>&lt;div id="chat"&gt;</code>). El scroll se ajusta automáticamente para mostrar el último mensaje.</li>
+                    <li><strong>Envío de Mensajes:</strong> El usuario ingresa su nombre en el campo con ID <code>senderInput</code> y el mensaje en <code>messageInput</code>. Al hacer clic en el botón "Send" (ID <code>sendMessage</code>), se construye un objeto JSON con el remitente y el contenido. Este objeto se envía al servidor a través de STOMP al destino <code>/app/sendMessage</code>. El campo de texto del mensaje se limpia después del envío.</li>
+                    <li><strong>Estado de Conexión:</strong> La función <code>setConnected</code> habilita o deshabilita los campos de entrada y el botón de envío según si la conexión WebSocket está activa o no.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Características Implementadas</h2>
+                <ul>
+                    <li><i class="fas fa-comments"></i> Envío y recepción de mensajes en tiempo real a través de WebSockets.</li>
+                    <li><i class="fas fa-user-edit"></i> Campos de entrada para el nombre del remitente y el contenido del mensaje.</li>
+                    <li><i class="fas fa-desktop"></i> Visualización del historial de chat de la sesión actual en un área designada con scroll.</li>
+                    <li><i class="fas fa-network-wired"></i> Conexión WebSocket gestionada con SockJS y STOMP.js.</li>
+                    <li><i class="fas fa-css3-alt"></i> Estilos personalizados embebidos y uso de Bootstrap 5.3 para la interfaz.</li>
+                    <li><i class="fas fa-toggle-on"></i> Controles de envío dinámicamente habilitados/deshabilitados según el estado de la conexión.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="technologies">
+            <div class="container">
+                <h2>Tecnologías Utilizadas</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">HTML-5</div>
+                    <div class="tech-item">CSS-3</div>
+                    <div class="tech-item">JavaScript</div>
+                    <div class="tech-item">SockJS Client 1.6.1</div>
+                    <div class="tech-item">STOMP.js 2.3.1</div>
+                    <div class="tech-item">Bootstrap 5.3</div>
+                    <div class="tech-item">Spring Boot</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screenshot-main">
+            <div class="container">
+                <h2>Demostración / Captura de Pantalla Principal</h2>
+                <p>A continuación, se muestra cómo se ve la interfaz de la aplicación de chat:</p>
+                <div class="main-screenshot-container">
+                    <img src="chatirl.png" alt="Captura de pantalla principal del Chat en funcionamiento">
+                </div>
+            </div>
+        </section>
+
+        <section id="source-code">
+            <div class="container">
+                <h2>Código Fuente del Proyecto Completo</h2>
+                <p>Puedes encontrar el código completo del proyecto (incluyendo el backend Spring Boot y el cliente) en el repositorio de GitHub:</p>
+                <a href="https://github.com/santibarriento/Real-Time-Chat-SpringBoot" target="_blank" class="button-github">Ver en GitHub <i class="fab fa-github"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Santiago Barriento. Proyecto Chat en Tiempo Real.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

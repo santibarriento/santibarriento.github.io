@@ -1,20 +1,19 @@
 /* --- Estilos CSS Generales --- */
 :root {
     /* Nueva Paleta Azul Aplicada */
-    --primary-color: #1976D2;         /* Azul Medio (Versátil y Amigable) - Tu azul principal */
-    --primary-color-light: #84beee;   /* Celeste Claro (Suave y Limpio) - Para elementos más claros y gradientes */
-    --primary-color-dark: #002864;    /* Azul Principal (Profundo y Profesional) - Tu azul más oscuro para acentos fuertes */
+    --primary-color: #1976D2;      /* Azul Medio (Versátil y Amigable) - Tu azul principal */
+    --primary-color-light: #84beee; /* Celeste Claro (Suave y Limpio) - Para elementos más claros y gradientes */
+    --primary-color-dark: #002864;  /* Azul Principal (Profundo y Profesional) - Tu azul más oscuro para acentos fuertes */
     
-    --accent-color: #ffca28;          /* Se mantiene tu color de acento amarillo */
+    --accent-color: #ffca28;        /* Se mantiene tu color de acento amarillo */
     
-    --bg-color: #cccccc;              /* Azul Hielo (Muy Claro y Sutil) - Para el fondo general de la página */
+    --bg-color: #cccccc;            /* Gris Claro (antes Azul Hielo) - Para el fondo general de la página */
     
-    --text-color: #000000;               /* Se mantiene tu color de texto principal */
-    /* Considera añadir una variable para texto claro sobre fondos oscuros si es necesario, ej: --text-color-light: #FFFFFF; */
+    --text-color: #000000;           /* Se mantiene tu color de texto principal */
     
-    --card-bg-color: #ffffff;            /* Se mantiene el fondo de tarjeta blanco */
+    --card-bg-color: #ffffff;        /* Se mantiene el fondo de tarjeta blanco */
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Se mantiene */
-    --border-radius: 12px;            /* Se mantiene */
+    --border-radius: 12px;           /* Se mantiene */
     --font-family: 'Poppins', sans-serif; /* Se mantiene */
 }
 
@@ -40,7 +39,7 @@ header {
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    animation: fadeIn 1.5s;
+    animation: fadeIn 1s ease-out; /* Ajustada duración y timing function */
 }
 
 header img {
@@ -48,7 +47,7 @@ header img {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid #84beee; /* O considera var(--primary-color-light) si buscas un borde sutilmente coloreado */
+    border: 5px solid var(--primary-color-light); /* Usando variable para consistencia */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -58,7 +57,7 @@ header div {
 
 .contact-bar {
     background: var(--primary-color-dark);
-    color: white; /* Bien con el azul oscuro */
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,10 +81,12 @@ header div {
     color: var(--accent-color);
 }
 
+/* --- Estilos de Navegación Ajustados --- */
 nav {
     display: flex;
-    justify-content: center;
-    background-color: var(--primary-color); /* Celeste claro para la barra de navegación */
+    justify-content: center; /* Centra los items */
+    align-items: center; /* Alinea verticalmente para los iconos y texto */
+    background-color: var(--primary-color);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -93,21 +94,34 @@ nav {
 }
 
 nav a {
-    color: var(--primary-color-dark); /* Texto azul oscuro sobre celeste claro para buen contraste */
-    /* o color: white; si prefieres y el contraste es suficiente con #64B5F6 */
-    padding: 1.25rem 2.5rem;
+    color: var(--primary-color-dark);
+    padding: 1.25rem 1.5rem; /* Ligeramente ajustado el padding horizontal para acomodar iconos */
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
     font-weight: 500;
     cursor: pointer;
+    display: flex; /* Para alinear icono y texto dentro del enlace */
+    align-items: center; /* Centra verticalmente icono y texto */
+    justify-content: center; /* Centra el contenido (icono + texto) si el padding es amplio */
+}
+
+nav a .fas, /* Para Font Awesome 5/6 (solid) */
+nav a .fab { /* Para Font Awesome 5/6 (brands) */
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    font-size: 1em;  /* Tamaño del icono, puedes ajustarlo */
+    line-height: 1;  /* Ayuda a la alineación vertical */
 }
 
 nav a:hover,
 nav a.active {
-    background-color: var(--primary-color-dark); /* Azul oscuro para el activo/hover */
-    color: white; /* Texto blanco sobre azul oscuro */
-    /* color: #fff3e0; si prefieres el tono crema anterior y contrasta bien */
+    background-color: var(--primary-color-dark);
+    color: white;
 }
+
+/* El span que envuelve el texto del enlace, para ocultarlo en móvil */
+/* .nav-text ya está siendo usado en el HTML que te di, así que no es necesario definirlo aquí a menos que quieras estilos base */
+
+/* --- Fin Estilos de Navegación --- */
 
 #content {
     width: 90%;
@@ -117,40 +131,39 @@ nav a.active {
     background: var(--card-bg-color);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
-    animation: slideUp 1s;
+    animation: slideUp 1s ease-out; /* Ajustada timing function */
 }
 
 .section {
     display: none;
-    /* Initially hide all sections */
 }
 
 .section.active {
     display: block;
-    /* Show the active section */
 }
 
 h2 {
-    color: var(--primary-color-dark); /* Títulos principales con el azul más oscuro */
+    color: var(--primary-color-dark);
     margin-bottom: 1.5rem;
-    border-bottom: 3px solid var(--primary-color-light); /* Borde inferior con celeste claro */
+    border-bottom: 3px solid var(--primary-color-light);
     padding-bottom: 0.5rem;
     font-size: 2rem;
 }
 
 h3 {
-    color: var(--primary-color); /* Subtítulos con el azul medio */
+    color: var(--primary-color);
     margin-top: 1.5rem;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
-ul {
+ul { /* Estilo general para listas, puede afectar a la de experiencia */
     list-style: none;
     padding-left: 0;
 }
 
-ul li {
+#experience ul li, /* Aplicando estilo más específico para evitar conflicto con otras ul > li */
+#about ul li { /* Si tuvieras listas en "about" que quisieras con este estilo */
     margin-bottom: 1rem;
     padding: 1.25rem;
     background: #f8f8f8; 
@@ -159,7 +172,8 @@ ul li {
     transition: transform 0.2s;
 }
 
-ul li:hover {
+#experience ul li:hover,
+#about ul li:hover {
     transform: translateY(-3px);
 }
 
@@ -167,7 +181,7 @@ ul li:hover {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    border: 1px solid #000000; /* Borde de tarjeta con celeste claro */
+    border: 1px solid var(--primary-color-light); /* Usando variable para el borde */
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -176,7 +190,7 @@ ul li:hover {
 }
 
 .project-card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); /* Sombra más sutil en hover */
 }
 
 .project-card img {
@@ -184,8 +198,7 @@ ul li:hover {
     height: 150px;
     object-fit: contain;
     border-radius: 8px;
-    background-color: #ffffff; /* Fondo para la imagen del proyecto con celeste claro */
-    /* background-color: rgb(110, 149, 255); antiguo color, puedes elegir */
+    background-color: var(#ffffff); /* Fondo para la imagen usando variable */
 }
 
 .project-card-info {
@@ -194,7 +207,7 @@ ul li:hover {
 
 .project-card-info h3 {
     margin-top: 0;
-    color: var(--primary-color-dark); /* Título de tarjeta con azul oscuro */
+    color: var(--primary-color-dark);
 }
 
 .project-card-info p {
@@ -207,7 +220,7 @@ ul li:hover {
 }
 
 .project-card-links a {
-    color: var(--primary-color); /* Enlaces de proyecto con azul medio */
+    color: var(--primary-color);
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -219,11 +232,10 @@ ul li:hover {
 footer {
     text-align: center;
     padding: 1.5rem;
-    background: var(--primary-color-dark); /* Footer con azul oscuro */
-    color: var(--bg-color); /* Texto azul hielo sobre azul oscuro para buen contraste */
-    /* color: rgb(0, 0, 0); antiguo color de texto del footer */
+    background: var(--primary-color-dark);
+    color: var(--primary-color-light); /* Texto celeste sobre azul oscuro para mejor contraste que --bg-color */
     margin-top: 2.5rem;
-    border-top: 5px solid var(--primary-color-light); /* Borde superior con celeste claro */
+    border-top: 5px solid var(--primary-color-light);
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -231,10 +243,11 @@ footer {
 @keyframes fadeIn {
     from {
         opacity: 0;
+        /* transform: translateY(10px); /* Opcional: pequeño slide con el fade */
     }
-
     to {
         opacity: 1;
+        /* transform: translateY(0); */
     }
 }
 
@@ -243,48 +256,13 @@ footer {
         transform: translateY(20px);
         opacity: 0;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* Media Queries (Mobile Responsiveness) */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .contact-bar {
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    nav {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    nav a {
-        padding: 1rem;
-        text-align: center;
-    }
-
-    .project-card {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .project-card img {
-        width: 100%;
-        max-width: 200px;
-    }
-}
-
 /* --- Estilos CSS para la sección de habilidades --- */
-
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -297,14 +275,14 @@ footer {
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Añadido para separar categorías si skills-grid no lo hace suficiente */
 }
 
-.skill-category h3 {
-    color: var(--primary-color-dark); /* Título de categoría con azul oscuro */
+.skill-category h3 { /* Estilo ya definido antes, pero se puede refinar aquí si es necesario */
+    color: var(--primary-color-dark);
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    border-bottom: 2px solid var(--primary-color-light); /* Borde con celeste claro */
+    border-bottom: 2px solid var(--primary-color-light);
     padding-bottom: 0.5rem;
 }
 
@@ -312,6 +290,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    justify-content: center; /* Centra los items si no llenan el espacio */
 }
 
 .skill-item {
@@ -321,88 +300,48 @@ footer {
     justify-content: center;
     width: 100px;
     height: 100px;
-    background-color: #dad8d8;
+    background-color: #f0f0f0; /* Un gris un poco más claro que el anterior #dad8d8 */
     border-radius: 8px;
     text-align: center;
     padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
-    transition: transform 0.2s;
-}
-/* --- Estilos para sección de experiencia --- */
-#experience {
-    padding: 2rem 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); /* Sombra más sutil */
+    transition: transform 0.2s ease-out;
 }
 
-.experience-card {
+.skill-item:hover {
+    transform: scale(1.05) translateY(-2px); /* Efecto hover más dinámico */
+}
+
+.skill-item img {
+    max-width: 45px; /* Ligeramente más pequeño para más aire */
+    max-height: 45px;
+    margin-bottom: 0.5rem;
+}
+
+.skill-item span {
+    font-weight: 500; /* Un poco menos bold que antes */
+    display: block;
+    /* margin-bottom: 0.25rem; /* Eliminado para que small tenga más impacto o se junte más */
+    color: var(--primary-color-dark);
+    font-size: 0.9em; /* Ligeramente más pequeño */
+}
+
+.skill-item small { /* Si decides usarlo para niveles o similar */
+    color: var(--primary-color);
+    font-size: 0.75em;
+}
+
+/* --- Estilos para sección de experiencia --- */
+/* #experience { */ /* Ya tiene padding por .section y #content */
+    /* padding: 2rem 1rem; */
+/* } */
+
+.experience-card { /* Combinando las definiciones anteriores */
     background-color: var(--card-bg-color);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 2rem;
     margin-bottom: 2rem;
-}
-
-.experience-card h3 {
-    margin-top: 0;
-    color: var(--primary-color-dark);
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-}
-
-.experience-card > img {
-    width: 120px;
-    height: auto;
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.experience-card ul {
-    list-style: none;
-    padding: 0;
-}
-
-.experience-card li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-}
-
-.experience-card li img {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    margin-top: 0.2rem;
-}
-
-.skill-item:hover {
-    transform: scale(1.05);
-}
-
-.skill-item img {
-    max-width: 50px;
-    max-height: 50px;
-    margin-bottom: 0.5rem;
-}
-
-.skill-item span {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.25rem;
-    color: var(--primary-color-dark); /* Texto del item con azul oscuro para destacar sobre fondo claro */
-}
-
-.skill-item small {
-    color: var(--primary-color); /* Texto 'small' con azul medio */
-    font-size: 0.8rem;
-}
-
-/* Media Query para Mobile (Habilidades) */
-@media (max-width: 600px) {
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-}
-.experience-card {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -416,46 +355,201 @@ footer {
 
 .logo-saturdays {
     width: 100px; 
-    height: auto;
+    height: auto; /* Mantiene la proporción */
+    object-fit: contain; /* Asegura que se vea bien sin recortar */
 }
 
-.experience-card h3 {
-    margin: 0;
+.experience-card h3 { /* El h3 dentro de experience-header */
+    margin: 0; /* Quita el margen por defecto si lo tiene */
     color: var(--primary-color-dark);
+    font-size: 1.3rem; /* Ya definido, pero para confirmar */
 }
 
-.experience-card ul {
+.experience-card ul { /* La lista de puntos de experiencia */
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    list-style: none; /* Asegurado */
+    padding-left: 0;  /* Asegurado */
 }
 
-.experience-card li {
+.experience-card li { /* Cada item de la experiencia */
     display: flex;
-    align-items: center;
+    align-items: center; /* Alinea icono y texto */
     gap: 1rem;
-    background-color: #d8d8d8;
+    background-color: #f0f0f0; /* Un fondo claro para cada punto */
     padding: 1rem;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius); /* Usa la variable global de radio */
+    box-shadow: none; /* Quita la sombra de la regla ul li más general si se aplicaba */
+    transition: none; /* Quita la transición de la regla ul li más general si se aplicaba */
+    margin-bottom: 0; /* Quita el margen de la regla ul li más general */
 }
 
-.experience-icon {
-    width: 50px; /* Más grandes para Meta, Web, Coding */
-    height: 50px;
+.experience-card li:hover { /* Quita el hover de la regla ul li más general */
+    transform: none;
+}
+
+.experience-icon { /* Iconos pequeños junto a cada descripción de tarea */
+    width: 24px; /* Tamaño original */
+    height: 24px;
     object-fit: contain;
+    flex-shrink: 0; /* Para que no se encoja si el texto es largo */
 }
 
-.large-icon {
-    width: 50px; /* Más grandes para Meta, Web, Coding */
-    height: 50px;
+.large-icon { /* Clase para los iconos de Meta, Web, Coding si quieres que sean diferentes */
+    width: 40px; /* Ajusta este tamaño según prefieras */
+    height: 40px;
 }
+
 .education-icon {
     width: 50px;
     height: 50px;
     object-fit: contain;
+    margin-right: 10px; /* Añadido para separar del texto */
+    vertical-align: middle; /* Para alinear mejor con el texto */
 }
-/* Animación */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+
+/* --- Media Queries (Mobile Responsiveness) --- */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem; /* Ajuste de padding */
+    }
+
+    header img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .contact-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.5rem 1rem; /* Ajuste de padding */
+    }
+    .contact-bar a {
+        font-size: 1rem; /* Ligeramente más pequeño */
+    }
+
+    /* Ajustes para la navegación en móvil con iconos */
+    nav {
+        flex-direction: row; /* Mantiene los iconos en horizontal */
+        justify-content: space-around; /* Distribuye los iconos */
+        padding: 0.5rem 0; /* Padding reducido para la barra de iconos */
+    }
+
+    nav a {
+        padding: 0.75rem; /* Padding para hacer el área táctil más grande alrededor del icono */
+        margin: 0; /* Sin margen horizontal entre ellos si usamos space-around */
+        flex-grow: 1; /* Opcional: para que ocupen el mismo espacio */
+        text-align: center; /* Centra el icono dentro del 'a' */
+    }
+
+    nav a .nav-text {
+        display: none; /* Oculta el texto */
+    }
+
+    nav a .fas, /* O nav a i */
+    nav a .fab {
+        margin-right: 0; /* Sin margen ya que no hay texto */
+        font-size: 1.6em; /* Iconos más grandes y táctiles */
+    }
+    /* Fin ajustes de navegación móvil */
+
+    #content {
+        width: 95%;
+        padding: 1.5rem 1rem; /* Menos padding en el contenido principal */
+    }
+
+    h2 {
+        font-size: 1.8rem; /* Títulos un poco más pequeños */
+    }
+    h3 {
+        font-size: 1.3rem; /* Subtítulos un poco más pequeños */
+    }
+
+    .project-card {
+        flex-direction: column;
+        align-items: center; /* Centra la imagen y el texto */
+        text-align: center; /* Centra el texto dentro de project-card-info */
+    }
+    .project-card-links {
+        justify-content: center; /* Centra los botones de proyectos */
+    }
+
+    .project-card img {
+        width: 100%;
+        max-width: 180px; /* Ajusta el tamaño máximo de la imagen del proyecto */
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr; /* Una columna para habilidades en móvil */
+        gap: 1.5rem; /* Ajusta el gap */
+    }
+    .skill-item {
+        width: 90px; /* Ajusta el tamaño si es necesario */
+        height: 90px;
+    }
+    .skill-item img {
+        max-width: 40px;
+        max-height: 40px;
+    }
+    .experience-header {
+        flex-direction: column; /* Logo arriba, texto abajo */
+        text-align: center;
+    }
+    .experience-card li {
+        align-items: center; /* Centra icono y texto si se envuelven */
+        text-align: left; /* Mantiene el texto alineado a la izquierda */
+    }
+}
+
+/* --- Estilos del Selector de Idioma (ya los tenías al final, verificados) --- */
+.language-switcher {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.language-switcher .lang-option {
+    padding: 8px 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.25s ease-out, color 0.25s ease-out;
+    margin: 0 3px;
+    display: block;
+    line-height: 1;
+}
+
+.language-switcher a.lang-option {
+    color: #495057;
+    background-color: transparent;
+}
+
+.language-switcher a.lang-option:hover {
+    background-color: #e9ecef;
+    color: var(--primary-color); /* Usando tu variable de color primario */
+}
+
+.language-switcher span.lang-option.active-lang {
+    background-color: var(--primary-color); /* Usando tu variable de color primario */
+    color: #ffffff;
+    cursor: default;
+}
+
+.language-switcher .lang-separator {
+    color: #adb5bd;
+    font-size: 14px;
+    font-weight: 300;
+    align-self: center;
 }
