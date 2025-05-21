@@ -3,71 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeFit - Proyecto de Fitness y Bienestar</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            text-align: center;
-        }
-        header {
-            background-color: #86b6a9;
-            padding: 20px;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .section {
-            margin: 50px 0;
-        }
-        .section img {
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .section h2 {
-            color: #86b6a9;
-        }
-    </style>
+    <title>BeFit - Tu App de Fitness</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        BeFit - Proyecto de Fitness y Bienestar
+        <a href="https://santibarriento.github.io/" class="button-volver">Volver</a>
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="BeFit Logo" class="logo-image">
+        </div>
     </header>
-    <div class="container">
-        <div class="section">
-            <h2>Gestión de Calendario y Eventos</h2>
-            <img src="calendar.jpg" alt="Calendario de eventos">
-            <p>Organiza entrenamientos, clases y citas con nutricionistas de forma sencilla.</p>
-        </div>
-        <div class="section">
-            <h2>Planes de Suscripción</h2>
-            <img src="suscripcion.jpg" alt="Planes de suscripción">
-            <p>Accede a diferentes niveles de beneficios con nuestros planes Free, Pro y Premium.</p>
-        </div>
-        <div class="section">
-            <h2>Sección de Entrenamientos</h2>
-            <img src="entrenamiento.jpg" alt="Rutinas de entrenamiento">
-            <p>Rutinas personalizadas para mejorar tu rendimiento físico y alcanzar tus metas.</p>
-        </div>
-        <div class="section">
-            <h2>Conexión con Profesionales</h2>
-            <img src="profesionales.jpg" alt="Expertos en salud">
-            <p>Consulta con expertos en nutrición y entrenamiento para guiar tu progreso.</p>
-        </div>
-        <div class="section">
-            <h2>Chat Simulado</h2>
-            <img src="chat.jpg" alt="Interfaz de chat">
-            <p>Interfaz de chat que representa la comunicación con entrenadores y nutricionistas.</p>
-        </div>
-    </div>
+
+    <nav class="nav-selector">
+        <button onclick="showSection('inicio')">Inicio</button>
+        <button onclick="showSection('calendario')">Calendario</button>
+        <button onclick="showSection('entreno')">Entreno</button>
+        <button onclick="showSection('expertos')">Expertos</button>
+        <button onclick="showSection('perfil')">Perfil</button>
+    </nav>
+
+    <main class="container">
+        <section id="inicio" class="section">
+            <div class="section-content">
+                <img src="inicio.png" alt="Inicio">
+                <div class="text-column">
+                    <h2>Inicio</h2>
+                    <p>Desde aquí puedes acceder a los diferentes apartados de la app: consulta tus clases, ejercicios, revisa el calendario de eventos y actualiza tu estado premium fácilmente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendario" class="section hidden">
+            <div class="section-content">
+                <img src="calendario.png" alt="Calendario">
+                <div class="text-column">
+                    <h2>Calendario de Eventos</h2>
+                    <p>Organiza entrenamientos, clases y citas con nutricionistas de forma sencilla. También puedes añadir los eventos al calendario por defecto de tu teléfono.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="entreno" class="section hidden">
+            <div class="section-content">
+                <img src="entrenar.png" alt="Entrenamiento">
+                <div class="text-column">
+                    <h2>Rutinas de Entrenamiento</h2>
+                    <p>Este apartado enseña el ejercicio que selecciona el usuario para realizar en casa. Al elegir un ejercicio, se muestra un video demostrativo para guiar al usuario en la ejecución correcta. Además, aparece un cronómetro interactivo que ayuda a controlar el tiempo de cada ejercicio. También se proporciona un consejo útil relacionado con el ejercicio seleccionado para mejorar la técnica o la motivación.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="expertos" class="section hidden">
+            <div class="section-content">
+                <img src="Expertos.png" alt="Expertos en salud">
+                <div class="text-column">
+                    <h2>Conexión con Expertos</h2>
+                    <p>En este apartado los usuarios pueden ver la información de cada experto, sus reseñas, puntuación, fotos, descripción y contactar directamente con ellos para recibir asesoramiento profesional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="perfil" class="section hidden">
+            <div class="section-content">
+                <img src="perfil.png" alt="Perfil">
+                <div class="text-column">
+                    <h2>Tu Perfil</h2>
+                    <p>En la parte superior aparece el nombre del usuario y su foto de perfil, seguido de información personal como el correo electrónico, teléfono y dirección. El usuario puede activar o desactivar notificaciones y modo oscuro.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BeFit - Santiago Barriento</p>
+        <p><a href="https://github.com/santibarriento/BeFit" target="_blank" class="github-link">Ver en GitHub</a></p>
+    </footer>
+
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                if (!section.classList.contains('hidden')) { 
+                    section.classList.add('hidden');
+                }
+            });
+            document.getElementById(id).classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>

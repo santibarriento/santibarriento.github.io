@@ -1,0 +1,155 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+header {
+    background-color: #2e8b74; /* Color de fondo actual */
+    color: white;
+    /* Modificado para Flexbox: */
+    display: flex;
+    align-items: center; /* Centra verticalmente el botón y el logo */
+    padding: 20px; /* Padding uniforme, ajusta si prefieres el anterior '40px 20px 20px' */
+    /* text-align: center; Ya no es necesario con flex para estos elementos */
+}
+
+/* Los estilos para .logo y .logo img originales ya no son necesarios
+   si usamos .logo-wrapper y .logo-image con la nueva estructura.
+   Puedes eliminarlos o comentarlos:
+.logo img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+*/
+
+.nav-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-selector button {
+    background-color: #2e8b74;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-selector button:hover {
+    background-color: #246c5c;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.section {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+    margin-bottom: 40px;
+}
+
+.section.hidden {
+    display: none;
+}
+
+.section h2 {
+    color: #2e8b74;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.section-content img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.section-content p {
+    max-width: 400px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+footer {
+    background-color: #2e8b74;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para el botón de volver y el logo (estos ya los tenías al final) */
+.button-volver {
+    padding: 8px 16px;
+    background-color: #0047b3; /* Azul */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    margin-right: 20px; /* Espacio a la derecha del botón */
+}
+
+.button-volver:hover {
+    background-color: #002966;
+}
+
+.logo-wrapper {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    display: flex;
+    justify-content: center; /* Centra el logo horizontalmente */
+    align-items: center; /* Centra el logo verticalmente */
+}
+
+.logo-image {
+    max-height: 100px; /* Ajusta según el tamaño de tu logo */
+    width: auto;
+    display: block;
+}
+.github-link {
+    color: #ffffff; /* Color blanco para el enlace */
+    text-decoration: none; /* Quitamos el subrayado por defecto */
+    font-weight: normal; /* Puedes poner 'bold' si quieres que resalte más */
+    display: inline-block; /* Para poder aplicar padding si se desea */
+    padding: 5px 10px; /* Un poco de espacio alrededor del enlace */
+    border-radius: 5px; /* Bordes redondeados para un look moderno */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el hover */
+}
+
+.github-link:hover,
+.github-link:focus { /* :focus para accesibilidad con teclado */
+    color: #d1f7eb; /* Un color verde muy claro o blanco brillante al pasar el ratón */
+    background-color: rgba(255, 255, 255, 0.1); /* Un sutil fondo al pasar el ratón */
+    text-decoration: none; /* Mantenemos sin subrayado, o puedes añadirlo: text-decoration: underline; */
+}
+/* Se eliminó una llave '}' extra que estaba al final del archivo original */
