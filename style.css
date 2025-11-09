@@ -1,20 +1,30 @@
 /* --- Estilos CSS Generales --- */
 :root {
     /* Nueva Paleta Azul Aplicada */
-    --primary-color: #1976D2;      /* Azul Medio (Versátil y Amigable) - Tu azul principal */
-    --primary-color-light: #84beee; /* Celeste Claro (Suave y Limpio) - Para elementos más claros y gradientes */
-    --primary-color-dark: #002864;  /* Azul Principal (Profundo y Profesional) - Tu azul más oscuro para acentos fuertes */
-    
-    --accent-color: #84BEEE;        /* Se mantiene tu color de acento amarillo */
-    
-    --bg-color: #FEFBF6;            /* Gris Claro - Para el fondo general de la página */
-    
-    --text-color: #000000;           /* Se mantiene tu color de texto principal */
-    
-    --card-bg-color: #ffffff;        /* Se mantiene el fondo de tarjeta blanco */
-    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Se mantiene */
-    --border-radius: 12px;           /* Se mantiene */
-    --font-family: 'Poppins', sans-serif; /* Se mantiene */
+    --primary-color: #1976D2;
+    /* Azul Medio (Versátil y Amigable) - Tu azul principal */
+    --primary-color-light: #84beee;
+    /* Celeste Claro (Suave y Limpio) - Para elementos más claros y gradientes */
+    --primary-color-dark: #002864;
+    /* Azul Principal (Profundo y Profesional) - Tu azul más oscuro para acentos fuertes */
+
+    --accent-color: #84BEEE;
+    /* Se mantiene tu color de acento amarillo */
+
+    --bg-color: #FEFBF6;
+    /* Gris Claro - Para el fondo general de la página */
+
+    --text-color: #000000;
+    /* Se mantiene tu color de texto principal */
+
+    --card-bg-color: #ffffff;
+    /* Se mantiene el fondo de tarjeta blanco */
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Se mantiene */
+    --border-radius: 12px;
+    /* Se mantiene */
+    --font-family: 'Poppins', sans-serif;
+    /* Se mantiene */
 }
 
 * {
@@ -32,14 +42,14 @@ body {
 
 header {
     background: linear-gradient(90deg, var(--primary-color), var(--primary-color-light));
-    color: #ffffff; 
+    color: #ffffff;
     text-align: center;
     padding: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2rem;
-    animation: fadeIn 1s ease-out; 
+    animation: fadeIn 1s ease-out;
 }
 
 header img {
@@ -47,7 +57,7 @@ header img {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 5px solid var(--primary-color-light); 
+    border: 5px solid var(--primary-color-light);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -60,11 +70,13 @@ header div {
     background: var(--primary-color-dark);
     color: white;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     padding: 0.75rem 1.5rem;
-    gap: 1.5rem; /* Ajustado para mejor espaciado en escritorio */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten si no caben */
+    gap: 1.5rem;
+    /* Ajustado para mejor espaciado en escritorio */
+    flex-wrap: wrap;
+    /* Permite que los elementos se ajusten si no caben */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -75,50 +87,54 @@ header div {
     transition: color 0.3s;
     display: flex;
     align-items: center;
-    gap: 0.6rem; /* Espacio entre icono y texto en escritorio */
+    gap: 0.6rem;
+    /* Espacio entre icono y texto en escritorio */
 }
 
 .contact-bar a .fab,
 .contact-bar a .fas {
-    font-size: 1.2em; /* Tamaño de iconos en la barra de contacto */
+    font-size: 1.2em;
+    /* Tamaño de iconos en la barra de contacto */
     line-height: 1;
 }
 
 .contact-bar a:hover {
     color: var(--accent-color);
 }
+
 /* --- Fin Estilos Barra de Contacto --- */
 
 
 /* --- Estilos de Navegación --- */
 nav {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     background-color: var(--primary-color);
     position: sticky;
     top: 0;
-    z-index: 1000; /* Asegura que esté sobre el language-switcher si este no tuviera z-index más alto */
+    z-index: 1000;
+    /* Asegura que esté sobre el language-switcher si este no tuviera z-index más alto */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
     color: var(--primary-color-dark);
-    padding: 1.25rem 1.5rem; 
+    padding: 1.25rem 1.5rem;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
     font-weight: 500;
     cursor: pointer;
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-nav a .fas, 
-nav a .fab { 
-    margin-right: 8px; 
-    font-size: 1em;  
-    line-height: 1;  
+nav a .fas,
+nav a .fab {
+    margin-right: 8px;
+    font-size: 1em;
+    line-height: 1;
 }
 
 nav a:hover,
@@ -126,6 +142,7 @@ nav a.active {
     background-color: var(--primary-color-dark);
     color: white;
 }
+
 /* --- Fin Estilos de Navegación --- */
 
 #content {
@@ -136,7 +153,7 @@ nav a.active {
     background: var(--card-bg-color);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
-    animation: slideUp 1s ease-out; 
+    animation: slideUp 1s ease-out;
 }
 
 .section {
@@ -162,16 +179,16 @@ h3 {
     font-size: 1.5rem;
 }
 
-ul { 
+ul {
     list-style: none;
     padding-left: 0;
 }
 
-#experience ul li, 
-#about ul li { 
+#experience ul li,
+#about ul li {
     margin-bottom: 1rem;
     padding: 1.25rem;
-    background: #FBFBFB ; 
+    background: #FBFBFB;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s;
@@ -186,7 +203,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    border: 1px solid var(--primary-color-light); 
+    border: 1px solid var(--primary-color-light);
     border-radius: 10px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
@@ -195,7 +212,7 @@ ul {
 }
 
 .project-card:hover {
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
 }
 
 .project-card img {
@@ -203,7 +220,7 @@ ul {
     height: 150px;
     object-fit: contain;
     border-radius: 8px;
-    background-color: var(--card-bg-color); 
+    background-color: var(--card-bg-color);
 }
 
 .project-card-info {
@@ -238,7 +255,7 @@ footer {
     text-align: center;
     padding: 1.5rem;
     background: var(--primary-color-dark);
-    color: var(--primary-color-light); 
+    color: var(--primary-color-light);
     margin-top: 2.5rem;
     border-top: 5px solid var(--primary-color-light);
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
@@ -246,8 +263,13 @@ footer {
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
@@ -255,6 +277,7 @@ footer {
         transform: translateY(20px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
@@ -274,10 +297,10 @@ footer {
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     padding: 1.5rem;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
 }
 
-.skill-category h3 { 
+.skill-category h3 {
     color: var(--primary-color-dark);
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -289,7 +312,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .skill-item {
@@ -299,38 +322,39 @@ footer {
     justify-content: center;
     width: 100px;
     height: 100px;
-    background-color: #f0f0f0; 
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
     border-radius: 8px;
     text-align: center;
     padding: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+    box-shadow: var(--card-shadow);
     transition: transform 0.2s ease-out;
 }
 
 .skill-item:hover {
-    transform: scale(1.05) translateY(-2px); 
+    transform: scale(1.05) translateY(-2px);
 }
 
 .skill-item img {
-    max-width: 45px; 
+    max-width: 45px;
     max-height: 45px;
     margin-bottom: 0.5rem;
 }
 
 .skill-item span {
-    font-weight: 500; 
+    font-weight: 500;
     display: block;
     color: var(--primary-color-dark);
-    font-size: 0.9em; 
+    font-size: 0.9em;
 }
 
-.skill-item small { 
+.skill-item small {
     color: var(--primary-color);
     font-size: 0.75em;
 }
 
-/* --- Estilos para sección de experiencia --- */
-.experience-card { 
+/* === 💼 SECCIÓN DE EXPERIENCIA === */
+.experience-card {
     background-color: var(--card-bg-color);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
@@ -339,6 +363,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .experience-header {
@@ -348,43 +373,54 @@ footer {
 }
 
 .logo-saturdays {
-    width: 100px; 
-    height: auto; 
-    object-fit: contain; 
+    width: 100px;
+    height: auto;
+    object-fit: contain;
 }
 
-.experience-card h3 { 
-    margin: 0; 
+.experience-card h3 {
+    margin: 0;
     color: var(--primary-color-dark);
-    font-size: 1.3rem; 
+    font-size: 1.3rem;
 }
 
-.experience-card ul { 
+.experience-card ul {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    list-style: none; 
-    padding-left: 0;  
+    list-style: none;
+    padding-left: 0;
 }
 
-.experience-card li { 
+.experience-card li {
     display: flex;
-    align-items: center; 
+    align-items: center;
     gap: 1rem;
-    background-color: #f0f0f0; 
+    background-color: var(--card-bg-color);
+    /* ✅ usa variable, no color fijo */
+    color: var(--text-color);
     padding: 1rem;
-    border-radius: var(--border-radius); 
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-.experience-icon { 
-    width: 24px; 
+.experience-card li:hover {
+    background-color: var(--primary-color-light);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* === ICONOS === */
+.experience-icon {
+    width: 24px;
     height: 24px;
     object-fit: contain;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
-.large-icon { 
-    width: 40px; 
+.large-icon {
+    width: 40px;
     height: 40px;
 }
 
@@ -392,156 +428,208 @@ footer {
     width: 50px;
     height: 50px;
     object-fit: contain;
-    margin-right: 10px; 
-    vertical-align: middle; 
+    margin-right: 10px;
+    vertical-align: middle;
 }
+
+/* === 🌙 MODO OSCURO - EXPERIENCIA === */
+body.dark-mode .experience-card {
+    background-color: #1a1a1a;
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 🔧 Corrección de color fijo en la sección de experiencia */
+body.dark-mode #experience ul li {
+    background-color: var(--card-bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+
+body.dark-mode .experience-card h3 {
+    color: var(--primary-color-light);
+}
+
+body.dark-mode .experience-card li {
+    background-color: #2a2a2a;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .experience-card li:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+
 
 /* --- Media Queries (Mobile Responsiveness) --- */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
         gap: 1rem;
-        padding: 1.5rem; 
+        padding: 1.5rem;
     }
 
     header img {
         width: 100px;
         height: 100px;
     }
-body.dark-mode {
-    --bg-color: #121212;
-    --text-color: #e0e0e0;
-    --card-bg-color: #1e1e1e;
 
-    --primary-color: #2196f3;
-    --primary-color-light: #64b5f6;
-    --primary-color-dark: #0d47a1;
+    body.dark-mode {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --card-bg-color: #1e1e1e;
 
-    --accent-color: #ffd54f;
-}
+        --primary-color: #2196f3;
+        --primary-color-light: #64b5f6;
+        --primary-color-dark: #0d47a1;
 
-/* Si quieres mejorar el contraste en modo oscuro */
-body.dark-mode .skill-item {
-    background-color: #2a2a2a;
-}
+        --accent-color: #ffd54f;
+    }
 
-body.dark-mode .experience-card li {
-    background-color: #2a2a2a;
-}
+    /* Si quieres mejorar el contraste en modo oscuro */
+    body.dark-mode .skill-item {
+        background-color: #2a2a2a;
+    }
 
-body.dark-mode .language-switcher {
-    background-color: #2c2c2c;
-}
+    body.dark-mode .experience-card li {
+        background-color: #2a2a2a;
+    }
 
-body.dark-mode footer {
-    background: var(--primary-color-dark);
-    color: var(--accent-color);
-    border-top: 3px solid var(--accent-color);
-}
+    body.dark-mode .language-switcher {
+        background-color: #2c2c2c;
+    }
+
+    body.dark-mode footer {
+        background: var(--primary-color-dark);
+        color: var(--accent-color);
+        border-top: 3px solid var(--accent-color);
+    }
 
     /* --- AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
     /* --- AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
     .contact-bar {
-        flex-direction: row;         /* Asegura la disposición horizontal */
-        justify-content: center;     /* Centra el grupo de iconos en la barra */
-        align-items: center;         /* Alinea verticalmente los iconos */
-        padding: 0.75rem 0.5rem;     /* Padding vertical y un poco horizontal para la barra */
-        gap: 1rem;                   /* Espacio entre cada uno de los iconos/enlaces. Ajusta si necesitas más o menos. */
-        flex-wrap: nowrap;           /* Evita que los iconos se envuelvan a la siguiente línea si el espacio es muy justo. */
-                                     /* Si aún así se cortan, considera reducir el 'gap' o el padding de los 'a' */
+        flex-direction: row;
+        /* Asegura la disposición horizontal */
+        justify-content: center;
+        /* Centra el grupo de iconos en la barra */
+        align-items: center;
+        /* Alinea verticalmente los iconos */
+        padding: 0.75rem 0.5rem;
+        /* Padding vertical y un poco horizontal para la barra */
+        gap: 1rem;
+        /* Espacio entre cada uno de los iconos/enlaces. Ajusta si necesitas más o menos. */
+        flex-wrap: nowrap;
+        /* Evita que los iconos se envuelvan a la siguiente línea si el espacio es muy justo. */
+        /* Si aún así se cortan, considera reducir el 'gap' o el padding de los 'a' */
     }
 
     .contact-bar a {
-        font-size: 1rem;             /* Tamaño base de la fuente (el tamaño del icono se define abajo) */
-        padding: 0.5rem 0.75rem;     /* Padding alrededor de cada icono para un buen área táctil */
-                                     /* (antes 0.5rem) - un poco más de padding horizontal */
-        gap: 0;                      /* Sin gap interno en el 'a', ya que el texto está oculto */
-        justify-content: center;     /* Centra el icono dentro del área del enlace 'a' */
+        font-size: 1rem;
+        /* Tamaño base de la fuente (el tamaño del icono se define abajo) */
+        padding: 0.5rem 0.75rem;
+        /* Padding alrededor de cada icono para un buen área táctil */
+        /* (antes 0.5rem) - un poco más de padding horizontal */
+        gap: 0;
+        /* Sin gap interno en el 'a', ya que el texto está oculto */
+        justify-content: center;
+        /* Centra el icono dentro del área del enlace 'a' */
         /* display: flex; align-items: center; ya están definidos en la regla base de .contact-bar a */
     }
 
-    .contact-bar a .contact-text { /* Clase para el texto dentro del enlace de contacto */
-        display: none; /* Oculta el texto en móvil */
+    .contact-bar a .contact-text {
+        /* Clase para el texto dentro del enlace de contacto */
+        display: none;
+        /* Oculta el texto en móvil */
     }
 
     .contact-bar a .fas,
     .contact-bar a .fab {
-        font-size: 1.5em; /* Tamaño de los iconos. Era 1.6em, puedes probar con 1.5em si necesitas un poco más de espacio. */
-        line-height: 1; /* Asegura que el icono no añada altura extra */
+        font-size: 1.5em;
+        /* Tamaño de los iconos. Era 1.6em, puedes probar con 1.5em si necesitas un poco más de espacio. */
+        line-height: 1;
+        /* Asegura que el icono no añada altura extra */
         /* margin-right: 0; No es necesario con la estructura actual */
     }
+
     /* --- FIN AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
 
 
     /* Ajustes para la navegación en móvil con iconos */
     nav {
-        flex-direction: row; 
-        justify-content: space-around; 
-        padding: 0.5rem 0; 
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0.5rem 0;
     }
 
     nav a {
-        padding: 0.75rem; 
-        margin: 0; 
-        flex-grow: 1; 
-        text-align: center; 
+        padding: 0.75rem;
+        margin: 0;
+        flex-grow: 1;
+        text-align: center;
     }
 
-    nav a .nav-text { 
-        display: none; 
+    nav a .nav-text {
+        display: none;
     }
 
-    nav a .fas, 
+    nav a .fas,
     nav a .fab {
-        margin-right: 0; 
-        font-size: 1.6em; 
+        margin-right: 0;
+        font-size: 1.6em;
     }
+
     /* Fin ajustes de navegación móvil */
 
     #content {
         width: 95%;
-        padding: 1.5rem 1rem; 
+        padding: 1.5rem 1rem;
     }
 
     h2 {
-        font-size: 1.8rem; 
+        font-size: 1.8rem;
     }
+
     h3 {
-        font-size: 1.3rem; 
+        font-size: 1.3rem;
     }
 
     .project-card {
         flex-direction: column;
-        align-items: center; 
-        text-align: center; 
+        align-items: center;
+        text-align: center;
     }
+
     .project-card-links {
-        justify-content: center; 
+        justify-content: center;
     }
 
     .project-card img {
         width: 100%;
-        max-width: 180px; 
+        max-width: 180px;
     }
 
     .skills-grid {
-        grid-template-columns: 1fr; 
-        gap: 1.5rem; 
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
+
     .skill-item {
-        width: 90px; 
+        width: 90px;
         height: 90px;
     }
+
     .skill-item img {
         max-width: 40px;
         max-height: 40px;
     }
+
     .experience-header {
-        flex-direction: column; 
+        flex-direction: column;
         text-align: center;
     }
+
     .experience-card li {
-        text-align: left; 
+        text-align: left;
     }
 }
 
@@ -549,11 +637,12 @@ body.dark-mode footer {
 .language-switcher {
     position: fixed;
     top: 20px;
-    right: 25px;      
+    right: 25px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    z-index: 1001; /* Asegura que esté sobre la nav sticky si es necesario */
+    z-index: 1001;
+    /* Asegura que esté sobre la nav sticky si es necesario */
     display: flex;
     align-items: center;
     padding: 5px;
@@ -579,11 +668,11 @@ body.dark-mode footer {
 
 .language-switcher a.lang-option:hover {
     background-color: #e9ecef;
-    color: var(--primary-color); 
+    color: var(--primary-color);
 }
 
 .language-switcher span.lang-option.active-lang {
-    background-color: var(--primary-color); 
+    background-color: var(--primary-color);
     color: #ffffff;
     cursor: default;
 }
@@ -593,4 +682,109 @@ body.dark-mode footer {
     font-size: 14px;
     font-weight: 300;
     align-self: center;
+}
+
+/* 🌙 --- SWITCHER DE TEMA --- */
+/* === Switch de Modo Oscuro === */
+.theme-switcher {
+    display: inline-block;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.theme-switcher:hover {
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    font-size: 1.3rem;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Animación del icono ☀️ / 🌙 */
+.rotate-icon {
+    transform: rotate(360deg);
+}
+
+
+/* 🌑 --- MODO OSCURO GLOBAL --- */
+body.dark-mode {
+    /* 🎨 Colores base */
+    --bg-color: #121212;
+    /* Fondo general oscuro */
+    --text-color: #E0E0E0;
+    /* Texto claro */
+
+    --primary-color: #64B5F6;
+    /* Azul medio brillante */
+    --primary-color-light: #90CAF9;
+    /* Azul celeste */
+    --primary-color-dark: #1976D2;
+    /* Azul medio */
+
+    --card-bg-color: #1E1E1E;
+    /* Fondo tarjetas */
+    --card-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+
+    --accent-color: #64B5F6;
+    /* Azul de acento */
+}
+
+/* 🔳 Aplicación de colores base */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* 🌙 --- HEADER Y NAV EN MODO OSCURO --- */
+body.dark-mode header {
+    background: linear-gradient(90deg, #0d47a1, #1565c0);
+    color: var(--text-color);
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode header img {
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode nav {
+    background-color: #1c1c1c;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode nav a {
+    color: #e0e0e0;
+}
+
+body.dark-mode nav a:hover,
+body.dark-mode nav a.active {
+    background-color: var(--primary-color);
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 🔲 Tarjetas y secciones en modo oscuro */
+body.dark-mode .project-card,
+body.dark-mode .card,
+body.dark-mode .section {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    box-shadow: var(--card-shadow);
+    border-radius: var(--border-radius);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark-mode a {
+    color: var(--primary-color-light);
+    transition: color 0.3s ease;
+}
+
+body.dark-mode a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px rgba(100, 181, 246, 0.6);
 }

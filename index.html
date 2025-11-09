@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio | Santiago Barriento</title>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -14,7 +16,11 @@
         <span class="lang-option active-lang">ES</span>
         <link rel="icon" href="sb.png" type="image/png">
     </div>
+    <div class="theme-switcher">
+        <span id="theme-icon" class="theme-icon">☀️</span>
     </div>
+
+
     </div>
 </head>
 
@@ -270,7 +276,7 @@
             </article>
 
         </section>
-        <section id="experience" class="section">
+        <section id="experience" class="section experience-section">
             <h2>Experiencia</h2>
             <article class="experience-card">
                 <div class="experience-header">
@@ -356,6 +362,10 @@
         showSection('about');
         setActiveLink(document.querySelector('nav a[data-section="about"]'));
     </script>
+
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/projects.js"></script>
+
 </body>
 
 </html>
