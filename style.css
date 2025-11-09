@@ -582,15 +582,16 @@ body.dark-mode .experience-card li:hover {
     @media (max-width: 768px) {
         .theme-switcher {
             position: fixed;
-            /* Se fija al viewport, no se mueve al hacer scroll */
-            top: 60px;
-            /* 👈 Ajusta este valor según la altura de tu selector de idioma */
-            right: 65px;
-            /* 👈 Más pegado al borde para pantallas pequeñas */
-            transform: scale(1.1);
-            /* Ligeramente más grande para ser táctil */
-            z-index: 1000;
-            /* Se mantiene por encima de otros elementos */
+            top: 20px;
+            right: 25px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            /* Asegura que esté sobre la nav sticky si es necesario */
+            display: flex;
+            align-items: center;
+            padding: 5px;
         }
 
         .theme-icon {
