@@ -505,7 +505,7 @@ body.dark-mode .experience-card li:hover {
         border-top: 3px solid var(--accent-color);
     }
 
-    /* --- AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
+
     /* --- AJUSTES BARRA DE CONTACTO EN MÓVIL --- */
     .contact-bar {
         flex-direction: row;
@@ -577,6 +577,28 @@ body.dark-mode .experience-card li:hover {
         margin-right: 0;
         font-size: 1.6em;
     }
+
+    /* === Ajustes del switch de tema en móvil === */
+    @media (max-width: 768px) {
+        .theme-switcher {
+            position: fixed;
+            /* Se fija al viewport, no se mueve al hacer scroll */
+            top: 60px;
+            /* 👈 Ajusta este valor según la altura de tu selector de idioma */
+            right: 65px;
+            /* 👈 Más pegado al borde para pantallas pequeñas */
+            transform: scale(1.1);
+            /* Ligeramente más grande para ser táctil */
+            z-index: 1000;
+            /* Se mantiene por encima de otros elementos */
+        }
+
+        .theme-icon {
+            font-size: 1.6rem;
+            /* Más grande para facilidad de toque */
+        }
+    }
+
 
     /* Fin ajustes de navegación móvil */
 
@@ -716,6 +738,22 @@ body.dark-mode .experience-card li:hover {
     right: 65px;
     /* 👈 mismo margen lateral */
     z-index: 1000;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: background-color 0.4s ease;
+}
+
+body.dark-mode::before {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 
