@@ -708,6 +708,17 @@ body.dark-mode .experience-card li:hover {
     transform: rotate(360deg);
 }
 
+/* === Posicionamiento del switch de tema === */
+.theme-switcher {
+    position: absolute;
+    top: 60px;
+    /* 👈 justo debajo del idioma */
+    right: 65px;
+    /* 👈 mismo margen lateral */
+    z-index: 1000;
+}
+
+
 
 /* 🌑 --- MODO OSCURO GLOBAL --- */
 body.dark-mode {
