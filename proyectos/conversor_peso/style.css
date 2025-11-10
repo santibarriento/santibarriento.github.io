@@ -1,55 +1,122 @@
+/* === ESTILOS GENERALES === */
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-color, #f9f9f9);
-  color: var(--text-color, #222);
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color, #96b9ce);
+    color: var(--text-color, #222);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
+/* === CONTENEDOR PRINCIPAL === */
 .converter-section {
-  background-color: var(--card-bg-color, #fff);
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  text-align: center;
-  width: 90%;
-  max-width: 500px;
+    background-color: var(--card-bg-color, #fff);
+    padding: 2.5rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 95%;
+    max-width: 1200px;
+    /* 🔹 más ancho */
 }
 
 .converter-section h1 {
-  color: var(--primary-color-dark, #1976D2);
-  margin-bottom: 1rem;
+    color: var(--primary-color-dark, #1976D2);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
 }
 
+/* === GRID DE INPUTS === */
 .converter-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
 }
 
+/* === CAMPOS DE CONVERSIÓN === */
 .converter-field {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
 }
 
+/* === INPUTS MÁS GRANDES === */
 input {
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  text-align: center;
+    width: 100%;
+    max-width: 220px;
+    /* 🔹 más ancho */
+    padding: 0.9rem;
+    /* 🔹 más alto */
+    font-size: 1.2rem;
+    /* 🔹 texto más grande */
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    transition: all 0.3s ease;
 }
 
+/* === EFECTO AL ENFOCAR === */
 input:focus {
-  outline: none;
-  border-color: var(--primary-color, #1976D2);
-  box-shadow: 0 0 5px rgba(25,118,210,0.3);
+    outline: none;
+    border-color: var(--primary-color, #1976D2);
+    box-shadow: 0 0 8px rgba(25, 118, 210, 0.3);
+    transform: scale(1.03);
+}
+
+/* === 📱 VERSIÓN RESPONSIVE PARA MÓVIL === */
+@media (max-width: 768px) {
+
+    /* Ajuste general */
+    body {
+        align-items: flex-start;
+        /* Evita que se quede “centrado” muy abajo */
+        padding-top: 2rem;
+        height: auto;
+    }
+
+    .converter-section {
+        width: 95%;
+        padding: 1.5rem;
+        max-width: 100%;
+        box-shadow: none;
+        /* Menos sombra en móvil */
+    }
+
+    .converter-section h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .converter-section p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Pasa de 2 columnas a 1 */
+    .converter-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    /* Inputs más cómodos al tacto */
+    input {
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+    }
+
+    label {
+        font-size: 0.95rem;
+    }
 }
