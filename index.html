@@ -6,29 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio | Santiago Barriento</title>
 
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="sb.png" type="image/png">
+</head>
+
+<body>
     <div class="language-switcher">
         <a href="index_ingles.html" class="lang-option">EN</a>
         <span class="lang-separator">|</span>
         <span class="lang-option active-lang">ES</span>
-        <link rel="icon" href="sb.png" type="image/png">
     </div>
 
+    <div class="theme-switcher" id="theme-toggle">
+        <i class="fas fa-sun theme-icon"></i>
     </div>
-</head>
 
-<body>
     <header>
-        <img src="Fotos/santi.png" alt="Foto de Santiago Barriento">
-        <div>
-            <h1>Santiago Barriento</h1>
-            <p>Desarrollador Multiplataforma Junior</p>
+        <div class="header-content">
+            <img src="Fotos/santi.png" alt="Foto de Santiago Barriento" class="profile-img">
+            <div class="header-text">
+                <h1>Santiago Barriento</h1>
+                <p>Desarrollador Multiplataforma Junior</p>
+            </div>
         </div>
-
     </header>
+
     <div class="contact-bar">
         <a href="mailto:santiagobarriento@gmail.com">
             <i class="fas fa-envelope"></i> <span class="contact-text">santiagobarriento@gmail.com</span>
@@ -39,98 +44,97 @@
         <a href="https://github.com/santibarriento" target="_blank">
             <i class="fab fa-github"></i> <span class="contact-text">GitHub</span>
         </a>
+    </div>
 
-    </div>
     <nav>
-        <a href="#about" class="active" data-section="about" data-key="navAbout">
-            <i class="fas fa-user-alt"></i> <span class="nav-text">Sobre Mi</span>
-        </a>
-        <a href="#skills" data-section="skills" data-key="navSkills">
-            <i class="fas fa-star"></i> <span class="nav-text">Habilidades</span>
-        </a>
-        <a href="#projects" data-section="projects" data-key="navProjects">
-            <i class="fas fa-folder-open"></i> <span class="nav-text">Proyectos</span>
-        </a>
-        <a href="#experience" data-section="experience" data-key="navExperience">
-            <i class="fas fa-briefcase"></i> <span class="nav-text">Experiencia</span>
-        </a>
-        <a href="#education" data-section="education" data-key="navEducation">
-            <i class="fas fa-graduation-cap"></i> <span class="nav-text">Formación</span>
-        </a>
-    </nav>
-    <div class="nav-right">
-        <div class="theme-switcher">
-            <span id="theme-icon" class="theme-icon">☀️</span>
+        <div class="nav-container">
+            <a href="#about" class="active" data-section="about">
+                <i class="fas fa-user-alt"></i> <span class="nav-text">Sobre Mí</span>
+            </a>
+            <a href="#skills" data-section="skills">
+                <i class="fas fa-star"></i> <span class="nav-text">Habilidades</span>
+            </a>
+            <a href="#projects" data-section="projects">
+                <i class="fas fa-folder-open"></i> <span class="nav-text">Proyectos</span>
+            </a>
+            <a href="#experience" data-section="experience">
+                <i class="fas fa-briefcase"></i> <span class="nav-text">Experiencia</span>
+            </a>
+            <a href="#education" data-section="education">
+                <i class="fas fa-graduation-cap"></i> <span class="nav-text">Formación</span>
+            </a>
         </div>
-    </div>
     </nav>
 
     <main id="content">
         <section id="about" class="section active">
             <h2>Sobre Mí</h2>
-            <p>
+            <p class="bio-text">
                 Soy un desarrollador junior graduado en DAM apasionado por el software, hardware y el desarrollo de
-                aplicaciones. Me destaco
-                por mi capacidad de aprendizaje rápido, adaptabilidad y compromiso con la perfección en cada proyecto.
-                Busco una oportunidad
-                para aportar mis conocimientos, crecer profesionalmente y desarrollar todo mi potencial en el ámbito
-                tecnológico.
+                aplicaciones. Me destaco por mi capacidad de aprendizaje rápido, adaptabilidad y compromiso con la
+                perfección en cada proyecto. Busco una oportunidad para aportar mis conocimientos, crecer
+                profesionalmente y desarrollar todo mi potencial en el ámbito tecnológico.
             </p>
-            <div class="skill-category">
-                <h3>Idiomas</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <img src="icons/spain.png" alt="Castellano">
-                        <span>Castellano</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/english.png" alt="Inglés">
-                        <span>Inglés</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/cat.png" alt="Catalán">
-                        <span>Catalán</span>
+
+            <div class="about-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-language"></i> Idiomas</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="icons/spain.png" alt="Castellano">
+                            <span>Castellano</span>
+                            <small>Nativo</small>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/english.png" alt="Inglés">
+                            <span>Inglés</span>
+                            <small>Avanzado</small>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/cat.png" alt="Catalán">
+                            <span>Catalán</span>
+                            <small>Nativo</small>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="skill-category">
-                <h3>Aptitudes</h3>
-                <div class="skill-items">
-                    <div class="skill-item">
-                        <img src="icons/teamwork.png" alt="Trabajo en Equipo">
-                        <span>Trabajo en Equipo</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/comunicacion.png" alt="Comunicación">
-                        <span>Comunicativo</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/ar.png" alt="Aprendizaje rápido">
-                        <span>Aprendizaje rápido</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/respondabilidad.png" alt="Responsabilidad">
-                        <span>Responsable</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/iniciativa.png" alt="Iniciativa">
-                        <span>Iniciativa</span>
-                    </div>
-                    <div class="skill-item">
-                        <img src="icons/polivalencia.png" alt="Polivalencia">
-                        <span>Polivalencia</span>
+                <div class="skill-category">
+                    <h3><i class="fas fa-lightbulb"></i> Aptitudes</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="icons/teamwork.png" alt="Trabajo en Equipo">
+                            <span>Trabajo en Equipo</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/comunicacion.png" alt="Comunicación">
+                            <span>Comunicativo</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/ar.png" alt="Aprendizaje rápido">
+                            <span>Aprendizaje rápido</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/respondabilidad.png" alt="Responsabilidad">
+                            <span>Responsable</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/iniciativa.png" alt="Iniciativa">
+                            <span>Iniciativa</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/polivalencia.png" alt="Polivalencia">
+                            <span>Polivalencia</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
         <section id="skills" class="section">
             <h2>Conocimientos</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Lenguajes</h3>
+                    <h3><i class="fas fa-code"></i> Lenguajes</h3>
                     <div class="skill-items">
                         <div class="skill-item">
                             <img src="icons/java.png" alt="Java">
@@ -149,19 +153,24 @@
                             <span>JavaScript</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-category">
-                        <h3>FrameWorks</h3>
-                        <div class="skill-items">
-                            <div class="skill-item">
-                                <img src="icons/springboot.png" alt="SpringBoot">
-                                <span>SpringBoot</span>
-                            </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-layer-group"></i> Frameworks</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <img src="icons/springboot.png" alt="SpringBoot">
+                            <span>SpringBoot</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="icons/react.png" alt="React">
+                            <span>React</span>
                         </div>
                     </div>
                 </div>
+
                 <div class="skill-category">
-                    <h3>Herramientas</h3>
+                    <h3><i class="fas fa-tools"></i> Herramientas</h3>
                     <div class="skill-items">
                         <div class="skill-item">
                             <img src="icons/android.png" alt="Android Studio">
@@ -180,7 +189,7 @@
                             <span>MySQL</span>
                         </div>
                         <div class="skill-item">
-                            <img src="icons/postgressql.png" alt="PostregresSQL">
+                            <img src="icons/postgressql.png" alt="PostgreSQL">
                             <span>PostgreSQL</span>
                         </div>
                         <div class="skill-item">
@@ -193,8 +202,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="skill-category">
-                    <h3>Diseño UI/UX</h3>
+                    <h3><i class="fas fa-laptop-code"></i> Frontend & OS</h3>
                     <div class="skill-items">
                         <div class="skill-item">
                             <img src="icons/html-5.png" alt="HTML5">
@@ -204,17 +214,6 @@
                             <img src="icons/css-3.png" alt="CSS3">
                             <span>CSS3</span>
                         </div>
-
-                        <div class="skill-item">
-                            <img src="icons/react.png" alt="React">
-                            <span>React</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Sistemas Operativos</h3>
-                    <div class="skill-items">
                         <div class="skill-item">
                             <img src="icons/linux.png" alt="Linux">
                             <span>Linux</span>
@@ -225,134 +224,186 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
+
         <section id="projects" class="section">
-            <h2>Proyectos</h2>
-            <article class="project-card">
-                <img src="icons/conversor.png" alt="Conversor de Peso">
-                <div class="project-card-info">
-                    <h3>Conversor de Peso</h3>
-                    <h4>2025</h4>
-                    <p>
-                        Miniaplicación web desarrollada con JavaScript que convierte automáticamente entre kilogramos,
-                        gramos, libras y onzas.
-                    </p>
-                    <div class="project-card-links">
-                        <a href="proyectos/conversor_peso/index.html" target="_blank">
-                            <i class="fas fa-eye"></i> Ver Proyecto
+            <h2>Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="icons/conversor.png" alt="Conversor de Peso">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Conversor de Peso</h3>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <p>Miniaplicación web desarrollada con JavaScript que convierte automáticamente entre
+                            kilogramos, gramos, libras y onzas.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="proyectos/conversor_peso/index.html" target="_blank" class="btn-project">
+                                <i class="fas fa-eye"></i> Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="icons/chat.png" alt="RTCHAT">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Real Time Chat Web</h3>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <p>Web local diseñada para la comunicación en tiempo real entre usuarios, utilizando SpringBoot,
+                            WebSockets y nodos de JavaScript.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">WebSocket</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="proyectos/chatrealtime/index-chat.html" target="_blank" class="btn-project">
+                                <i class="fas fa-eye"></i> Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="icons/Player.png" alt="West Hell">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>West Hell - Godot Game</h3>
+                            <span class="project-year">2025</span>
+                        </div>
+                        <p>Videojuego tipo "Bullet Hell" desarrollado en Godot. El jugador debe sobrevivir rondas y
+                            mejorar sus estadísticas en la tienda.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">Godot</span>
+                            <span class="tech-tag">GDScript</span>
+                            <span class="tech-tag">Game Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/1g7V9GSxOt2oFWei-VjKrPe0TKt-25CwN/view?usp=sharing"
+                                target="_blank" class="btn-project">
+                                <i class="fas fa-download"></i> Descargar
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="project-image">
+                        <img src="befit/logo.png" alt="BeFit App">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>BeFit - Fitness App</h3>
+                            <span class="project-year">2024</span>
+                        </div>
+                        <p>Aplicación móvil Android para seguimiento de entrenamientos y objetivos. Gestión de datos en
+                            tiempo real con Firebase.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-tag">Kotlin</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Android Studio</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="befit/index_befit.html" target="_blank" class="btn-project">
+                                <i class="fas fa-eye"></i> Ver Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <h2>Experiencia Profesional</h2>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Desarrollador Junior</h3>
+                            <span class="company">Saturdays.ai</span>
+                            <span class="date">2023 - 2024</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li><i class="fas fa-check-circle"></i> Implementación y configuración de sistemas de chat
+                                IA con Docker.</li>
+                            <li><i class="fas fa-check-circle"></i> Gestión y mantenimiento web de la plataforma de
+                                cursos.</li>
+                            <li><i class="fas fa-check-circle"></i> Desarrollo de modelos de Machine Learning y
+                                clasificación de imágenes.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-wrench"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Técnico Informático</h3>
+                            <span class="company">Freelance</span>
+                            <span class="date">2022 - Actualidad</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li><i class="fas fa-check-circle"></i> Mantenimiento y montaje de hardware (PC y consolas).
+                            </li>
+                            <li><i class="fas fa-check-circle"></i> Soporte técnico y resolución de incidencias para
+                                usuarios.</li>
+                        </ul>
+                        <a href="https://www.instagram.com/pcsdelsanti/" target="_blank" class="timeline-link">
+                            <i class="fab fa-instagram"></i> Ver trabajos en Instagram
                         </a>
                     </div>
-                </div>
-            </article>
-            <article class="project-card">
-                <img src="icons/chat.png" alt="RTCHAT">
-                <div class="project-card-info">
-                    <h3>Real Time Chat Web</h3>
-                    <h4>2025</h4>
-                    <p>
-                        Web local diseñada para la comunicación en tiempo real entre usuarios, utilizando SpringBoot,
-                        WebSockets y nodos de JavaScript
-                    </p>
-                    <div class="project-card-links">
-                        <a href="proyectos/chatrealtime/index-chat.html" target="_blank"><i class="fas fa-eye"></i> Ver
-                            Proyecto</a>
-                    </div>
-                </div>
-            </article>
-            <article class="project-card">
-                <img src="icons/Player.png" alt="West Hell">
-                <div class="project-card-info">
-                    <h3>West Hell - Videojuego en Godot</h3>
-                    <h4>2025</h4>
-                    <p>
-                        Desarrollé un breve videojuego de tipo "Bullet Hell", en el cual el jugador debe moverse en el
-                        mapa eliminando enemigos y sobreviviendo rondas, implementando un sistema de tienda entre rondas
-                        para mejorar sus estadisticas.
-                    </p>
-                    <div class="project-card-links">
-                        <a href="https://drive.google.com/file/d/1g7V9GSxOt2oFWei-VjKrPe0TKt-25CwN/view?usp=sharing"
-                            target="_blank"><i class="fas fa-eye"></i> Ver Proyecto</a>
-
-                    </div>
-                </div>
-            </article>
-            <article class="project-card">
-                <img src="befit/logo.png" alt="BeFit App">
-                <div class="project-card-info">
-                    <h3>BeFit - Aplicación de Fitness para Android</h3>
-                    <h4>2024/2025</h4>
-                    <p>
-                        Desarrollé una demo de aplicación móvil de fitness para Android que permite a los usuarios
-                        realizar
-                        seguimiento de sus entrenamientos, establecer objetivos y monitorear su progreso. La aplicación
-                        utiliza Firebase para la gestión de datos en tiempo real y ofrece una interfaz de usuario
-                        intuitiva y
-                        fácil de usar.
-                    </p>
-                    <div class="project-card-links">
-                        <a href="befit/index_befit.html" target="_blank"><i class="fas fa-eye"></i> Ver Proyecto</a>
-                    </div>
-                </div>
-            </article>
-
-        </section>
-        <section id="experience" class="section experience-section">
-            <h2>Experiencia</h2>
-            <article class="experience-card">
-                <div class="experience-header">
-                    <img src="icons/saturdays.png" alt="Saturdays.ai logo" class="logo-saturdays">
-                    <h3>Desarrollador Junior - Saturdays.ai (2023 - 2024)</h3>
-                </div>
-                <ul>
-                    <li>
-                        <img src="icons/meta.png" alt="IA" class="experience-icon large-icon">
-                        Implementé y configuré sistemas de chat de IA utilizando Docker.
-                    </li>
-                    <li>
-                        <img src="icons/web.png" alt="Web" class="experience-icon large-icon">
-                        Gestioné y mantuve la página web de los cursos, asegurando su funcionalidad y rendimiento
-                        óptimos.
-                    </li>
-                    <li>
-                        <img src="icons/coding.png" alt="Machine Learning" class="experience-icon large-icon">
-                        Desarrollé proyectos en Machine Learning y Deep Learning, incluyendo la creación de modelos de
-                        clasificación de imágenes.
-                    </li>
-                </ul>
-                <div class="experience-header">
-                    <img src="icons/saturdays.png" alt="Saturdays.ai logo" class="logo-saturdays">
-                    <h3>Técnico Informático - 2022 - Actualmente</h3>
-                    <a href="https://www.instagram.com/pcsdelsanti/" target="_blank"> Ver Instagram</a>
-                </div>
-                <ul>
-                    <li>
-                        <img src="icons/meta.png" alt="IA" class="experience-icon large-icon">
-                        Mantenimiento y montaje de equipos (ordenadores y consolas).
-                    </li>
-                    <li>
-                        <img src="icons/web.png" alt="Web" class="experience-icon large-icon">
-                        Resolución de incidencias informáticas y soporte técnico a usuarios.
-                    </li>
-
-                </ul>
-            </article>
+                </article>
+            </div>
         </section>
 
-        
         <section id="education" class="section">
-            
-            <h2>Formación</h2>
-            <p>
-                <img src="icons/vidal.jpg" alt="Vidal I Barraquer" class="logo-saturdays">
-                <h3>Técnico en Desarrollo de Aplicaciones Multiplataforma</h3> 
-                <h4>Institut Francesc Vidal i Barraquer 2025</h4> 
-            </p>
-            
+            <h2>Formación Académica</h2>
+            <div class="education-card">
+                <div class="edu-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="edu-content">
+                    <h3>Técnico Superior en Desarrollo de Aplicaciones Multiplataforma</h3>
+                    <h4>Institut Francesc Vidal i Barraquer</h4>
+                    <span class="edu-date">Graduado en 2025</span>
+                </div>
+            </div>
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Santiago Barriento | Portafolio</p>
+        <div class="footer-content">
+            <p>&copy; 2025 Santiago Barriento. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/santiagobarriento/" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/santibarriento" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:santiagobarriento@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
     </footer>
+
     <script>
         const navLinks = document.querySelectorAll('nav a');
         const sections = document.querySelectorAll('.section');
@@ -360,8 +411,16 @@
         function showSection(sectionId) {
             sections.forEach(section => {
                 section.classList.remove('active');
+                section.style.display = 'none'; // Ensure it's hidden
             });
-            document.getElementById(sectionId).classList.add('active');
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+                activeSection.style.display = 'block'; // Ensure it's shown
+                // Trigger reflow for animation
+                void activeSection.offsetWidth;
+                activeSection.style.animation = 'slideUp 0.5s ease-out forwards';
+            }
         }
 
         function setActiveLink(link) {
@@ -373,20 +432,21 @@
 
         navLinks.forEach(link => {
             link.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent default anchor behavior
+                event.preventDefault();
                 const sectionId = link.dataset.section;
                 showSection(sectionId);
                 setActiveLink(link);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
-        // Show the "About Me" section by default
+        // Init
         showSection('about');
-        setActiveLink(document.querySelector('nav a[data-section="about"]'));
+        const initialLink = document.querySelector('nav a[data-section="about"]');
+        if (initialLink) setActiveLink(initialLink);
     </script>
 
     <script src="js/theme-toggle.js"></script>
-    <script src="js/projects.js"></script>
 
 </body>
 
