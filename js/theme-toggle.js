@@ -1,50 +1,38 @@
-// Espera a que el DOM esté completamente cargado antes de ejecutar el código
 document.addEventListener("DOMContentLoaded", () => {
-    // Obtiene referencias a elementos del DOM:
-    // - El icono del tema
-    // - El elemento body
-    const themeIcon = document.getElementById("theme-icon");
+    const themeToggle = document.getElementById("theme-toggle");
+    const icon = themeToggle.querySelector("i");
     const body = document.body;
 
-    // Verifica si hay un tema guardado en localStorage
-    // Puede ser "oscuro" o "claro"
-    const temaGuardado = localStorage.getItem("tema");
+    // Check saved theme
+    const savedTheme = localStorage.getItem("tema");
 
-    // Si el tema guardado es "oscuro"
-    if (temaGuardado === "oscuro") {
-        // Añade la clase dark-mode al body
+    if (savedTheme === "oscuro") {
         body.classList.add("dark-mode");
-        // Cambia el icono a luna
-        themeIcon.textContent = "🌙";
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
     } else {
-        // Si no es oscuro, remueve la clase dark-mode
         body.classList.remove("dark-mode");
-        // Cambia el icono a sol
-        themeIcon.textContent = "☀️";
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
     }
 
-    // Añade un evento click al icono del tema
-    themeIcon.addEventListener("click", () => {
-        // Toggle alterna la clase dark-mode y devuelve true si la añadió
-        // o false si la removió
-        const modoOscuro = body.classList.toggle("dark-mode");
+    themeToggle.addEventListener("click", () => {
+        const isDarkMode = body.classList.toggle("dark-mode");
 
-        if (modoOscuro) {
-            // Si está en modo oscuro, muestra luna
-            themeIcon.textContent = "🌙";
-            // Guarda el tema oscuro en localStorage
+        if (isDarkMode) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
             localStorage.setItem("tema", "oscuro");
         } else {
-            // Si está en modo claro, muestra sol
-            themeIcon.textContent = "☀️";
-            // Guarda el tema claro en localStorage
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
             localStorage.setItem("tema", "claro");
         }
 
-        // Añade clase para animar el icono con rotación
-        themeIcon.classList.add("rotate-icon");
-        // Remueve la clase después de 400ms para que la animación
-        // solo ocurra una vez
-        setTimeout(() => themeIcon.classList.remove("rotate-icon"), 400);
+        // Animation
+        themeToggle.style.transform = "rotate(180deg)";
+        setTimeout(() => {
+            themeToggle.style.transform = "rotate(0deg)";
+        }, 300);
     });
 });
