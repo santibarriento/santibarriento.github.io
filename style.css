@@ -821,38 +821,7 @@ body.dark-mode footer {
         display: none;
     }
 
-    /* Mobile Bottom Nav */
-    nav {
-        position: fixed;
-        bottom: 20px;
-        top: auto;
-        width: 92%;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-    }
 
-    body.dark-mode nav {
-        background: rgba(30, 41, 59, 0.95);
-    }
-
-    .nav-container {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    nav a {
-        flex-direction: column;
-        gap: 0.3rem;
-        padding: 0.5rem;
-        font-size: 0.7rem;
-        border-radius: 12px;
-        flex: 1;
-    }
-
-    nav a i {
-        font-size: 1.2rem;
-    }
 
     .project-image {
         height: 160px;
