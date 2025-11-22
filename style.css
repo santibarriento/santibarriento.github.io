@@ -802,6 +802,11 @@ body.dark-mode footer {
         padding-bottom: 3rem;
     }
 
+    .nav-container {
+        justify-content: center;
+        width: 100%;
+    }
+
     /* Hide nav text on mobile */
     nav a {
         font-size: 0;
