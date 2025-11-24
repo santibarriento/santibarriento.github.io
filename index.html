@@ -136,7 +136,7 @@
                         <div class="skill-item">
                             <img src="icons/cat.png" alt="Catalán">
                             <span>Catalán</span>
-                            <small>Nativo</small>
+                            <small>Avanzado</small>
                         </div>
                     </div>
                 </div>
@@ -340,12 +340,12 @@
         function showSection(sectionId) {
             sections.forEach(section => {
                 section.classList.remove('active');
-                section.style.display = 'none'; // Ensure it's hidden
+                section.style.display = 'none'; 
             });
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
                 activeSection.classList.add('active');
-                activeSection.style.display = 'block'; // Ensure it's shown
+                activeSection.style.display = 'block';
                 // Trigger reflow for animation
                 void activeSection.offsetWidth;
                 activeSection.style.animation = 'slideUp 0.5s ease-out forwards';
