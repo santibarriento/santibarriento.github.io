@@ -1,94 +1,314 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeFit - Tu App de Fitness</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Proyecto: BeFit | Santiago Barriento</title>
+
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="../sb.png" type="image/png">
+
+    <style>
+        /* Project Specific Styles */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            margin-bottom: 3rem;
+            border-radius: 0 0 50px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../sb.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        .project-logo {
+            max-width: 150px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+            border-radius: 20px;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .app-showcase {
+            display: grid;
+            gap: 4rem;
+            padding: 0 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .showcase-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background: var(--surface-color);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .showcase-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .showcase-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .showcase-text {
+            flex: 1;
+        }
+
+        .showcase-text h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .showcase-text p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .showcase-image {
+            flex: 0 0 250px;
+            /* Fixed width for phone screenshots */
+            text-align: center;
+        }
+
+        .showcase-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 4px solid #fff;
+        }
+
+        body.dark-mode .showcase-image img {
+            border-color: #333;
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            background: var(--surface-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .github-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: #2f363d;
+        }
+
+        @media (max-width: 768px) {
+            .project-header {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .showcase-item {
+                flex-direction: column !important;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .showcase-image {
+                flex: auto;
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <header>
-        <a href="https://santibarriento.github.io/" class="button-volver">Volver</a>
-        <div class="logo-wrapper">
-            <img src="logo.png" alt="BeFit Logo" class="logo-image">
-        </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-switcher" id="theme-toggle">
+        <i class="fas fa-sun theme-icon"></i>
+    </div>
+
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="../index.html#projects" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+    </div>
+
+    <header class="project-header">
+        <img src="logo.png" alt="BeFit Logo" class="project-logo">
+        <h1 class="project-title">BeFit App</h1>
+        <p class="subtitle" style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+            Tu compañero personal de fitness. Entrena, organiza y conecta con expertos desde tu móvil.
+        </p>
     </header>
 
-    <nav class="nav-selector">
-        <button onclick="showSection('inicio')">Inicio</button>
-        <button onclick="showSection('calendario')">Calendario</button>
-        <button onclick="showSection('entreno')">Entreno</button>
-        <button onclick="showSection('expertos')">Expertos</button>
-        <button onclick="showSection('perfil')">Perfil</button>
-    </nav>
+    <main style="padding-bottom: 4rem;">
 
-    <main class="container">
-        <section id="inicio" class="section">
-            <div class="section-content">
-                <img src="inicio.png" alt="Inicio">
-                <div class="text-column">
-                    <h2>Inicio</h2>
-                    <p>Desde aquí puedes acceder a los diferentes apartados de la app: consulta tus clases, ejercicios, revisa el calendario de eventos y actualiza tu estado premium fácilmente.</p>
+        <div class="app-showcase">
+
+            <!-- Inicio -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h2><i class="fas fa-home"></i> Inicio e Interfaz</h2>
+                    <p>
+                        Accede rápidamente a todas las funcionalidades clave. Desde el panel principal puedes consultar
+                        tus próximas clases, ver ejercicios recomendados, revisar el calendario de eventos y gestionar
+                        tu suscripción premium de manera intuitiva.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="inicio.png" alt="Pantalla de Inicio">
                 </div>
             </div>
-        </section>
 
-        <section id="calendario" class="section hidden">
-            <div class="section-content">
-                <img src="calendario.png" alt="Calendario">
-                <div class="text-column">
-                    <h2>Calendario de Eventos</h2>
-                    <p>Organiza entrenamientos, clases y citas con nutricionistas de forma sencilla. También puedes añadir los eventos al calendario por defecto de tu teléfono.</p>
+            <!-- Calendario -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h2><i class="fas fa-calendar-alt"></i> Calendario Inteligente</h2>
+                    <p>
+                        Organiza tu vida fitness sin complicaciones. Agenda entrenamientos, clases grupales y citas con
+                        nutricionistas. La integración con el calendario nativo de tu dispositivo te asegura no perderte
+                        ninguna sesión.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="calendario.png" alt="Pantalla de Calendario">
                 </div>
             </div>
-        </section>
 
-        <section id="entreno" class="section hidden">
-            <div class="section-content">
-                <img src="entrenar.png" alt="Entrenamiento">
-                <div class="text-column">
-                    <h2>Rutinas de Entrenamiento</h2>
-                    <p>Este apartado enseña el ejercicio que selecciona el usuario para realizar en casa. Al elegir un ejercicio, se muestra un video demostrativo para guiar al usuario en la ejecución correcta. Además, aparece un cronómetro interactivo que ayuda a controlar el tiempo de cada ejercicio. También se proporciona un consejo útil relacionado con el ejercicio seleccionado para mejorar la técnica o la motivación.</p>
+            <!-- Entreno -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h2><i class="fas fa-dumbbell"></i> Rutinas Guiadas</h2>
+                    <p>
+                        Lleva tu entrenamiento al siguiente nivel con guías paso a paso. Cada ejercicio incluye videos
+                        demostrativos, un cronómetro interactivo para controlar tus tiempos y consejos profesionales
+                        para mejorar tu técnica y evitar lesiones.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="entrenar.png" alt="Pantalla de Entrenamiento">
                 </div>
             </div>
-        </section>
 
-        <section id="expertos" class="section hidden">
-            <div class="section-content">
-                <img src="Expertos.png" alt="Expertos en salud">
-                <div class="text-column">
-                    <h2>Conexión con Expertos</h2>
-                    <p>En este apartado los usuarios pueden ver la información de cada experto, sus reseñas, puntuación, fotos, descripción y contactar directamente con ellos para recibir asesoramiento profesional.</p>
+            <!-- Expertos -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h2><i class="fas fa-user-md"></i> Conecta con Expertos</h2>
+                    <p>
+                        Encuentra a los mejores profesionales de la salud y el deporte. Explora perfiles detallados con
+                        reseñas, puntuaciones y fotos. Contacta directamente con entrenadores y nutricionistas para
+                        recibir un asesoramiento 100% personalizado.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="Expertos.png" alt="Pantalla de Expertos">
                 </div>
             </div>
-        </section>
 
-        <section id="perfil" class="section hidden">
-            <div class="section-content">
-                <img src="perfil.png" alt="Perfil">
-                <div class="text-column">
-                    <h2>Tu Perfil</h2>
-                    <p>En la parte superior aparece el nombre del usuario y su foto de perfil, seguido de información personal como el correo electrónico, teléfono y dirección. El usuario puede activar o desactivar notificaciones y modo oscuro.</p>
+            <!-- Perfil -->
+            <div class="showcase-item">
+                <div class="showcase-text">
+                    <h2><i class="fas fa-user-circle"></i> Gestión de Perfil</h2>
+                    <p>
+                        Personaliza tu experiencia. Gestiona tu información personal, ajusta las preferencias de
+                        notificaciones y activa el modo oscuro para una visualización más cómoda en entornos con poca
+                        luz.
+                    </p>
+                </div>
+                <div class="showcase-image">
+                    <img src="perfil.png" alt="Pantalla de Perfil">
                 </div>
             </div>
-        </section>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 5rem;">
+            <a href="https://github.com/santibarriento/BeFit" target="_blank" class="github-btn">
+                <i class="fab fa-github" style="font-size: 1.5rem;"></i> Ver Proyecto en GitHub
+            </a>
+        </div>
+
     </main>
 
-    <footer>
-        <p>&copy; 2025 BeFit - Santiago Barriento</p>
-        <p><a href="https://github.com/santibarriento/BeFit" target="_blank" class="github-link">Ver en GitHub</a></p>
+    <footer
+        style="text-align: center; padding: 3rem; background: var(--surface-color); border-top: 1px solid rgba(0,0,0,0.05);">
+        <p style="color: var(--text-secondary);">&copy; 2025 Santiago Barriento. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        function showSection(id) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                if (!section.classList.contains('hidden')) { 
-                    section.classList.add('hidden');
-                }
-            });
-            document.getElementById(id).classList.remove('hidden');
-        }
-    </script>
+    <script src="../js/theme-toggle.js"></script>
 </body>
+
 </html>

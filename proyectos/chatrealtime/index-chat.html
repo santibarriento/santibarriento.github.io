@@ -1,110 +1,381 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto: Chat en Tiempo Real con Spring Boot</title>
-    <link rel="stylesheet" href="style.css">
-    </head>
+    <title>Proyecto: Chat en Tiempo Real | Santiago Barriento</title>
+
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" href="../../sb.png" type="image/png">
+
+    <style>
+        /* Project Specific Styles */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .project-header {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
+            margin-bottom: 3rem;
+            border-radius: 0 0 50px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../../sb.png') no-repeat center center;
+            background-size: cover;
+            opacity: 0.03;
+            z-index: -1;
+        }
+
+        .project-logo {
+            max-width: 120px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .content-section {
+            background: var(--surface-color);
+            padding: 3rem;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tech-tag {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            margin: 0.4rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .screenshot-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-container img {
+            width: 100%;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .screenshot-container:hover img {
+            transform: scale(1.02);
+        }
+
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            background: var(--surface-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            color: var(--text-primary);
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            color: var(--primary-color);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .github-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: #2f363d;
+        }
+
+        /* Dark mode adjustments */
+        body.dark-mode .project-header {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+        }
+
+        body.dark-mode .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .project-header {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .project-title {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
 <body>
-    <header>
-        <div class="container">
-            <div class="logo-wrapper">
-            <img src="chatlogo.png" alt="Chat Logo" class="logo-image">
+
+    <!-- Theme Toggle -->
+    <div class="theme-switcher" id="theme-toggle">
+        <i class="fas fa-sun theme-icon"></i>
+    </div>
+
+    <!-- Back Navigation -->
+    <div class="back-nav">
+        <a href="../../index.html#projects" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+    </div>
+
+    <main style="max-width: 1100px; margin: 0 auto; padding: 2rem;">
+
+        <header class="project-header">
+            <img src="chatlogo.png" alt="Chat Logo" class="project-logo">
+            <h1 class="project-title">Chat en Tiempo Real</h1>
+            <p class="subtitle"
+                style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                Una aplicación web moderna y funcional para mensajería instantánea desarrollada con Spring Boot y
+                WebSockets.
+            </p>
+        </header>
+
+        <section class="content-section">
+            <h2><i class="fas fa-info-circle"></i> Descripción General</h2>
+            <div style="display: flex; gap: 3rem; flex-wrap: wrap; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8;">
+                        Esta aplicación permite a los usuarios comunicarse en tiempo real mediante una interfaz limpia e
+                        intuitiva. Los mensajes se sincronizan instantáneamente entre todos los participantes
+                        conectados, ofreciendo una experiencia fluida y dinámica.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        La arquitectura se basa en <strong>WebSockets</strong> para la comunicación bidireccional,
+                        utilizando <strong>SockJS</strong> como fallback y <strong>STOMP.js</strong> para el manejo
+                        eficiente de mensajes y suscripciones.
+                    </p>
+                </div>
+                <div style="flex: 1; min-width: 300px; text-align: center;">
+                    <img src="chatlogo.png" alt="Interfaz Chat"
+                        style="max-width: 80%; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-cogs"></i> Funcionamiento Técnico</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-plug feature-icon"></i>
+                    <h3>Conexión WebSocket</h3>
+                    <p>Establece un canal persistente y de baja latencia entre el cliente y el servidor al iniciar la
+                        aplicación.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-exchange-alt feature-icon"></i>
+                    <h3>Protocolo STOMP</h3>
+                    <p>Gestiona el enrutamiento de mensajes hacia destinos específicos (topics) para una distribución
+                        ordenada.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-broadcast-tower feature-icon"></i>
+                    <h3>Suscripción Pub/Sub</h3>
+                    <p>Los clientes se suscriben a <code>/topic/messages</code> para recibir actualizaciones automáticas
+                        sin recargar.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-paper-plane feature-icon"></i>
+                    <h3>Envío Asíncrono</h3>
+                    <p>Los mensajes se envían como objetos JSON y se procesan en el backend para su difusión inmediata.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-star"></i> Características Principales</h2>
+            <ul
+                style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                <li
+                    style="padding: 1rem; background: var(--bg-color); border-radius: 10px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                    <span>Envío y recepción instantánea</span>
+                </li>
+                <li
+                    style="padding: 1rem; background: var(--bg-color); border-radius: 10px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                    <span>Identificación de usuarios</span>
+                </li>
+                <li
+                    style="padding: 1rem; background: var(--bg-color); border-radius: 10px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                    <span>Historial de chat con scroll automático</span>
+                </li>
+                <li
+                    style="padding: 1rem; background: var(--bg-color); border-radius: 10px; display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-check-circle" style="color: var(--primary-color); font-size: 1.2rem;"></i>
+                    <span>Interfaz responsiva y moderna</span>
+                </li>
+            </ul>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-code"></i> Stack Tecnológico</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1.5rem;">
+                <span class="tech-tag"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="tech-tag"><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span class="tech-tag"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="tech-tag"><i class="fas fa-server"></i> Spring Boot</span>
+                <span class="tech-tag"><i class="fas fa-network-wired"></i> WebSockets</span>
+                <span class="tech-tag">SockJS</span>
+                <span class="tech-tag">STOMP.js</span>
+                <span class="tech-tag"><i class="fab fa-bootstrap"></i> Bootstrap 5</span>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2><i class="fas fa-desktop"></i> Demo en Funcionamiento</h2>
+            <p style="margin-bottom: 2rem; text-align: center; color: var(--text-secondary);">
+                Captura real de la aplicación funcionando con múltiples usuarios conectados.
+            </p>
+            <div class="screenshot-container">
+                <img src="chatirl.png" alt="Captura de pantalla principal del Chat">
+            </div>
+        </section>
+
+        <div style="text-align: center; margin-top: 4rem; margin-bottom: 4rem;">
+            <a href="https://github.com/santibarriento/Real-Time-Chat-SpringBoot" target="_blank" class="github-btn">
+                <i class="fab fa-github" style="font-size: 1.5rem;"></i> Ver Código Fuente en GitHub
+            </a>
         </div>
-            <p class="subtitle">Una aplicación web funcional para mensajería instantánea.</p>
-        </div>
-    </header>
 
-    <main>
-        <section id="overview">
-            <div class="container">
-                <h2>Descripción General del Proyecto</h2>
-                <div class="content-flex">
-                    <div class="text-content">
-                        <p>
-                            Esta página presenta una aplicación de chat en tiempo real. La interfaz de usuario permite a los participantes ingresar su nombre y un mensaje. Estos mensajes se envían a un servidor backend y se muestran en una ventana de chat compartida, actualizándose para todos los usuarios conectados.
-                        </p>
-                        <p>
-                            La comunicación cliente-servidor se establece mediante WebSockets, aprovechando las librerías <strong>SockJS</strong> y <strong>STOMP.js</strong>. SockJS actúa como una capa de transporte que proporciona una API similar a WebSocket pero con fallback a otras técnicas si WebSockets no está disponible. STOMP.js se utiliza sobre SockJS para permitir la mensajería basada en mensajes y suscripciones a "topics", simplificando el flujo de datos. La interfaz es responsiva, utilizando una combinación de los estilos CSS personalizados el archivo HTML </HTML>y <strong>Bootstrap</strong>.
-                        </p>
-                        
-                    </div>
-                    <div class="image-content">
-                        <img src="chatlogo.png" alt="Interfaz principal del Chat en Tiempo Real">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="how-it-works">
-            <div class="container">
-                <h2>¿Cómo Funciona el Cliente?</h2>
-                <p>La lógica del lado del cliente, opera de la siguiente manera:</p>
-                <ul>
-                    <li><strong>Conexión Inicial:</strong> Al cargar la página (`window.onload`), el script JavaScript intenta establecer una conexión WebSocket con el servidor en el endpoint <code>/chat</code> usando <code>SockJS('/chat')</code>.</li>
-                    <li><strong>Protocolo STOMP:</strong> Una vez establecida la conexión SockJS, se utiliza <code>Stomp.over(socket)</code> para iniciar un cliente STOMP. Este cliente se conecta al broker de mensajería del servidor (<code>stompClient.connect(...)</code>).</li>
-                    <li><strong>Suscripción a Mensajes:</strong> Tras una conexión exitosa, el cliente se suscribe al "topic" <code>/topic/messages</code>. Cualquier mensaje enviado por el servidor a este topic será recibido por todos los clientes suscritos.</li>
-                    <li><strong>Mostrar Mensajes:</strong> Cuando se recibe un mensaje del topic, la función <code>showMessage</code> se encarga de parsear el contenido (que se espera en formato JSON con propiedades <code>sender</code> y <code>content</code>) y añadirlo dinámicamente al área de chat (<code>&lt;div id="chat"&gt;</code>). El scroll se ajusta automáticamente para mostrar el último mensaje.</li>
-                    <li><strong>Envío de Mensajes:</strong> El usuario ingresa su nombre en el campo con ID <code>senderInput</code> y el mensaje en <code>messageInput</code>. Al hacer clic en el botón "Send" (ID <code>sendMessage</code>), se construye un objeto JSON con el remitente y el contenido. Este objeto se envía al servidor a través de STOMP al destino <code>/app/sendMessage</code>. El campo de texto del mensaje se limpia después del envío.</li>
-                    <li><strong>Estado de Conexión:</strong> La función <code>setConnected</code> habilita o deshabilita los campos de entrada y el botón de envío según si la conexión WebSocket está activa o no.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="features">
-            <div class="container">
-                <h2>Características Implementadas</h2>
-                <ul>
-                    <li><i class="fas fa-comments"></i> Envío y recepción de mensajes en tiempo real a través de WebSockets.</li>
-                    <li><i class="fas fa-user-edit"></i> Campos de entrada para el nombre del remitente y el contenido del mensaje.</li>
-                    <li><i class="fas fa-desktop"></i> Visualización del historial de chat de la sesión actual en un área designada con scroll.</li>
-                    <li><i class="fas fa-network-wired"></i> Conexión WebSocket gestionada con SockJS y STOMP.js.</li>
-                    <li><i class="fas fa-css3-alt"></i> Estilos personalizados embebidos y uso de Bootstrap 5.3 para la interfaz.</li>
-                    <li><i class="fas fa-toggle-on"></i> Controles de envío dinámicamente habilitados/deshabilitados según el estado de la conexión.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="technologies">
-            <div class="container">
-                <h2>Tecnologías Utilizadas</h2>
-                <div class="tech-grid">
-                    <div class="tech-item">HTML-5</div>
-                    <div class="tech-item">CSS-3</div>
-                    <div class="tech-item">JavaScript</div>
-                    <div class="tech-item">SockJS Client 1.6.1</div>
-                    <div class="tech-item">STOMP.js 2.3.1</div>
-                    <div class="tech-item">Bootstrap 5.3</div>
-                    <div class="tech-item">Spring Boot</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="screenshot-main">
-            <div class="container">
-                <h2>Demostración / Captura de Pantalla Principal</h2>
-                <p>A continuación, se muestra cómo se ve la interfaz de la aplicación de chat:</p>
-                <div class="main-screenshot-container">
-                    <img src="chatirl.png" alt="Captura de pantalla principal del Chat en funcionamiento">
-                </div>
-            </div>
-        </section>
-
-        <section id="source-code">
-            <div class="container">
-                <h2>Código Fuente del Proyecto Completo</h2>
-                <p>Puedes encontrar el código completo del proyecto (incluyendo el backend Spring Boot y el cliente) en el repositorio de GitHub:</p>
-                <a href="https://github.com/santibarriento/Real-Time-Chat-SpringBoot" target="_blank" class="button-github">Ver en GitHub <i class="fab fa-github"></i></a>
-            </div>
-        </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Santiago Barriento. Proyecto Chat en Tiempo Real.</p>
-        </div>
+    <footer
+        style="text-align: center; padding: 3rem; background: var(--surface-color); border-top: 1px solid rgba(0,0,0,0.05);">
+        <p style="color: var(--text-secondary);">&copy; 2024 Santiago Barriento. Todos los derechos reservados.</p>
     </footer>
 
+    <script src="../../js/theme-toggle.js"></script>
 </body>
+
 </html>
