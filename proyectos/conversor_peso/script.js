@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         [kg, g, lb, oz, t, mg].forEach(input => input.value = "");
     }
 
-    // ⚙️ Función principal de actualización
+    // Función principal de actualización
     function updateValues(fromField, value) {
         // Si el campo está vacío o no es un número, limpiamos todo
         if (value === "" || isNaN(value)) {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 break;
         }
 
-        // 🔁 Actualizamos todos los demás campos (menos el que se está editando)
+        // Actualizamos todos los demás campos (menos el que se está editando)
         if (fromField !== "kg") kg.value = parseFloat(kgValue).toFixed(2);
         if (fromField !== "g") g.value = (kgValue * 1000).toFixed(2);
         if (fromField !== "lb") lb.value = (kgValue * 2.20462).toFixed(2);
