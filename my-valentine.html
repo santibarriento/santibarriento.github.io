@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>¿Querés ser mi Valentine? 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
+      max-width: 350px;
+      width: 90%;
+      z-index: 10;
+      transition: all 0.5s ease;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      color: #ff4d6d;
+      font-size: 2.2rem;
+      margin: 0 0 10px 0;
+    }
+
+    .main-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 15px 0;
+      border: 4px solid #fff;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .buttons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      min-height: 60px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    }
+
+    #noBtn {
+      background-color: #f0f0f0;
+      color: #888;
+      padding: 10px 20px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .details {
+      margin-top: 15px;
+      padding: 15px;
+      border-top: 2px dashed #ff9a9e;
+      color: #444;
+      font-size: 0.9rem;
+      animation: fadeIn 1s ease;
+    }
+
+    /* Estilo botón calendario */
+    #calBtn {
+      background-color: #007AFF;
+      color: white;
+      margin-top: 15px;
+      font-size: 13px;
+      padding: 10px 15px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="mainContainer">
+    <h1 id="title">¿Querés ser mi Valentine? 💕</h1>
+
+    <img id="displayImg" class="main-img" src="elena/corazón.png" alt="Amor">
+
+    <div id="btnWrapper" class="buttons">
+      <button id="yesBtn">¡Sí! 💖</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div id="infoCita" class="hidden">
+      <div class="details">
+        <p><strong>📍 Lugar:</strong> Pizza e Basta</p>
+        <p><strong>📅 Fecha:</strong> 14 de Febrero, 2026</p>
+        <p><strong>⏰ Hora:</strong> 22:00 PM</p>
+
+        <button id="calBtn">
+          🗓️ Añadir al Calendario
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const title = document.getElementById("title");
+    const img = document.getElementById("displayImg");
+    const btnWrapper = document.getElementById("btnWrapper");
+    const infoCita = document.getElementById("infoCita");
+    const calBtn = document.getElementById("calBtn");
+
+    // Función para mover el botón "No"
+    function moveButton() {
+      const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+      const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = randomX + "px";
+      noBtn.style.top = randomY + "px";
+      noBtn.style.zIndex = "999";
+    }
+
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveButton();
+    });
+
+    // Lógica al decir que SÍ
+    yesBtn.addEventListener("click", () => {
+      title.innerHTML = "¡Sabía que ibas a decir que sí! 🥰 (no te quedaba otra)";
+
+      // Cambio de imagen a la rosa
+      img.src = "elena/rosa.png";
+
+      // Limpieza de interfaz
+      btnWrapper.classList.add("hidden");
+      infoCita.classList.remove("hidden");
+
+      // Cambio de fondo
+      document.body.style.background = "#ff4d6d";
+    });
+
+    // Lógica del Calendario Apple (.ics)
+    calBtn.addEventListener("click", () => {
+      const titulo = "Cita de San Valentín 💘";
+      const lugar = "Pizza e Basta";
+      const descripcion = "¡Nuestra cena romántica de San Valentín!";
+
+      // Fecha: 14 Feb 2026 - 22:00 a 00:00
+      const fechaInicio = "20260214T220000";
+      const fechaFin = "20260215T000000";
+
+      const icsContent = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Mi Valentine//Evento//ES",
+        "BEGIN:VEVENT",
+        `DTSTART:${fechaInicio}`,
+        `DTEND:${fechaFin}`,
+        `SUMMARY:${titulo}`,
+        `LOCATION:${lugar}`,
+        `DESCRIPTION:${descripcion}`,
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\n");
+
+      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "cita-valentine.ics");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  </script>
+
+</body>
+
+</html>
