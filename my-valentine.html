@@ -32,7 +32,7 @@
       max-width: 350px;
       width: 90%;
       z-index: 10;
-      transition: all 0.5s ease;
+      transition: all 0.3s ease;
     }
 
     h1 {
@@ -58,7 +58,7 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      min-height: 60px;
+      min-height: 100px; /* Un poco más de espacio para cuando crezca el botón */
     }
 
     button {
@@ -75,6 +75,7 @@
       background-color: #ff4d6d;
       color: white;
       box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+      z-index: 11; /* Asegurar que el botón "Sí" esté sobre el "No" si chocan */
     }
 
     #noBtn {
@@ -94,7 +95,6 @@
       animation: fadeIn 1s ease;
     }
 
-    /* Estilo botón calendario */
     #calBtn {
       background-color: #007AFF;
       color: white;
@@ -109,13 +109,8 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .hidden {
@@ -141,7 +136,7 @@
         <p><strong>📍 Lugar:</strong> Pizza e Basta</p>
         <p><strong>📅 Fecha:</strong> 14 de Febrero, 2026</p>
         <p><strong>⏰ Hora:</strong> 22:00 PM</p>
-
+        
         <button id="calBtn">
           🗓️ Añadir al Calendario
         </button>
@@ -158,8 +153,12 @@
     const infoCita = document.getElementById("infoCita");
     const calBtn = document.getElementById("calBtn");
 
-    // Función para mover el botón "No"
+    let yesScale = 1; // Escala inicial del botón Sí
+    let yesFontSize = 16; // Tamaño de fuente inicial
+
+    // Función para mover el botón "No" y hacer crecer el "Sí"
     function moveButton() {
+      // 1. Movemos el botón "No"
       const maxX = window.innerWidth - noBtn.offsetWidth - 20;
       const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
@@ -170,6 +169,13 @@
       noBtn.style.left = randomX + "px";
       noBtn.style.top = randomY + "px";
       noBtn.style.zIndex = "999";
+
+      // 2. HACEMOS CRECER EL BOTÓN "SÍ"
+      yesScale += 0.15; // Aumenta 15% cada vez
+      yesFontSize += 2; // Aumenta un poco el texto
+      yesBtn.style.transform = `scale(${yesScale})`;
+      // Opcional: ajustar el tamaño de fuente si quieres que el texto también crezca
+      // yesBtn.style.fontSize = `${yesFontSize}px`;
     }
 
     noBtn.addEventListener("mouseover", moveButton);
@@ -178,35 +184,29 @@
       moveButton();
     });
 
-    // Lógica al decir que SÍ
     yesBtn.addEventListener("click", () => {
       title.innerHTML = "¡Sabía que ibas a decir que sí! 🥰 (no te quedaba otra)";
-
-      // Cambio de imagen a la rosa
       img.src = "elena/rosa.png";
-
-      // Limpieza de interfaz
+      
+      // Reseteamos escala para que no se vea gigante en el mensaje final
+      yesBtn.style.transform = "scale(1)";
+      
       btnWrapper.classList.add("hidden");
       infoCita.classList.remove("hidden");
-
-      // Cambio de fondo
       document.body.style.background = "#ff4d6d";
     });
 
-    // Lógica del Calendario Apple (.ics)
     calBtn.addEventListener("click", () => {
       const titulo = "Cita de San Valentín 💘";
       const lugar = "Pizza e Basta";
       const descripcion = "¡Nuestra cena romántica de San Valentín!";
-
-      // Fecha: 14 Feb 2026 - 22:00 a 00:00
+      
       const fechaInicio = "20260214T220000";
       const fechaFin = "20260215T000000";
 
       const icsContent = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
-        "PRODID:-//Mi Valentine//Evento//ES",
         "BEGIN:VEVENT",
         `DTSTART:${fechaInicio}`,
         `DTEND:${fechaFin}`,
