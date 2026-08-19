@@ -1,0 +1,910 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FuelTrip | Ahorra en cada viaje</title>
+
+    <meta name="description"
+        content="FuelTrip te ayuda a calcular el coste de tus viajes, encontrar gasolineras baratas y gestionar tus vehículos desde una sola aplicación.">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="icons/fuel_logo.png" type="image/png">
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVIGATION
+    =============================== -->
+
+    <nav class="navbar">
+
+        <a href="#" class="brand">
+            <img src="icons/fuel_logo.png" alt="FuelTrip">
+            <span>FuelTrip</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#features">Funciones</a>
+            <a href="#gas-stations">Gasolineras</a>
+            <a href="#garage">Garaje</a>
+            <a href="#themes">Personalización</a>
+        </div>
+
+        <div class="nav-actions">
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <a href="#download" class="nav-download">
+                Descargar
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <!-- ==============================
+             HERO
+        =============================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    <i class="fas fa-gas-pump"></i>
+                    Tu viaje. Tu coche. Tu ahorro.
+                </span>
+
+                <h1>
+                    Ahorra en cada viaje,
+                    <span>planifica con precisión.</span>
+                </h1>
+
+                <p>
+                    FuelTrip calcula cuánto vas a gastar en combustible,
+                    encuentra las gasolineras más económicas y guarda tus
+                    vehículos y viajes en un solo lugar.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#download" class="primary-btn">
+                        <i class="fab fa-google-play"></i>
+                        Descargar en Google Play
+                    </a>
+
+                    <a href="#features" class="secondary-btn">
+                        Descubrir FuelTrip
+                        <i class="fas fa-arrow-down"></i>
+                    </a>
+
+                </div>
+
+                <div class="hero-highlights">
+
+                    <div>
+                        <i class="fas fa-route"></i>
+                        <span>Calcula rutas</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-euro-sign"></i>
+                        <span>Controla gastos</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-gas-pump"></i>
+                        <span>Encuentra combustible</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-visual">
+
+                <div class="hero-glow"></div>
+
+                <img
+                    src="screenshots/calculadora.png"
+                    alt="Calculadora de viajes de FuelTrip"
+                    class="phone-main">
+
+                <div class="floating-card floating-cost">
+
+                    <i class="fas fa-wallet"></i>
+
+                    <div>
+                        <small>Coste estimado</small>
+                        <strong>24,80 €</strong>
+                    </div>
+
+                </div>
+
+                <div class="floating-card floating-distance">
+
+                    <i class="fas fa-road"></i>
+
+                    <div>
+                        <small>Distancia</small>
+                        <strong>184 km</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             VALUE PROPOSITION
+        =============================== -->
+
+        <section class="value-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">TODO BAJO CONTROL</span>
+
+                <h2>
+                    ¿Cuánto te cuesta realmente
+                    <span>cada viaje?</span>
+                </h2>
+
+                <p>
+                    FuelTrip convierte los datos de tu vehículo y la ruta
+                    en información útil para que puedas tomar mejores
+                    decisiones antes de salir.
+                </p>
+
+            </div>
+
+            <div class="value-grid">
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+
+                    <h3>Calcula</h3>
+
+                    <p>
+                        Conoce los litros que consumirás y el coste estimado
+                        de tu trayecto antes de arrancar.
+                    </p>
+
+                </article>
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+
+                    <h3>Compara</h3>
+
+                    <p>
+                        Encuentra estaciones de servicio cercanas y compara
+                        sus precios para elegir dónde repostar.
+                    </p>
+
+                </article>
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+
+                    <h3>Controla</h3>
+
+                    <p>
+                        Guarda tus viajes, vehículos e información de consumo
+                        para tener todos tus gastos bajo control.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             FEATURES
+        =============================== -->
+
+        <section id="features" class="feature-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">CALCULADORA INTELIGENTE</span>
+
+                <h2>
+                    Tu viaje,
+                    <span>calculado al detalle.</span>
+                </h2>
+
+                <p>
+                    Introduce tu origen y destino y deja que FuelTrip haga
+                    las cuentas por ti.
+                </p>
+
+            </div>
+
+
+            <div class="feature-showcase">
+
+                <div class="feature-image">
+
+                    <div class="phone-frame">
+                        <img src="screenshots/calculadora.png"
+                            alt="Calculadora de viajes FuelTrip">
+                    </div>
+
+                </div>
+
+
+                <div class="feature-content">
+
+                    <div class="feature-item active">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+
+                        <div>
+                            <h3>Rutas dinámicas</h3>
+
+                            <p>
+                                Define origen y destino utilizando Google Maps
+                                y calcula automáticamente la distancia del trayecto.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+
+                        <div>
+                            <h3>Divide el gasto</h3>
+
+                            <p>
+                                ¿Viajas con amigos? Indica el número de pasajeros
+                                y descubre cuánto corresponde pagar a cada persona.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-retweet"></i>
+                        </div>
+
+                        <div>
+                            <h3>Ida y vuelta</h3>
+
+                            <p>
+                                Activa el modo de ida y vuelta y FuelTrip recalculará
+                                automáticamente distancia, consumo y coste.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-item">
+
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+
+                        <div>
+                            <h3>Resumen completo</h3>
+
+                            <p>
+                                Consulta distancia, litros consumidos, coste total
+                                y coste por persona antes de guardar el viaje.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             GAS STATIONS
+        =============================== -->
+
+        <section id="gas-stations" class="dark-feature-section">
+
+            <div class="dark-feature-content">
+
+                <span class="eyebrow">GAS-NEARBY</span>
+
+                <h2>
+                    Encuentra combustible
+                    <span>sin pagar de más.</span>
+                </h2>
+
+                <p>
+                    Consulta las estaciones de servicio cercanas y compara
+                    sus precios para encontrar la opción que mejor se adapte
+                    a tu ruta.
+                </p>
+
+
+                <div class="dark-feature-list">
+
+                    <div>
+                        <i class="fas fa-gas-pump"></i>
+                        <span>Precios actualizados</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-sort-amount-down"></i>
+                        <span>Ordena por precio o distancia</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-location-arrow"></i>
+                        <span>Navega directamente hasta la estación</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-search"></i>
+                        <span>Busca gasolineras en otras ubicaciones</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gas-image">
+
+                <div class="gas-glow"></div>
+
+                <div class="phone-frame">
+                    <img src="screenshots/gasolineras.png"
+                        alt="Gasolineras cercanas en FuelTrip">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             GARAGE
+        =============================== -->
+
+        <section id="garage" class="garage-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">MI GARAJE</span>
+
+                <h2>
+                    Todos tus vehículos,
+                    <span>en un solo lugar.</span>
+                </h2>
+
+                <p>
+                    Configura cada vehículo con sus propios datos de consumo
+                    y cambia entre ellos cuando quieras.
+                </p>
+
+            </div>
+
+
+            <div class="garage-grid">
+
+                <div class="garage-card">
+
+                    <div class="garage-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+
+                    <h3>Fichas de vehículos</h3>
+
+                    <p>
+                        Guarda nombre, marca, año y matrícula para identificar
+                        fácilmente cada vehículo.
+                    </p>
+
+                </div>
+
+
+                <div class="garage-card">
+
+                    <div class="garage-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+
+                    <h3>Consumo personalizado</h3>
+
+                    <p>
+                        Configura el consumo medio en L/100 km y el tipo
+                        de combustible de cada vehículo.
+                    </p>
+
+                </div>
+
+
+                <div class="garage-card">
+
+                    <div class="garage-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+
+                    <h3>Multivehículo</h3>
+
+                    <p>
+                        Cambia rápidamente entre tu coche, el vehículo
+                        familiar o el coche de empresa.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="garage-showcase">
+
+                <div class="garage-text">
+
+                    <span class="small-label">
+                        TU GARAJE DIGITAL
+                    </span>
+
+                    <h3>
+                        Un perfil para
+                        <span>cada coche.</span>
+                    </h3>
+
+                    <p>
+                        FuelTrip adapta sus cálculos al vehículo que estés
+                        utilizando para que las estimaciones sean lo más
+                        precisas posible.
+                    </p>
+
+                </div>
+
+                <div class="garage-image">
+
+                    <div class="phone-frame">
+                        <img src="screenshots/garaje.png"
+                            alt="Garaje de vehículos FuelTrip">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             HISTORY
+        =============================== -->
+
+        <section class="history-section">
+
+            <div class="history-image">
+
+                <div class="phone-frame">
+                    <img src="screenshots/historial.png"
+                        alt="Historial de viajes FuelTrip">
+                </div>
+
+            </div>
+
+
+            <div class="history-content">
+
+                <span class="eyebrow">HISTORIAL</span>
+
+                <h2>
+                    Tus viajes,
+                    <span>siempre disponibles.</span>
+                </h2>
+
+                <p>
+                    FuelTrip guarda tus cálculos para que puedas consultarlos
+                    cuando quieras y reutilizar la información de tus viajes.
+                </p>
+
+
+                <div class="history-points">
+
+                    <div>
+                        <i class="fas fa-history"></i>
+                        <span>Consulta tus viajes anteriores</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-redo"></i>
+                        <span>Repite cálculos rápidamente</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-route"></i>
+                        <span>Vuelve a navegar una ruta</span>
+                    </div>
+
+                    <div>
+                        <i class="fas fa-users"></i>
+                        <span>Actualiza el número de pasajeros</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             THEMES
+        =============================== -->
+
+        <section id="themes" class="themes-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">PERSONALIZA TU EXPERIENCIA</span>
+
+                <h2>
+                    FuelTrip se adapta
+                    <span>a ti.</span>
+                </h2>
+
+                <p>
+                    Elige el estilo que más encaje contigo y disfruta de
+                    FuelTrip con tu propia personalidad.
+                </p>
+
+            </div>
+
+
+            <div class="themes-grid">
+
+                <div class="theme-card blue">
+                    <div class="theme-preview"></div>
+                    <h3>Azul Clásico</h3>
+                    <span>Elegante y tecnológico</span>
+                </div>
+
+                <div class="theme-card pink">
+                    <div class="theme-preview"></div>
+                    <h3>Rosa Elegante</h3>
+                    <span>Moderno y diferente</span>
+                </div>
+
+                <div class="theme-card green">
+                    <div class="theme-preview"></div>
+                    <h3>Verde Eco</h3>
+                    <span>Natural y sostenible</span>
+                </div>
+
+                <div class="theme-card red">
+                    <div class="theme-preview"></div>
+                    <h3>Rojo Deportivo</h3>
+                    <span>Potente y dinámico</span>
+                </div>
+
+            </div>
+
+
+            <div class="theme-modes">
+
+                <span>
+                    <i class="fas fa-sun"></i>
+                    Modo claro
+                </span>
+
+                <span>
+                    <i class="fas fa-moon"></i>
+                    Modo oscuro
+                </span>
+
+                <span>
+                    <i class="fas fa-mobile-alt"></i>
+                    Adaptado al sistema
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             HOW IT WORKS
+        =============================== -->
+
+        <section class="how-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">ASÍ DE FÁCIL</span>
+
+                <h2>
+                    Planifica.
+                    <span>Conduce. Ahorra.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <span class="step-number">01</span>
+
+                    <div class="step-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+
+                    <h3>Configura tu coche</h3>
+
+                    <p>
+                        Añade tu vehículo y establece su consumo.
+                    </p>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <span class="step-number">02</span>
+
+                    <div class="step-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+
+                    <h3>Planifica el viaje</h3>
+
+                    <p>
+                        Introduce tu ruta y consulta el coste estimado.
+                    </p>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <span class="step-number">03</span>
+
+                    <div class="step-icon">
+                        <i class="fas fa-euro-sign"></i>
+                    </div>
+
+                    <h3>Ahorra</h3>
+
+                    <p>
+                        Encuentra dónde repostar al mejor precio.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             TECHNOLOGY
+        =============================== -->
+
+        <section class="technology-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">BAJO EL CAPÓ</span>
+
+                <h2>
+                    Tecnología que mueve
+                    <span>FuelTrip.</span>
+                </h2>
+
+                <p>
+                    Una aplicación Android nativa diseñada para ofrecer
+                    una experiencia rápida, fluida y moderna.
+                </p>
+
+            </div>
+
+
+            <div class="tech-grid">
+
+                <div>
+                    <i class="fab fa-java"></i>
+                    <span>Java</span>
+                </div>
+
+                <div>
+                    <i class="fab fa-android"></i>
+                    <span>Android</span>
+                </div>
+
+                <div>
+                    <i class="fas fa-map"></i>
+                    <span>Google Maps</span>
+                </div>
+
+                <div>
+                    <i class="fas fa-location-dot"></i>
+                    <span>Google Places</span>
+                </div>
+
+                <div>
+                    <i class="fas fa-database"></i>
+                    <span>Persistencia local</span>
+                </div>
+
+                <div>
+                    <i class="fas fa-layer-group"></i>
+                    <span>Material Design 3</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             DOWNLOAD
+        =============================== -->
+
+        <section id="download" class="download-section">
+
+            <div class="download-glow"></div>
+
+            <img src="icons/fuel_logo.png"
+                alt="FuelTrip"
+                class="download-logo">
+
+            <span class="eyebrow">LISTO PARA EL PRÓXIMO VIAJE</span>
+
+            <h2>
+                Tu coche consume.
+                <br>
+                <span>FuelTrip te ayuda a ahorrar.</span>
+            </h2>
+
+            <p>
+                Calcula, compara y controla tus gastos de combustible
+                desde una única aplicación.
+            </p>
+
+            <a href="#" class="play-store-btn">
+
+                <i class="fab fa-google-play"></i>
+
+                <div>
+                    <small>Disponible próximamente en</small>
+                    <strong>Google Play</strong>
+                </div>
+
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    =============================== -->
+
+    <footer>
+
+        <div class="footer-brand">
+
+            <img src="icons/fuel_logo.png" alt="FuelTrip">
+
+            <div>
+                <strong>FuelTrip</strong>
+                <span>Ahorra en cada viaje.</span>
+            </div>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#features">Funciones</a>
+            <a href="#gas-stations">Gasolineras</a>
+            <a href="#garage">Garaje</a>
+            <a href="#themes">Personalización</a>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 FuelTrip
+            </span>
+
+            <span>
+                Desarrollado por Santiago Barriento
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        const themeToggle = document.getElementById('theme-toggle');
+
+        themeToggle.addEventListener('click', () => {
+
+            document.body.classList.toggle('dark-mode');
+
+            const icon = themeToggle.querySelector('i');
+
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
+```
