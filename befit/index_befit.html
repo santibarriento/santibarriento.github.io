@@ -1,316 +1,1001 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto: BeFit | Santiago Barriento</title>
 
-    <!-- Fonts and Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <title>BeFit | Fitness App | Santiago Barriento</title>
+
+    <meta name="description"
+        content="BeFit es una aplicación Android para gestionar entrenamientos, clases, nutrición y objetivos fitness desde una única plataforma.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <!-- Main Style -->
-    <link rel="stylesheet" href="../style.css">
-    <link rel="icon" href="../sb.png" type="image/png">
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <style>
-        /* Project Specific Styles */
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-        }
+    <link rel="icon" href="logo.png" type="image/png">
 
-        .project-header {
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(37, 99, 235, 0.05) 100%);
-            margin-bottom: 3rem;
-            border-radius: 0 0 50px 50px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('../sb.png') no-repeat center center;
-            background-size: cover;
-            opacity: 0.03;
-            z-index: -1;
-        }
-
-        .project-logo {
-            max-width: 150px;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
-            border-radius: 20px;
-        }
-
-        .project-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .app-showcase {
-            display: grid;
-            gap: 4rem;
-            padding: 0 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .showcase-item {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            background: var(--surface-color);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .showcase-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .showcase-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .showcase-text {
-            flex: 1;
-        }
-
-        .showcase-text h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .showcase-text p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-
-        .showcase-image {
-            flex: 0 0 250px;
-            /* Fixed width for phone screenshots */
-            text-align: center;
-        }
-
-        .showcase-image img {
-            max-width: 100%;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            border: 4px solid #fff;
-        }
-
-        body.dark-mode .showcase-image img {
-            border-color: #333;
-        }
-
-        .back-nav {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-
-        .back-btn {
-            background: var(--surface-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 30px;
-            color: var(--text-primary);
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            color: var(--primary-color);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
-        }
-
-        .github-btn {
-            background: #24292e;
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .github-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background: #2f363d;
-        }
-
-        @media (max-width: 768px) {
-            .project-header {
-                padding: 5rem 1.5rem 3rem;
-            }
-
-            .showcase-item {
-                flex-direction: column !important;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .showcase-image {
-                flex: auto;
-                width: 100%;
-                max-width: 280px;
-                margin: 0 auto;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
-    <!-- Theme Toggle -->
-    <div class="theme-switcher" id="theme-toggle">
-        <i class="fas fa-sun theme-icon"></i>
-    </div>
+    <!-- ==============================
+         NAVBAR
+    =============================== -->
 
-    <!-- Back Navigation -->
-    <div class="back-nav">
-        <a href="../index.html#projects" class="back-btn">
-            <i class="fas fa-arrow-left"></i> Volver
+    <nav class="navbar">
+
+        <a href="../index.html#projects" class="brand">
+
+            <img src="logo.png" alt="BeFit">
+
+            <span>BeFit</span>
+
         </a>
-    </div>
 
-    <header class="project-header">
-        <img src="logo.png" alt="BeFit Logo" class="project-logo">
-        <h1 class="project-title">BeFit - Android</h1>
-        <p class="subtitle" style="color: var(--text-secondary); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
-            App fitness ganadora del Impulsa StartUp de la cámara de comercio de Tarragona.
-        </p>
-    </header>
 
-    <main style="padding-bottom: 4rem;">
+        <div class="nav-links">
 
-        <div class="app-showcase">
+            <a href="#features">Funcionalidades</a>
+            <a href="#experience">Experiencia</a>
+            <a href="#technology">Tecnología</a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <button id="theme-toggle" class="theme-toggle"
+                aria-label="Cambiar tema">
+
+                <i class="fas fa-moon"></i>
+
+            </button>
+
+
+            <a href="../index.html#projects" class="back-btn">
+
+                <i class="fas fa-arrow-left"></i>
+
+                Volver
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+
+        <!-- ==============================
+             HERO
+        =============================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+
+                    <i class="fas fa-trophy"></i>
+
+                    Proyecto ganador · Impulsa StartUp
+
+                </span>
+
+
+                <h1>
+
+                    Tu entrenamiento.
+
+                    <span>Tu evolución.</span>
+
+                </h1>
+
+
+                <p>
+
+                    BeFit es una aplicación Android diseñada para centralizar
+                    entrenamientos, clases, expertos y objetivos fitness
+                    en una experiencia sencilla y personalizada.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a href="#features" class="primary-btn">
+
+                        <i class="fas fa-mobile-screen-button"></i>
+
+                        Explorar BeFit
+
+                    </a>
+
+
+                    <a href="https://github.com/santibarriento/BeFit"
+                        target="_blank"
+                        class="secondary-btn">
+
+                        <i class="fab fa-github"></i>
+
+                        Ver en GitHub
+
+                    </a>
+
+                </div>
+
+
+                <div class="hero-highlights">
+
+                    <div>
+
+                        <i class="fab fa-android"></i>
+
+                        <span>Android</span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fas fa-database"></i>
+
+                        <span>Firebase</span>
+
+                    </div>
+
+
+                    <div>
+
+                        <i class="fas fa-user-group"></i>
+
+                        <span>Experiencia personalizada</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="hero-glow"></div>
+
+
+                <div class="hero-device">
+
+                    <div class="device-camera"></div>
+
+                    <img src="inicio.png"
+                        alt="Pantalla principal de BeFit">
+
+                </div>
+
+
+                <div class="floating-card floating-achievement">
+
+                    <i class="fas fa-trophy"></i>
+
+                    <div>
+
+                        <small>Reconocimiento</small>
+
+                        <strong>Impulsa StartUp</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-card floating-fitness">
+
+                    <i class="fas fa-dumbbell"></i>
+
+                    <div>
+
+                        <small>Entrenamiento</small>
+
+                        <strong>Todo en un lugar</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             INTRO
+        =============================== -->
+
+        <section class="intro-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    UNA EXPERIENCIA COMPLETA
+                </span>
+
+
+                <h2>
+
+                    Mucho más que una
+                    <span>app de entrenamiento.</span>
+
+                </h2>
+
+
+                <p>
+
+                    BeFit combina planificación, entrenamiento, calendario,
+                    profesionales y gestión de usuario para crear una
+                    experiencia fitness completa.
+
+                </p>
+
+            </div>
+
+
+            <div class="value-grid">
+
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+
+                        <i class="fas fa-calendar-check"></i>
+
+                    </div>
+
+                    <h3>Organiza</h3>
+
+                    <p>
+
+                        Gestiona tus clases, entrenamientos y eventos
+                        desde un calendario centralizado.
+
+                    </p>
+
+                </article>
+
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+
+                        <i class="fas fa-dumbbell"></i>
+
+                    </div>
+
+                    <h3>Entrena</h3>
+
+                    <p>
+
+                        Sigue rutinas guiadas con ejercicios,
+                        vídeos, temporizadores y recomendaciones.
+
+                    </p>
+
+                </article>
+
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+
+                        <i class="fas fa-user-doctor"></i>
+
+                    </div>
+
+                    <h3>Conecta</h3>
+
+                    <p>
+
+                        Descubre entrenadores y nutricionistas y
+                        encuentra el asesoramiento que necesitas.
+
+                    </p>
+
+                </article>
+
+
+                <article class="value-card">
+
+                    <div class="value-icon">
+
+                        <i class="fas fa-chart-line"></i>
+
+                    </div>
+
+                    <h3>Evoluciona</h3>
+
+                    <p>
+
+                        Mantén tus objetivos y preferencias bajo control
+                        desde tu perfil personal.
+
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             FEATURES
+        =============================== -->
+
+        <section id="features" class="features-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    FUNCIONALIDADES
+                </span>
+
+
+                <h2>
+
+                    Todo lo que necesitas
+                    <span>para mantenerte activo.</span>
+
+                </h2>
+
+            </div>
+
 
             <!-- Inicio -->
-            <div class="showcase-item">
-                <div class="showcase-text">
-                    <h2><i class="fas fa-home"></i> Inicio e Interfaz</h2>
+
+            <article class="feature-row">
+
+                <div class="feature-image">
+
+                    <div class="phone-frame">
+
+                        <img src="inicio.png"
+                            alt="Inicio de BeFit">
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-content">
+
+                    <span class="feature-number">
+                        01
+                    </span>
+
+
+                    <h3>
+
+                        Tu actividad,
+                        <span>de un vistazo.</span>
+
+                    </h3>
+
+
                     <p>
-                        Desde la página principal se accede rápidamente a todas las funcionalidades clave. Se pueden
-                        consultar
-                        tus próximas clases, ver ejercicios recomendados, revisar el calendario de eventos y gestionar
-                        tu suscripción premium de manera intuitiva.
+
+                        La pantalla principal reúne la información más
+                        importante para que puedas acceder rápidamente
+                        a tus próximas clases, ejercicios recomendados,
+                        eventos y funcionalidades principales.
+
                     </p>
+
+
+                    <div class="feature-points">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Acceso rápido
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Recomendaciones
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Próximas actividades
+                        </span>
+
+                    </div>
+
                 </div>
-                <div class="showcase-image">
-                    <img src="inicio.png" alt="Pantalla de Inicio">
-                </div>
-            </div>
+
+            </article>
+
+
 
             <!-- Calendario -->
-            <div class="showcase-item">
-                <div class="showcase-text">
-                    <h2><i class="fas fa-calendar-alt"></i> Calendario Inteligente</h2>
-                    <p>
-                        Agenda entrenamientos, clases grupales y citas con
-                        nutricionistas. La integración con el calendario nativo de tu dispositivo te asegura que el
-                        usuario no pierda
-                        ninguna sesión.
-                    </p>
-                </div>
-                <div class="showcase-image">
-                    <img src="calendario.png" alt="Pantalla de Calendario">
-                </div>
-            </div>
 
-            <!-- Entreno -->
-            <div class="showcase-item">
-                <div class="showcase-text">
-                    <h2><i class="fas fa-dumbbell"></i> Rutinas Guiadas</h2>
+            <article class="feature-row reverse">
+
+                <div class="feature-image">
+
+                    <div class="phone-frame">
+
+                        <img src="calendario.png"
+                            alt="Calendario de BeFit">
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-content">
+
+                    <span class="feature-number">
+                        02
+                    </span>
+
+
+                    <h3>
+
+                        Nunca pierdas
+                        <span>una sesión.</span>
+
+                    </h3>
+
+
                     <p>
-                        Cada ejercicio incluye videos
-                        demostrativos, un cronómetro interactivo para controlar tus tiempos y consejos profesionales
-                        para mejorar tu técnica y evitar lesiones.
+
+                        Organiza entrenamientos, clases grupales y citas
+                        con profesionales mediante un calendario pensado
+                        para mantener toda tu actividad organizada.
+
                     </p>
+
+
+                    <div class="feature-points">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Planificación
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Clases y eventos
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Calendario integrado
+                        </span>
+
+                    </div>
+
                 </div>
-                <div class="showcase-image">
-                    <img src="entrenar.png" alt="Pantalla de Entrenamiento">
+
+            </article>
+
+
+
+            <!-- Entrenamiento -->
+
+            <article class="feature-row">
+
+                <div class="feature-image">
+
+                    <div class="phone-frame">
+
+                        <img src="entrenar.png"
+                            alt="Entrenamientos de BeFit">
+
+                    </div>
+
                 </div>
-            </div>
+
+
+                <div class="feature-content">
+
+                    <span class="feature-number">
+                        03
+                    </span>
+
+
+                    <h3>
+
+                        Entrena con
+                        <span>confianza.</span>
+
+                    </h3>
+
+
+                    <p>
+
+                        Cada ejercicio incorpora información visual,
+                        vídeos demostrativos y herramientas para controlar
+                        el tiempo de entrenamiento y mejorar la ejecución.
+
+                    </p>
+
+
+                    <div class="feature-points">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Vídeos demostrativos
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Cronómetro
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Consejos de técnica
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
 
             <!-- Expertos -->
-            <div class="showcase-item">
-                <div class="showcase-text">
-                    <h2><i class="fas fa-user-md"></i> Conecta con Expertos</h2>
+
+            <article class="feature-row reverse">
+
+                <div class="feature-image">
+
+                    <div class="phone-frame">
+
+                        <img src="Expertos.png"
+                            alt="Expertos de BeFit">
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-content">
+
+                    <span class="feature-number">
+                        04
+                    </span>
+
+
+                    <h3>
+
+                        Encuentra a los
+                        <span>profesionales adecuados.</span>
+
+                    </h3>
+
+
                     <p>
-                        Los usuarios pueden explorar perfiles detallados con
-                        reseñas, puntuaciones y fotos y contactar directamente con entrenadores y nutricionistas para
-                        recibir un asesoramiento 100% personalizado.
+
+                        Explora perfiles de entrenadores y nutricionistas,
+                        consulta sus valoraciones y descubre diferentes
+                        opciones de asesoramiento.
+
                     </p>
+
+
+                    <div class="feature-points">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Perfiles profesionales
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Valoraciones
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Contacto directo
+                        </span>
+
+                    </div>
+
                 </div>
-                <div class="showcase-image">
-                    <img src="Expertos.png" alt="Pantalla de Expertos">
-                </div>
-            </div>
+
+            </article>
+
+
 
             <!-- Perfil -->
-            <div class="showcase-item">
-                <div class="showcase-text">
-                    <h2><i class="fas fa-user-circle"></i> Gestión de Perfil</h2>
+
+            <article class="feature-row">
+
+                <div class="feature-image">
+
+                    <div class="phone-frame">
+
+                        <img src="perfil.png"
+                            alt="Perfil de BeFit">
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-content">
+
+                    <span class="feature-number">
+                        05
+                    </span>
+
+
+                    <h3>
+
+                        Una experiencia
+                        <span>hecha para ti.</span>
+
+                    </h3>
+
+
                     <p>
-                        Personaliza tu experiencia. Gestiona tu información personal, ajusta las preferencias de
-                        notificaciones y activa el modo oscuro para una visualización más cómoda en entornos con poca
-                        luz.
+
+                        Gestiona tus datos, preferencias y configuración
+                        desde un perfil personal diseñado para adaptar
+                        la aplicación a cada usuario.
+
                     </p>
+
+
+                    <div class="feature-points">
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Perfil personal
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Preferencias
+                        </span>
+
+                        <span>
+                            <i class="fas fa-check"></i>
+                            Modo oscuro
+                        </span>
+
+                    </div>
+
                 </div>
-                <div class="showcase-image">
-                    <img src="perfil.png" alt="Pantalla de Perfil">
+
+            </article>
+
+        </section>
+
+
+
+        <!-- ==============================
+             EXPERIENCE
+        =============================== -->
+
+        <section id="experience" class="experience-section">
+
+            <div class="experience-content">
+
+                <span class="eyebrow">
+                    RECONOCIMIENTO
+                </span>
+
+
+                <h2>
+
+                    Un proyecto que
+                    <span>llegó más lejos.</span>
+
+                </h2>
+
+
+                <p>
+
+                    BeFit fue desarrollado como una propuesta de aplicación
+                    fitness con el objetivo de ofrecer una experiencia digital
+                    completa para usuarios y profesionales del sector.
+
+                </p>
+
+
+                <div class="award-card">
+
+                    <div class="award-icon">
+
+                        <i class="fas fa-trophy"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Impulsa StartUp
+                        </strong>
+
+                        <span>
+                            Cámara de Comercio de Tarragona
+                        </span>
+
+                    </div>
+
                 </div>
+
             </div>
 
-        </div>
 
-        <div style="text-align: center; margin-top: 5rem;">
-            <a href="https://github.com/santibarriento/BeFit" target="_blank" class="github-btn">
-                <i class="fab fa-github" style="font-size: 1.5rem;"></i> Ver Proyecto en GitHub
+            <div class="experience-visual">
+
+                <div class="achievement-circle">
+
+                    <i class="fas fa-award"></i>
+
+                    <span>Proyecto</span>
+
+                    <strong>Ganador</strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             TECHNOLOGY
+        =============================== -->
+
+        <section id="technology" class="technology-section">
+
+            <div class="section-heading">
+
+                <span class="eyebrow">
+                    BAJO EL CAPÓ
+                </span>
+
+
+                <h2>
+
+                    Tecnología detrás
+                    <span>de BeFit.</span>
+
+                </h2>
+
+
+                <p>
+
+                    Una aplicación Android desarrollada con tecnologías
+                    orientadas a ofrecer una experiencia moderna y conectada.
+
+                </p>
+
+            </div>
+
+
+            <div class="tech-grid">
+
+                <div>
+
+                    <i class="fab fa-android"></i>
+
+                    <strong>Android Studio</strong>
+
+                    <span>Desarrollo móvil</span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fas fa-code"></i>
+
+                    <strong>Kotlin</strong>
+
+                    <span>Lógica de aplicación</span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fas fa-fire"></i>
+
+                    <strong>Firebase</strong>
+
+                    <span>Datos en tiempo real</span>
+
+                </div>
+
+
+                <div>
+
+                    <i class="fas fa-mobile-screen"></i>
+
+                    <strong>Android UI</strong>
+
+                    <span>Experiencia de usuario</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==============================
+             CTA
+        =============================== -->
+
+        <section class="cta-section">
+
+            <div class="cta-glow"></div>
+
+
+            <img src="logo.png"
+                alt="BeFit"
+                class="cta-logo">
+
+
+            <span class="eyebrow">
+                PROYECTO PERSONAL
+            </span>
+
+
+            <h2>
+
+                Diseñado para
+                <span>hacer del fitness un hábito.</span>
+
+            </h2>
+
+
+            <p>
+
+                Descubre el proyecto completo, consulta su código
+                y conoce cómo fue construido.
+
+            </p>
+
+
+            <a href="https://github.com/santibarriento/BeFit"
+                target="_blank"
+                class="github-btn">
+
+                <i class="fab fa-github"></i>
+
+                Ver proyecto en GitHub
+
             </a>
-        </div>
+
+        </section>
 
     </main>
 
-    <footer
-        style="text-align: center; padding: 3rem; background: var(--surface-color); border-top: 1px solid rgba(0,0,0,0.05);">
+
+
+    <!-- ==============================
+         FOOTER
+    =============================== -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <img src="logo.png" alt="BeFit">
+
+                <div>
+
+                    <strong>BeFit</strong>
+
+                    <span>
+                        Fitness · Tecnología · Innovación
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#features">
+                    Funcionalidades
+                </a>
+
+                <a href="#experience">
+                    Reconocimiento
+                </a>
+
+                <a href="#technology">
+                    Tecnología
+                </a>
+
+                <a href="../index.html#projects">
+                    Portfolio
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Santiago Barriento
+            </span>
+
+            <span>
+                Proyecto BeFit
+            </span>
+
+        </div>
 
     </footer>
 
-    <script src="../js/theme-toggle.js"></script>
+
+
+    <!-- ==============================
+         THEME SCRIPT
+    =============================== -->
+
+    <script>
+
+        const themeToggle =
+            document.getElementById('theme-toggle');
+
+        themeToggle.addEventListener('click', () => {
+
+            document.body.classList.toggle('dark-mode');
+
+            const icon =
+                themeToggle.querySelector('i');
+
+            if (document.body.classList.contains('dark-mode')) {
+
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+
+            } else {
+
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+
+            }
+
+        });
+
+    </script>
+
 </body>
 
 </html>
