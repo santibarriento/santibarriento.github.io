@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+
+
+
+<html lang="es">
+
+
+
+<head>
+
+
+
+  <meta charset="UTF-8">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+  <title>Fast Invoice ⚡ - Facturación Pro Ultrarrápida</title>
+
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+
+  <!-- Supabase JS Client v2 -->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+
+</head>
+
+
+
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans pb-12">
+
+
+
+
+
+
+
+  <!-- Header -->
+
+
+
+  <header class="bg-slate-900 border-b border-slate-800 p-4 sticky top-0 z-20 shadow-lg">
+
+
+
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+
+
+
+      <div class="flex items-center gap-2">
+
+
+
+        <span class="text-2xl">⚡</span>
+
+
+
+        <div>
+
+
+
+          <h1 class="text-lg font-bold text-white leading-tight">Fast Invoice</h1>
+
+
+
+          <p class="text-[11px] text-slate-400">Facturación rápida para autónomos</p>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+
+
+
+
+      <div class="flex items-center gap-3">
+
+
+
+        <!-- Auth / Perfil Badge -->
+
+
+
+        <div id="auth-section">
+
+
+
+          <button onclick="openLoginModal()" id="btn-login" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 py-2 px-3 rounded-lg border border-slate-700 transition cursor-pointer">
+
+
+
+            Iniciar Sesión
+
+
+
+          </button>
+
+
+
+          <div id="user-info" class="hidden flex items-center gap-2">
+
+
+
+            <span id="user-badge" class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1.5 rounded-lg font-semibold"></span>
+
+
+
+            <button onclick="logout()" class="text-xs bg-red-950 hover:bg-red-900 text-red-300 px-2.5 py-1.5 rounded-lg border border-red-800 transition cursor-pointer">Salir</button>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <button onclick="downloadPDF()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-2 px-4 rounded-lg shadow-md text-xs sm:text-sm transition flex items-center gap-1.5 cursor-pointer">
+
+
+
+          <span>Descargar PDF</span>
+
+
+
+        </button>
+
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </header>
+
+
+
+
+
+
+
+  <!-- Layout Principal -->
+
+
+
+  <div class="max-w-6xl mx-auto mt-6 px-4 grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+
+
+
+
+
+
+    <!-- Panel Lateral: Clientes y Anuncios -->
+
+
+
+    <aside class="space-y-4">
+
+
+
+      <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-3">
+
+
+
+        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Gestión de Clientes</h3>
+
+
+
+        <select id="client-select" onchange="autofillClient()" class="w-full bg-slate-950 text-xs text-slate-200 border border-slate-700 rounded p-2 focus:outline-none">
+
+
+
+          <option value="">-- Seleccionar cliente guardado --</option>
+
+
+
+        </select>
+
+
+
+        <button onclick="saveCurrentClient()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs py-1.5 rounded border border-slate-700 transition cursor-pointer">
+
+
+
+          💾 Guardar cliente actual
+
+
+
+        </button>
+
+
+
+      </div>
+
+
+
+
+
+
+
+      <!-- Banner Lateral AdSense -->
+
+
+
+      <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-center text-xs text-slate-500 min-h-[250px] flex items-center justify-center">
+
+
+
+        <div>
+
+
+
+          <p class="text-[10px] uppercase text-slate-600 mb-2">Publicidad</p>
+
+
+
+          <div class="w-full h-48 bg-slate-950 rounded border border-dashed border-slate-800 flex items-center justify-center">
+
+
+
+            <span>[ Banner AdSense 300x250 ]</span>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </div>
+
+
+
+    </aside>
+
+
+
+
+
+
+
+    <!-- Canvas de la Factura -->
+
+
+
+    <main class="lg:col-span-3">
+
+
+
+      <div id="invoice" class="bg-white text-slate-800 p-8 md:p-10 rounded-xl shadow-2xl border border-slate-200">
+
+
+
+
+
+
+
+        <!-- Encabezado -->
+
+
+
+        <div class="flex justify-between items-start gap-4 border-b border-slate-200 pb-6">
+
+
+
+          <div>
+
+
+
+            <h2 class="text-3xl font-black text-slate-900 tracking-tight">FACTURA</h2>
+
+
+
+            <div class="mt-2 flex items-center gap-1 text-slate-500 text-sm">
+
+
+
+              <span>Nº:</span>
+
+
+
+              <input type="text" id="inv-num" value="#2026-001" class="font-bold text-slate-800 border-b border-dashed border-slate-300 focus:outline-none w-32" />
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+          <div class="text-xs text-slate-500 space-y-2">
+
+
+
+            <div class="flex items-center justify-between gap-2">
+
+
+
+              <span class="font-semibold">Fecha:</span>
+
+
+
+              <input type="date" id="inv-date" class="border border-slate-200 rounded px-2 py-1 focus:outline-none" />
+
+
+
+            </div>
+
+
+
+            <div class="flex items-center justify-between gap-2">
+
+
+
+              <span class="font-semibold">Vencimiento:</span>
+
+
+
+              <input type="date" id="inv-due" class="border border-slate-200 rounded px-2 py-1 focus:outline-none" />
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Emisor y Cliente -->
+
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 my-6 text-xs">
+
+
+
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200/80 space-y-2">
+
+
+
+            <p class="font-bold text-emerald-600 uppercase tracking-wider text-[10px]">De (Tus Datos):</p>
+
+
+
+            <select id="company-select" onchange="autofillCompany()" class="w-full bg-white text-xs text-slate-700 border border-slate-200 rounded p-2 focus:outline-none">
+              <option value="">-- Seleccionar empresa guardada --</option>
+            </select>
+
+            <input type="text" id="seller-name" placeholder="Tu Nombre / Empresa" class="w-full font-bold text-sm text-slate-900 bg-transparent border-b border-transparent focus:border-emerald-500 focus:outline-none" />
+
+            <input type="text" id="seller-id" placeholder="NIF / CIF" class="w-full bg-transparent border-b border-transparent focus:border-emerald-500 focus:outline-none" />
+
+            <input type="text" id="seller-address" placeholder="Dirección completa" class="w-full bg-transparent border-b border-transparent focus:border-emerald-500 focus:outline-none" />
+
+            <button type="button" onclick="saveCurrentCompany()" class="w-full bg-emerald-700 hover:bg-emerald-600 text-white text-xs py-2 rounded border border-emerald-600 transition cursor-pointer mt-2">
+              💾 Guardar empresa actual
+            </button>
+
+
+
+          </div>
+
+
+
+          <div class="bg-slate-50 p-4 rounded-lg border border-slate-200/80 space-y-2">
+
+
+
+            <p class="font-bold text-slate-500 uppercase tracking-wider text-[10px]">Para (Cliente):</p>
+
+
+
+            <input type="text" id="client-name" placeholder="Nombre / Empresa Cliente" class="w-full font-bold text-sm text-slate-900 bg-transparent border-b border-transparent focus:border-emerald-500 focus:outline-none" />
+
+
+
+            <input type="text" id="client-id" placeholder="NIF / CIF Cliente" class="w-full bg-transparent border-b border-transparent focus:border-emerald-500 focus:outline-none" />
+
+
+
+            <input type="text" id="client-address" placeholder="Dirección del cliente" class="w-full bg-transparent border-b border-transparent focus:border-emerald-500 focus:outline-none" />
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Tabla -->
+
+
+
+        <table class="w-full text-xs text-left mb-4">
+
+
+
+          <thead>
+
+
+
+            <tr class="border-b border-slate-200 text-slate-400 font-bold uppercase text-[10px]">
+
+
+
+              <th class="py-2">Concepto</th>
+
+
+
+              <th class="py-2 text-center w-16">Cant.</th>
+
+
+
+              <th class="py-2 text-right w-24">Precio Un.</th>
+
+
+
+              <th class="py-2 text-right w-24">Total</th>
+
+
+
+              <th class="py-2 w-8 no-print"></th>
+
+
+
+            </tr>
+
+
+
+          </thead>
+
+
+
+          <tbody id="items-list"></tbody>
+
+
+
+        </table>
+
+
+
+
+
+
+
+        <button onclick="addItem()" class="no-print bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-1.5 px-3 rounded transition cursor-pointer">
+
+
+
+          + Añadir línea
+
+
+
+        </button>
+
+
+
+
+
+
+
+        <!-- Totales -->
+
+
+
+        <div class="flex flex-col sm:flex-row justify-between items-start pt-6 border-t border-slate-200 text-xs mt-6 gap-6">
+
+
+
+          <div class="w-full sm:w-1/2 space-y-2">
+
+
+
+            <p class="font-bold text-slate-700">Forma de Pago / Notas:</p>
+
+
+
+            <textarea id="payment-notes" rows="3" placeholder="Ej: Transferencia IBAN ES12..." class="w-full p-2 bg-slate-50 border border-slate-200 rounded text-slate-600 focus:outline-none resize-none"></textarea>
+
+
+
+          </div>
+
+
+
+          <div class="w-full sm:w-1/2 space-y-2">
+
+
+
+            <div class="flex justify-between text-slate-500"><span>Subtotal:</span><span id="subtotal-val" class="font-semibold">0.00 €</span></div>
+
+
+
+            <div class="flex justify-between items-center text-slate-500">
+
+
+
+              <div class="flex items-center gap-1">
+
+
+
+                <span>IVA (</span><input type="number" id="tax-rate" value="21" oninput="calculateTotals()" class="w-10 border rounded text-center focus:outline-none" /><span>%):</span>
+
+
+
+              </div>
+
+
+
+              <span id="tax-val" class="font-semibold">0.00 €</span>
+
+
+
+            </div>
+
+
+
+            <div class="flex justify-between text-base font-black text-slate-900 border-t border-slate-300 pt-2">
+
+
+
+              <span>TOTAL:</span><span id="total-val" class="text-emerald-600">0.00 €</span>
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Marca de Agua / Monetización -->
+
+
+
+        <div id="watermark" class="text-center pt-8 mt-6 border-t border-slate-100">
+
+
+
+          <p class="text-[10px] text-slate-400">
+
+
+
+            Generado gratis con <strong class="text-emerald-600 font-bold">Fast Invoice ⚡</strong>
+
+
+
+          </p>
+
+
+
+          <div class="no-print mt-2 flex justify-center gap-3 text-xs">
+
+
+
+            <button onclick="triggerRewardedAd()" class="text-amber-500 hover:underline font-semibold cursor-pointer">
+
+
+
+              🎬 Ver anuncio corto para quitar marca en esta factura
+
+
+
+            </button>
+
+
+
+            <span class="text-slate-300">|</span>
+
+
+
+            <button onclick="alert('Redirigiendo a pasarela de pago Stripe/Lemon Squeezy...')" class="text-emerald-600 hover:underline font-bold cursor-pointer">
+
+
+
+              ⭐ Pasar a Pro ($4.99)
+
+
+
+            </button>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+    </main>
+
+
+
+  </div>
+
+
+
+
+
+
+
+  <!-- Modal de Login / Registro -->
+
+
+
+  <div id="login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+
+
+
+    <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl max-w-sm w-full space-y-4 shadow-2xl">
+
+
+
+      <div class="flex justify-between items-center">
+
+
+
+        <h3 class="text-base font-bold text-white">Acceso a Fast Invoice</h3>
+
+
+
+        <button onclick="closeLoginModal()" class="text-slate-400 hover:text-white font-bold cursor-pointer">✕</button>
+
+
+
+      </div>
+
+
+
+      <p class="text-xs text-slate-400">Introduce tu correo para iniciar sesión o registrarte al instante sin contraseña.</p>
+
+
+
+
+
+
+
+      <div class="space-y-3">
+
+
+
+        <input type="email" id="auth-email" placeholder="tu@email.com" class="w-full bg-slate-950 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:outline-none focus:border-emerald-500" />
+
+
+
+        <button onclick="handleLogin()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-lg text-sm transition cursor-pointer">
+
+
+
+          Enviar enlace de acceso / Magic Link
+
+
+
+        </button>
+
+
+
+      </div>
+
+
+
+      <div id="auth-message" class="text-xs text-center text-emerald-400"></div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+  <!-- Script Lógica y Supabase Seguro -->
+
+
+
+  <script>
+
+
+
+    const SUPABASE_URL = 'https://lgnrwdaqfgmgcilcojpc.supabase.co';
+
+
+
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_FtjtGhY6vPTIg2lxAuQ2vQ_y9lYN_jU';
+
+
+
+
+
+
+
+    let supabaseClient = null;
+
+
+
+    try {
+
+
+
+      if (window.supabase) {
+
+
+
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+
+
+      }
+
+
+
+    } catch (e) {
+
+
+
+      console.warn("Supabase no inicializado:", e);
+
+
+
+    }
+
+
+
+
+
+
+
+    let currentUser = null;
+
+
+
+    let isUserPro = false;
+
+
+
+    let temporaryNoWatermark = false;
+
+
+
+    let clientsCache = [];
+    let companiesCache = [];
+
+
+
+
+
+
+
+    // Funciones de UI globales (siempre disponibles pase lo que pase con Supabase)
+
+
+
+    function openLoginModal() {
+
+
+
+      const modal = document.getElementById('login-modal');
+
+
+
+      if (modal) {
+
+
+
+        modal.classList.remove('hidden');
+
+
+
+        modal.classList.add('flex');
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+    function closeLoginModal() {
+
+
+
+      const modal = document.getElementById('login-modal');
+
+
+
+      if (modal) {
+
+
+
+        modal.classList.add('hidden');
+
+
+
+        modal.classList.remove('flex');
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+    function triggerRewardedAd() {
+
+
+
+      alert("🎬 [Simulación de Ad] Anuncio en reproducción...");
+
+
+
+      setTimeout(() => {
+
+
+
+        temporaryNoWatermark = true;
+
+
+
+        checkWatermark();
+
+
+
+        alert("¡Anuncio completado! Marca de agua eliminada para esta factura.");
+
+
+
+      }, 1000);
+
+
+
+    }
+
+
+
+
+
+
+
+    function checkWatermark() {
+
+
+
+      const wm = document.getElementById('watermark');
+
+
+
+      if (wm) {
+
+
+
+        if (isUserPro || temporaryNoWatermark) {
+
+
+
+          wm.style.display = 'none';
+
+
+
+        } else {
+
+
+
+          wm.style.display = 'block';
+
+
+
+        }
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+    function addItem(desc = '', qty = 1, price = 0) {
+
+
+
+      const tbody = document.getElementById('items-list');
+
+
+
+      if (!tbody) return;
+
+
+
+      const tr = document.createElement('tr');
+
+
+
+      tr.className = 'border-b border-slate-100 item-row';
+
+
+
+      tr.innerHTML = `
+
+
+
+        <td class="py-2"><input type="text" value="${desc}" oninput="calculateTotals()" class="w-full focus:outline-none item-desc" /></td>
+
+
+
+        <td class="py-2 text-center"><input type="number" value="${qty}" min="1" oninput="calculateTotals()" class="w-12 text-center border border-slate-200 rounded focus:outline-none item-qty" /></td>
+
+
+
+        <td class="py-2 text-right"><input type="number" value="${price}" step="0.01" oninput="calculateTotals()" class="w-20 text-right border border-slate-200 rounded focus:outline-none item-price" /></td>
+
+
+
+        <td class="py-2 text-right font-bold item-total">0.00 €</td>
+
+
+
+        <td class="py-2 text-center no-print"><button onclick="this.closest('tr').remove(); calculateTotals();" class="text-red-400 font-bold cursor-pointer">✕</button></td>
+
+
+
+      `;
+
+
+
+      tbody.appendChild(tr);
+
+
+
+      calculateTotals();
+
+
+
+    }
+
+
+
+
+
+
+
+    function calculateTotals() {
+
+
+
+      let subtotal = 0;
+
+
+
+      document.querySelectorAll('.item-row').forEach(row => {
+
+
+
+        const qty = parseFloat(row.querySelector('.item-qty').value) || 0;
+
+
+
+        const price = parseFloat(row.querySelector('.item-price').value) || 0;
+
+
+
+        const total = qty * price;
+
+
+
+        const totalEl = row.querySelector('.item-total');
+
+
+
+        if (totalEl) totalEl.innerText = total.toFixed(2) + ' €';
+
+
+
+        subtotal += total;
+
+
+
+      });
+
+
+
+
+
+
+
+      const taxRateInput = document.getElementById('tax-rate');
+
+
+
+      const taxRate = taxRateInput ? parseFloat(taxRateInput.value) || 0 : 0;
+
+
+
+      const tax = subtotal * (taxRate / 100);
+
+
+
+
+
+
+
+      const subtotalVal = document.getElementById('subtotal-val');
+
+
+
+      const taxVal = document.getElementById('tax-val');
+
+
+
+      const totalVal = document.getElementById('total-val');
+
+
+
+
+
+
+
+      if (subtotalVal) subtotalVal.innerText = subtotal.toFixed(2) + ' €';
+
+
+
+      if (taxVal) taxVal.innerText = tax.toFixed(2) + ' €';
+
+
+
+      if (totalVal) totalVal.innerText = (subtotal + tax).toFixed(2) + ' €';
+
+
+
+    }
+
+
+
+
+
+
+
+    function downloadPDF() {
+
+
+
+      const element = document.getElementById('invoice');
+
+
+
+      const noPrintEls = document.querySelectorAll('.no-print');
+
+
+
+      noPrintEls.forEach(el => el.style.display = 'none');
+
+
+
+
+
+
+
+      const invNum = document.getElementById('inv-num')?.value || 'Factura';
+
+
+
+
+
+
+
+      html2pdf().set({
+
+
+
+        margin: 0.4,
+
+
+
+        filename: `${invNum}_FastInvoice.pdf`,
+
+
+
+        html2canvas: { scale: 2 },
+
+
+
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+
+
+
+      }).from(element).save().then(() => {
+
+
+
+        noPrintEls.forEach(el => el.style.display = '');
+
+
+
+      });
+
+
+
+    }
+
+
+
+
+
+
+
+    // Funciones asíncronas con Supabase
+
+
+
+    async function init() {
+
+
+
+      const dateInput = document.getElementById('inv-date');
+
+
+
+      if (dateInput) dateInput.valueAsDate = new Date();
+
+
+
+
+
+
+
+      addItem('Diseño Web / Consultoría', 1, 150);
+
+
+
+
+
+
+
+      if (!supabaseClient) return;
+
+
+
+
+
+
+
+      try {
+
+
+
+        const { data: { user } } = await supabaseClient.auth.getUser();
+
+
+
+        if (user) {
+
+
+
+          onUserLoggedIn(user);
+
+
+
+        }
+
+
+
+      } catch (err) {
+
+
+
+        console.error("Error al comprobar sesión:", err);
+
+
+
+      }
+
+
+
+      checkWatermark();
+
+
+
+    }
+
+
+
+
+
+
+
+    async function onUserLoggedIn(user) {
+
+
+
+      currentUser = user;
+
+
+
+      const btnLogin = document.getElementById('btn-login');
+
+
+
+      const userInfo = document.getElementById('user-info');
+
+
+
+      const userBadge = document.getElementById('user-badge');
+
+
+
+
+
+
+
+      if (btnLogin) btnLogin.classList.add('hidden');
+
+
+
+      if (userInfo) userInfo.classList.remove('hidden');
+
+
+
+      if (userBadge) userBadge.innerText = user.email;
+
+
+
+
+
+
+
+      let { data: profile } = await supabaseClient.from('profiles').select('*').eq('id', user.id).single();
+
+
+
+      if (!profile) {
+
+
+
+        await supabaseClient.from('profiles').insert([{ id: user.id, email: user.email }]);
+
+
+
+      } else {
+
+
+
+        isUserPro = profile.is_pro || false;
+
+
+
+        if (profile.seller_name) document.getElementById('seller-name').value = profile.seller_name;
+
+
+
+        if (profile.seller_id) document.getElementById('seller-id').value = profile.seller_id;
+
+
+
+        if (profile.seller_address) document.getElementById('seller-address').value = profile.seller_address;
+
+
+
+        if (profile.payment_notes) document.getElementById('payment-notes').value = profile.payment_notes;
+
+
+
+      }
+
+
+
+      checkWatermark();
+
+
+
+      loadClients();
+      loadCompanies();
+
+
+
+    }
+
+
+
+
+
+
+
+    async function handleLogin() {
+
+
+
+      if (!supabaseClient) return alert("Supabase no está conectado.");
+
+
+
+      const emailInput = document.getElementById('auth-email');
+
+
+
+      const email = emailInput ? emailInput.value : '';
+
+
+
+      if (!email) return alert("Introduce un correo válido.");
+
+
+
+
+
+
+
+      const { error } = await supabaseClient.auth.signInWithOtp({ 
+
+
+
+        email: email,
+
+
+
+        options: { emailRedirectTo: window.location.href }
+
+
+
+      });
+
+
+
+
+
+
+
+      const msg = document.getElementById('auth-message');
+
+
+
+      if (msg) {
+
+
+
+        if (error) {
+
+
+
+          msg.innerText = "Error: " + error.message;
+
+
+
+        } else {
+
+
+
+          msg.innerText = "¡Enlace enviado! Revisa tu bandeja de entrada.";
+
+
+
+        }
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+    async function logout() {
+
+
+
+      if (!supabaseClient) return;
+
+
+
+      await supabaseClient.auth.signOut();
+
+
+
+      window.location.reload();
+
+
+
+    }
+
+
+
+
+
+
+
+    async function saveSellerProfile(showMessage = false) {
+      if (!supabaseClient) {
+        if (showMessage) alert('Supabase no está conectado.');
+        return;
+      }
+      if (!currentUser) {
+        if (showMessage) alert('Inicia sesión antes de guardar los datos de tu empresa.');
+        return;
+      }
+
+      const profile = {
+        id: currentUser.id,
+        email: currentUser.email,
+        seller_name: document.getElementById('seller-name').value.trim(),
+        seller_id: document.getElementById('seller-id').value.trim(),
+        seller_address: document.getElementById('seller-address').value.trim(),
+        payment_notes: document.getElementById('payment-notes')?.value.trim() || '',
+        updated_at: new Date().toISOString()
+      };
+
+      const { error } = await supabaseClient
+        .from('profiles')
+        .upsert(profile, { onConflict: 'id' });
+
+      if (error) {
+        console.error('Error guardando los datos de empresa:', error);
+        if (showMessage) alert('No se pudieron guardar los datos de empresa: ' + error.message);
+        return;
+      }
+
+      if (showMessage) alert('Datos de empresa guardados correctamente.');
+    }
+
+
+
+
+
+
+
+
+    async function loadCompanies() {
+      if (!currentUser || !supabaseClient) return;
+      const { data, error } = await supabaseClient.from('companies').select('*').eq('user_id', currentUser.id).order('company_name', { ascending: true });
+      if (error) {
+        console.error('Error cargando empresas:', error);
+        alert('No se pudieron cargar las empresas: ' + error.message + '\n\nComprueba que has creado la tabla "companies" y sus políticas RLS.');
+        return;
+      }
+      companiesCache = data || [];
+      const select = document.getElementById('company-select');
+      if (!select) return;
+      select.innerHTML = '<option value="">-- Seleccionar empresa guardada --</option>';
+      companiesCache.forEach(company => {
+        const option = document.createElement('option');
+        option.value = String(company.id);
+        option.textContent = company.company_name || '(Empresa sin nombre)';
+        select.appendChild(option);
+      });
+    }
+
+    function autofillCompany() {
+      const select = document.getElementById('company-select');
+      if (!select || !select.value) return;
+      const company = companiesCache.find(c => String(c.id) === select.value);
+      if (!company) return;
+      document.getElementById('seller-name').value = company.company_name || '';
+      document.getElementById('seller-id').value = company.company_id || '';
+      document.getElementById('seller-address').value = company.company_address || '';
+      const notes = document.getElementById('payment-notes');
+      if (notes) notes.value = company.payment_notes || '';
+    }
+
+    async function saveCurrentCompany() {
+      if (!supabaseClient) return alert('Supabase no está conectado.');
+      if (!currentUser) return alert('Inicia sesión antes de guardar empresas.');
+      const name = document.getElementById('seller-name').value.trim();
+      if (!name) return alert('Escribe el nombre de la empresa.');
+      const company = {
+        user_id: currentUser.id,
+        company_name: name,
+        company_id: document.getElementById('seller-id').value.trim(),
+        company_address: document.getElementById('seller-address').value.trim(),
+        payment_notes: document.getElementById('payment-notes')?.value.trim() || ''
+      };
+      const { error } = await supabaseClient.from('companies').insert([company]);
+      if (error) {
+        console.error('Error guardando empresa:', error);
+        return alert('No se pudo guardar la empresa: ' + error.message + '\n\nComprueba que has ejecutado el SQL de la tabla companies.');
+      }
+      await loadCompanies();
+      const saved = companiesCache.find(c => c.company_name === company.company_name && c.company_id === company.company_id && c.company_address === company.company_address);
+      if (saved) document.getElementById('company-select').value = String(saved.id);
+      alert('Empresa guardada correctamente. Ya puedes seleccionarla en la lista.');
+    }
+
+    async function loadClients() {
+
+      if (!currentUser || !supabaseClient) return;
+
+
+
+      const { data, error } = await supabaseClient
+
+        .from('clients')
+
+        .select('*')
+
+        .eq('user_id', currentUser.id)
+
+        .order('client_name', { ascending: true });
+
+
+
+      if (error) {
+
+        console.error('Error cargando clientes:', error);
+
+        alert('No se pudieron cargar los clientes: ' + error.message + '\n\nComprueba que existe la tabla "clients" y que sus políticas RLS permiten leer tus propios clientes.');
+
+        return;
+
+      }
+
+
+
+      clientsCache = data || [];
+
+      const select = document.getElementById('client-select');
+
+      if (!select) return;
+
+
+
+      select.innerHTML = '<option value="">-- Seleccionar cliente guardado --</option>';
+
+      clientsCache.forEach(c => {
+
+        const option = document.createElement('option');
+
+        option.value = String(c.id);
+
+        option.textContent = c.client_name || '(Cliente sin nombre)';
+
+        select.appendChild(option);
+
+      });
+
+    }
+
+
+
+
+
+
+
+    function autofillClient() {
+
+
+
+      const select = document.getElementById('client-select');
+
+
+
+      if (!select) return;
+
+
+
+      const id = select.value;
+
+
+
+      const client = clientsCache.find(c => c.id === id);
+
+
+
+      if (client) {
+
+
+
+        document.getElementById('client-name').value = client.client_name;
+
+
+
+        document.getElementById('client-id').value = client.client_id || '';
+
+
+
+        document.getElementById('client-address').value = client.client_address || '';
+
+
+
+      }
+
+
+
+    }
+
+
+
+
+
+
+
+    async function saveCurrentClient() {
+
+      if (!supabaseClient) return alert('Supabase no está conectado. Comprueba la conexión a Internet y la configuración.');
+
+      if (!currentUser) return alert('Inicia sesión antes de guardar clientes. Pulsa «Iniciar sesión» y abre el enlace que recibirás por correo.');
+
+
+
+      const name = document.getElementById('client-name').value.trim();
+
+      if (!name) return alert('Escribe el nombre del cliente.');
+
+
+
+      const { error } = await supabaseClient.from('clients').insert([{
+
+        user_id: currentUser.id,
+
+        client_name: name,
+
+        client_id: document.getElementById('client-id').value.trim(),
+
+        client_address: document.getElementById('client-address').value.trim()
+
+      }]);
+
+
+
+      if (error) {
+
+        console.error('Error guardando cliente:', error);
+
+        alert('No se pudo guardar el cliente: ' + error.message + '\n\nLo más habitual es que falte la tabla "clients", que sus columnas no coincidan o que las políticas RLS de Supabase bloqueen la inserción.');
+
+        return;
+
+      }
+
+
+
+      await loadClients();
+
+      alert('Cliente guardado correctamente.');
+
+    }
+
+    // Exponer explícitamente las funciones que usan los botones.
+
+    Object.assign(window, {
+
+      openLoginModal, closeLoginModal, triggerRewardedAd, checkWatermark,
+
+      addItem, calculateTotals, downloadPDF, logout, handleLogin,
+
+      saveSellerProfile, loadClients, autofillClient, saveCurrentClient, loadCompanies, autofillCompany, saveCurrentCompany
+
+    });
+
+
+
+    // Inicializar la app cuando el documento esté listo.
+
+    if (document.readyState === 'loading') {
+
+      document.addEventListener('DOMContentLoaded', init, { once: true });
+
+    } else {
+
+      init();
+
+    }
+
+
+
+  </script>
+
+
+
+</body>
+
+
+
+</html>
